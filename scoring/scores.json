@@ -7,6 +7,11 @@
           "routing_accuracy": 1.0,
           "team_accuracy": 0.6743333333333333
         },
+        "adaptive_rrs": {
+          "reliance_probability": 0.6033222591362126,
+          "routing_accuracy": 0.502,
+          "team_accuracy": 0.6456666666666667
+        },
         "adaptive_weighted_oracle": {
           "reliance_probability": 0.6757475083056479,
           "routing_accuracy": 1.0,
@@ -32,6 +37,11 @@
           "reliance_probability": 0.8850498338870432,
           "routing_accuracy": 1.0,
           "team_accuracy": 0.8063333333333333
+        },
+        "adaptive_rrs": {
+          "reliance_probability": 0.6910299003322259,
+          "routing_accuracy": 0.49933333333333335,
+          "team_accuracy": 0.7633333333333333
         },
         "adaptive_weighted_oracle": {
           "reliance_probability": 0.8817275747508305,
