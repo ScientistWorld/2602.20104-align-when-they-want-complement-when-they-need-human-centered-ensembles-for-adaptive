@@ -37,6 +37,19 @@ state. RRS remains implemented in `method/`, but the synthetic reference table
 does not include RRS numbers, so it is not part of the default validated
 `scores.json`.
 
+Continuation audit for the reset milestone found no integrity issues:
+
+- `method/` implements the paper's actual synthetic CGPR/adaptive-ensemble
+  procedure rather than a surrogate.
+- `eval/` is method-independent and reads method prediction artifacts.
+- `python validate.py --compare` passed on the existing two-experiment scores.
+- The environment files are reasonable and were left unchanged.
+
+Current expansion: added alpha=0.5, alpha=0.8, and alpha=1.0 settings from the
+authors' released synthetic human-reliability sweep to `reference.json` and
+`scripts/reproduce.sh`. Submitting a CPU job to regenerate `scores.json` for all
+five synthetic experiments and validate the expanded suite.
+
 Continuation audit: the implementation remains a real reproduction of the
 paper's synthetic CGPR/adaptive-ensemble procedure, and prior CPU container jobs
 validated the core and alpha=0.7 settings. A login-node attempt failed because

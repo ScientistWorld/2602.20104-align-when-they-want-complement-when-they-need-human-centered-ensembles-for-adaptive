@@ -25,13 +25,14 @@ and is the paper-reported synthetic routing condition.
 - **Metric**: `routing_accuracy` (higher is better)
 - **Run**: `bash scripts/evaluate.sh`
 
-## Expansion: college_admission_alpha_0_7
+## Expansion: human-reliability sweep
 
-Tests the same team-decision objective when humans are less accurate in the
-aligned region. This keeps the benchmark in the same problem family while
-checking that adaptive assistance still improves the team under a second human
-competence regime.
+Tests the same team-decision objective across multiple aligned-region human
+accuracy levels from the authors' released synthetic alpha sweep. This checks
+the paper's secondary claim that adaptive gains increase as the aligned-region
+human signal becomes more reliable.
 
 - **Metric**: `team_accuracy` (higher is better)
 - **Constraint metrics**: `reliance_probability`, `routing_accuracy`
+- **Experiments**: `college_admission_alpha_0_5`, `college_admission_alpha_0_7`, `college_admission_alpha_0_8`, `college_admission_alpha_1_0`
 - **Run**: `bash scripts/reproduce.sh`

@@ -2,7 +2,7 @@
   "experiments": {
     "college_admission_core": {
       "description": "Synthetic College Admission CGPR team decision task at p=0.5, delta=0.25, alpha=0.9. Reference values are from the authors' released College Admission imperfect-human synthetic output for this setting.",
-      "weight": 0.7,
+      "weight": 0.4,
       "primary_metric": "team_accuracy",
       "metrics": {
         "team_accuracy": {
@@ -47,9 +47,56 @@
         }
       }
     },
+    "college_admission_alpha_0_5": {
+      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.5 from the authors' released alpha sweep.",
+      "weight": 0.15,
+      "primary_metric": "team_accuracy",
+      "metrics": {
+        "team_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 1.0
+        },
+        "reliance_probability": {
+          "higher_is_better": true,
+          "coefficient": 0.4
+        },
+        "routing_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2
+        }
+      },
+      "results": {
+        "behavior_aware_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.5673333333333334,
+          "reliance_probability": 0.5025906735751295
+        },
+        "aligned_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.545,
+          "reliance_probability": 0.49870466321243523
+        },
+        "complementary_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.569
+        },
+        "adaptive_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.5926666666666667,
+          "reliance_probability": 0.49870466321243523,
+          "routing_accuracy": 1.0
+        },
+        "adaptive_weighted_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.5506666666666666,
+          "reliance_probability": 0.4961139896373057,
+          "routing_accuracy": 1.0
+        }
+      }
+    },
     "college_admission_alpha_0_7": {
       "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.7 from the authors' released alpha sweep.",
-      "weight": 0.3,
+      "weight": 0.15,
       "primary_metric": "team_accuracy",
       "metrics": {
         "team_accuracy": {
@@ -90,6 +137,100 @@
           "type": "proposed",
           "team_accuracy": 0.6693333333333333,
           "reliance_probability": 0.6904145077720207,
+          "routing_accuracy": 1.0
+        }
+      }
+    },
+    "college_admission_alpha_0_8": {
+      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.8 from the authors' released alpha sweep.",
+      "weight": 0.15,
+      "primary_metric": "team_accuracy",
+      "metrics": {
+        "team_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 1.0
+        },
+        "reliance_probability": {
+          "higher_is_better": true,
+          "coefficient": 0.4
+        },
+        "routing_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2
+        }
+      },
+      "results": {
+        "behavior_aware_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.721,
+          "reliance_probability": 0.6651554404145077
+        },
+        "aligned_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.6896666666666667,
+          "reliance_probability": 0.7972797927461139
+        },
+        "complementary_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.7276666666666667
+        },
+        "adaptive_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.7533333333333333,
+          "reliance_probability": 0.7972797927461139,
+          "routing_accuracy": 1.0
+        },
+        "adaptive_weighted_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.7366666666666667,
+          "reliance_probability": 0.7927461139896373,
+          "routing_accuracy": 1.0
+        }
+      }
+    },
+    "college_admission_alpha_1_0": {
+      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=1.0 from the authors' released alpha sweep.",
+      "weight": 0.15,
+      "primary_metric": "team_accuracy",
+      "metrics": {
+        "team_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 1.0
+        },
+        "reliance_probability": {
+          "higher_is_better": true,
+          "coefficient": 0.4
+        },
+        "routing_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2
+        }
+      },
+      "results": {
+        "behavior_aware_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.82,
+          "reliance_probability": 0.8322538860103627
+        },
+        "aligned_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.7933333333333333,
+          "reliance_probability": 0.9948186528497409
+        },
+        "complementary_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.8366666666666667
+        },
+        "adaptive_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.8813333333333333,
+          "reliance_probability": 0.9948186528497409,
+          "routing_accuracy": 1.0
+        },
+        "adaptive_weighted_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.874,
+          "reliance_probability": 0.9747409326424871,
           "routing_accuracy": 1.0
         }
       }

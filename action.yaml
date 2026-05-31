@@ -1,8 +1,8 @@
 # IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends. Sleeping blocks the entire pipeline.
-action: done
+action: submit
 gpus: 0
-test: false
+test: true
 milestone: core_claim_plus
-notes: "Core synthetic CGPR/adaptive-ensemble claim reproduced and validated; package also covers the alpha=0.7 expansion. Higher milestones would require the WoofNette image benchmark or broader sweeps."
+notes: "CPU test job to regenerate the five-alpha college-admission sweep and validate scores against the expanded reference; expected to support secondary_claims if successful."
