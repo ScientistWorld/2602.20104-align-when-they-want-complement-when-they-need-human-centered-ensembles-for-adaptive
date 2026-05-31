@@ -50,6 +50,17 @@ authors' released synthetic human-reliability sweep to `reference.json` and
 `scripts/reproduce.sh`. Submitting a CPU job to regenerate `scores.json` for all
 five synthetic experiments and validate the expanded suite.
 
+Job `59e5cbe0-420` completed successfully and validated the five-alpha suite,
+but the alpha=0.5 adaptive result was weaker than both the paper reference and
+simple baselines. Audit against the authors' released `run_imperfect_human`
+procedure found the cause: the packaged reproduction generated each alpha
+setting independently, used a stratified train/test split, and used a
+hash-derived team-decision RNG. The paper's sweep instead uses one shared
+dataset, an unstratified split, one RNG stream across the whole alpha sweep, and
+a seeded NumPy RNG for each CGPR team decision. The data generator, evaluator,
+and reproduction script have been updated to follow that protocol, while still
+keeping evaluation independent from `method/`.
+
 Continuation audit: the implementation remains a real reproduction of the
 paper's synthetic CGPR/adaptive-ensemble procedure, and prior CPU container jobs
 validated the core and alpha=0.7 settings. A login-node attempt failed because
@@ -72,13 +83,23 @@ passed. The reproduced values remain:
 
 ## Remaining
 
-- Higher milestones would require reproducing additional axes from the paper, such as the WoofNette image benchmark or more synthetic sweeps. The current packaged gym covers the core synthetic claim and one additional human-accuracy setting.
+- Submit the corrected paper-protocol alpha sweep and compare against the
+  released reference values. If the five-setting sweep matches qualitatively,
+  the package reaches `secondary_claims`.
+- Higher milestones after that would require reproducing additional axes from
+  the paper, such as the WoofNette image benchmark or broader College Admission
+  sweeps beyond imperfect-human reliability.
 
 ## Issues
 
 - Login-node Python does not have the scientific Python stack installed. This is expected to be handled by `environment/setup.sh` during the submitted job.
 - Audit found that the first implementation let `method/` generate the human behavior used for evaluation and mixed a WoofNette reference number into the College Admission score table. This turn moved human behavior into tracked data generation, made `eval/` recompute team decisions from held-out data, and replaced references with College Admission values from the authors' released CSV.
 - The job log paths reported by the scheduler were mirrored under `jobs/9cf433ae-84c/` in this workspace; the direct absolute scratch paths in the notification were not readable from the current shell.
+- The direct absolute scratch paths for job `59e5cbe0-420` were also not mounted
+  here; the readable logs were under `/home/user/jobs/59e5cbe0-420/`.
+- The first five-alpha run exposed a protocol mismatch at alpha=0.5. The fix
+  preserves the paper's algorithm and changes only data/evaluation protocol to
+  match the released experiment implementation.
 
 ## Deviations from Paper
 

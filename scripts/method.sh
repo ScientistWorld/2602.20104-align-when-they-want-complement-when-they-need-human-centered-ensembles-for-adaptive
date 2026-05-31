@@ -21,16 +21,19 @@ ALPHA="${ALPHA:-0.9}"
 COMPLEMENTARY_ACCURACY="${COMPLEMENTARY_ACCURACY:-0.5}"
 TAU="${TAU:-0.5}"
 SEED="${SEED:-42}"
+GENERATE_DATA="${GENERATE_DATA:-1}"
 
-python data/college_admission.py \
-  --output-dir "$DATA_DIR" \
-  --n-instances "$N_INSTANCES" \
-  --aligned-fraction "$ALIGNED_FRACTION" \
-  --delta "$DELTA" \
-  --threshold "$TAU" \
-  --alpha "$ALPHA" \
-  --complementary-accuracy "$COMPLEMENTARY_ACCURACY" \
-  --seed "$SEED"
+if [ "$GENERATE_DATA" != "0" ]; then
+  python data/college_admission.py \
+    --output-dir "$DATA_DIR" \
+    --n-instances "$N_INSTANCES" \
+    --aligned-fraction "$ALIGNED_FRACTION" \
+    --delta "$DELTA" \
+    --threshold "$TAU" \
+    --alpha "$ALPHA" \
+    --complementary-accuracy "$COMPLEMENTARY_ACCURACY" \
+    --seed "$SEED"
+fi
 
 python method/college_admission_method.py \
   --data-dir "$DATA_DIR" \

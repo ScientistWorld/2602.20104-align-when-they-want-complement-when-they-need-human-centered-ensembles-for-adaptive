@@ -30,17 +30,10 @@ def reliance_from_alignment(human_pred, ai_pred, region) -> float:
     return float(1.0 - np.mean(human_pred[mask] != ai_pred[mask]))
 
 
-def deterministic_uniform(example_id, seed: int):
-    values = np.asarray(example_id, dtype=np.uint64) + np.uint64(seed) + np.uint64(0x9E3779B97F4A7C15)
-    values = (values ^ (values >> np.uint64(30))) * np.uint64(0xBF58476D1CE4E5B9)
-    values = (values ^ (values >> np.uint64(27))) * np.uint64(0x94D049BB133111EB)
-    values = values ^ (values >> np.uint64(31))
-    return (values >> np.uint64(11)).astype(np.float64) / float(1 << 53)
-
-
-def cgpr_team_decision(example_id, human_pred, human_conf, ai_pred, reliance, tau: float, seed: int):
+def cgpr_team_decision(human_pred, human_conf, ai_pred, reliance, tau: float, seed: int):
     high_conf = human_conf > tau
-    accepts_ai = deterministic_uniform(example_id, seed) < reliance
+    rng = np.random.Generator(np.random.PCG64(seed))
+    accepts_ai = rng.random(len(human_pred)) < reliance
     return np.where(high_conf, human_pred, np.where(accepts_ai, ai_pred, human_pred)).astype(int)
 
 
@@ -54,9 +47,8 @@ def evaluate_predictions(prediction_path: Path, data_dir: Path, experiment_name:
     human = df["human_pred"].to_numpy(dtype=int)
     human_conf = df["human_conf"].to_numpy(dtype=float)
     region = df["region"].to_numpy(dtype=int)
-    example_id = df["example_id"].to_numpy(dtype=int)
     tau = float(metadata.get("threshold", 0.5))
-    seed = int(metadata.get("seed", 42)) + 3
+    team_seed = int(metadata.get("team_seed", 0))
 
     results = {}
     for method_name, prefix in METHOD_COLUMNS.items():
@@ -65,7 +57,7 @@ def evaluate_predictions(prediction_path: Path, data_dir: Path, experiment_name:
             continue
         ai_pred = df[f"{prefix}_pred"].to_numpy(dtype=int)
         reliance = reliance_from_alignment(human, ai_pred, region)
-        team_pred = cgpr_team_decision(example_id, human, human_conf, ai_pred, reliance, tau=tau, seed=seed)
+        team_pred = cgpr_team_decision(human, human_conf, ai_pred, reliance, tau=tau, seed=team_seed)
         team_acc = accuracy(y, team_pred)
         results[method_name] = {
             "team_accuracy": team_acc,

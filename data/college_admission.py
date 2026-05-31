@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+from typing import Iterable
 
 import numpy as np
 import pandas as pd
@@ -54,7 +55,21 @@ def add_human_behavior(
     seed: int,
 ) -> pd.DataFrame:
     """Attach the paper's simulated human decisions to a split."""
-    rng = np.random.default_rng(seed)
+    return add_human_behavior_with_rng(
+        df,
+        alpha=alpha,
+        complementary_accuracy=complementary_accuracy,
+        rng=np.random.default_rng(seed),
+    )
+
+
+def add_human_behavior_with_rng(
+    df: pd.DataFrame,
+    alpha: float,
+    complementary_accuracy: float,
+    rng: np.random.Generator,
+) -> pd.DataFrame:
+    """Attach simulated human decisions using an existing RNG stream."""
     output = df.copy()
     label = output["label"].to_numpy(dtype=int)
     region = output["region"].to_numpy(dtype=int)
@@ -69,6 +84,43 @@ def add_human_behavior(
     return output
 
 
+def write_split(
+    output_dir: Path,
+    train: pd.DataFrame,
+    test: pd.DataFrame,
+    alpha: float,
+    complementary_accuracy: float,
+    rng: np.random.Generator,
+    metadata: dict,
+) -> None:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    train_h = add_human_behavior_with_rng(
+        train, alpha=alpha, complementary_accuracy=complementary_accuracy, rng=rng
+    )
+    test_h = add_human_behavior_with_rng(
+        test, alpha=alpha, complementary_accuracy=complementary_accuracy, rng=rng
+    )
+    train_h.to_csv(output_dir / "train.csv", index=False)
+    test_h.to_csv(output_dir / "test.csv", index=False)
+
+    row = dict(metadata)
+    row.update(
+        {
+            "alpha": alpha,
+            "complementary_accuracy": complementary_accuracy,
+            "team_seed": 0,
+        }
+    )
+    pd.DataFrame([row]).to_csv(output_dir / "metadata.csv", index=False)
+
+
+def alpha_dir_name(alpha: float) -> str:
+    if abs(alpha - 0.9) < 1e-12:
+        return "college_admission"
+    alpha_token = f"{alpha:g}".replace(".", "_")
+    return f"college_admission_alpha_{alpha_token}"
+
+
 def split_and_write(
     output_dir: Path,
     n_instances: int = 10000,
@@ -81,41 +133,80 @@ def split_and_write(
     seed: int = 42,
 ) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
+    rng = np.random.default_rng(seed)
     df = generate_college_admission(
         n_instances=n_instances,
         aligned_fraction=aligned_fraction,
         delta=delta,
         threshold=threshold,
-        seed=seed,
+        rng=rng,
     )
     train, test = train_test_split(
         df,
         test_size=test_size,
-        stratify=df["region"],
         random_state=seed,
     )
-    train = train.sort_values("example_id").reset_index(drop=True)
-    test = test.sort_values("example_id").reset_index(drop=True)
-    train = add_human_behavior(train, alpha=alpha, complementary_accuracy=complementary_accuracy, seed=seed + 1)
-    test = add_human_behavior(test, alpha=alpha, complementary_accuracy=complementary_accuracy, seed=seed + 2)
-    train.to_csv(output_dir / "train.csv", index=False)
-    test.to_csv(output_dir / "test.csv", index=False)
-
-    metadata = pd.DataFrame(
-        [
-            {
-                "n_instances": n_instances,
-                "aligned_fraction": aligned_fraction,
-                "delta": delta,
-                "threshold": threshold,
-                "alpha": alpha,
-                "complementary_accuracy": complementary_accuracy,
-                "test_size": test_size,
-                "seed": seed,
-            }
-        ]
+    metadata = {
+        "n_instances": n_instances,
+        "aligned_fraction": aligned_fraction,
+        "delta": delta,
+        "threshold": threshold,
+        "test_size": test_size,
+        "seed": seed,
+    }
+    write_split(
+        output_dir=output_dir,
+        train=train.reset_index(drop=True),
+        test=test.reset_index(drop=True),
+        alpha=alpha,
+        complementary_accuracy=complementary_accuracy,
+        rng=rng,
+        metadata=metadata,
     )
-    metadata.to_csv(output_dir / "metadata.csv", index=False)
+
+
+def write_alpha_sweep(
+    output_root: Path,
+    alphas: Iterable[float],
+    n_instances: int = 10000,
+    aligned_fraction: float = 0.5,
+    delta: float = 0.25,
+    threshold: float = 0.5,
+    complementary_accuracy: float = 0.5,
+    test_size: float = 0.3,
+    seed: int = 42,
+) -> None:
+    """Write the imperfect-human alpha sweep with the paper's RNG protocol."""
+    rng = np.random.default_rng(seed)
+    df = generate_college_admission(
+        n_instances=n_instances,
+        aligned_fraction=aligned_fraction,
+        delta=delta,
+        threshold=threshold,
+        rng=rng,
+    )
+    train, test = train_test_split(df, test_size=test_size, random_state=seed)
+    train = train.reset_index(drop=True)
+    test = test.reset_index(drop=True)
+    metadata = {
+        "n_instances": n_instances,
+        "aligned_fraction": aligned_fraction,
+        "delta": delta,
+        "threshold": threshold,
+        "test_size": test_size,
+        "seed": seed,
+        "sweep_protocol": "paper_imperfect_human",
+    }
+    for alpha in alphas:
+        write_split(
+            output_dir=output_root / alpha_dir_name(alpha),
+            train=train,
+            test=test,
+            alpha=alpha,
+            complementary_accuracy=complementary_accuracy,
+            rng=rng,
+            metadata=metadata,
+        )
 
 
 def main() -> None:
@@ -129,7 +220,28 @@ def main() -> None:
     parser.add_argument("--complementary-accuracy", type=float, default=0.5)
     parser.add_argument("--test-size", type=float, default=0.3)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument(
+        "--sweep-alphas",
+        default=None,
+        help="Comma-separated alpha values; writes the paper's alpha sweep protocol.",
+    )
+    parser.add_argument("--sweep-output-root", default="data")
     args = parser.parse_args()
+    if args.sweep_alphas:
+        alphas = [float(value) for value in args.sweep_alphas.split(",")]
+        write_alpha_sweep(
+            output_root=Path(args.sweep_output_root),
+            alphas=alphas,
+            n_instances=args.n_instances,
+            aligned_fraction=args.aligned_fraction,
+            delta=args.delta,
+            threshold=args.threshold,
+            complementary_accuracy=args.complementary_accuracy,
+            test_size=args.test_size,
+            seed=args.seed,
+        )
+        return
+
     split_and_write(
         output_dir=Path(args.output_dir),
         n_instances=args.n_instances,

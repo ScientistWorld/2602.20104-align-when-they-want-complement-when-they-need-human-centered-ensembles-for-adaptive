@@ -20,6 +20,16 @@ cd /home/user
 
 mkdir -p tmp/reproduce_scores
 
+python data/college_admission.py \
+  --sweep-alphas 0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0 \
+  --sweep-output-root data \
+  --n-instances "${N_INSTANCES:-10000}" \
+  --aligned-fraction "${ALIGNED_FRACTION:-0.5}" \
+  --delta "${DELTA:-0.25}" \
+  --threshold "${TAU:-0.5}" \
+  --complementary-accuracy "${COMPLEMENTARY_ACCURACY:-0.5}" \
+  --seed "${SEED:-42}"
+
 run_alpha_setting() {
   local alpha="$1"
   local experiment_name="$2"
@@ -32,6 +42,7 @@ run_alpha_setting() {
   OUTPUT_DIR="$output_dir" \
   SCORES_OUTPUT="$scores_file" \
   EXPERIMENT_NAME="$experiment_name" \
+  GENERATE_DATA=0 \
   bash scripts/method.sh
 }
 

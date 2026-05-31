@@ -5,4 +5,4 @@ action: submit
 gpus: 0
 test: true
 milestone: core_claim_plus
-notes: "CPU test job to regenerate the five-alpha college-admission sweep and validate scores against the expanded reference; expected to support secondary_claims if successful."
+notes: "Rerun the five-alpha College Admission sweep after fixing the data/eval protocol to match the authors' shared-RNG imperfect-human experiment; expected to support secondary_claims if alpha=0.5 recovers."
