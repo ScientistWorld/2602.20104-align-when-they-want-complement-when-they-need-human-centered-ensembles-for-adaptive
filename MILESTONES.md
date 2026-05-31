@@ -1,6 +1,6 @@
 # Reproduction Milestones
 
-**Current: core_claim_plus**
+**Current: core_claim**
 
 ## Progress Log
 
@@ -20,6 +20,10 @@
 ### [2026-05-31 16:32] - core_claim_plus
 - Added a second alpha=0.7 human-accuracy setting to the reproducible suite.
 - The additional setting preserved the adaptive-routing advantage over the single behavior-aware model on the same benchmark family.
+
+### [2026-05-31 16:37] - core_claim
+- Continuation audit confirmed the implementation is the paper's real synthetic CGPR/adaptive-ensemble algorithm, not a surrogate.
+- Found that persisted scores were stale relative to the newer RRS scorer, so the milestone is held at the reset `core_claim` until the refresh job completes.
 
 ## Stop Justification
 - Not stopped. Current submission refreshes scores after adding explicit RRS scoring.

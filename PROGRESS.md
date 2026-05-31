@@ -32,6 +32,14 @@ The expanded setting is lower than the authors' reported values but keeps the co
 
 Current turn: submitting a CPU reproduction refresh so `scoring/scores.json` includes the RRS metrics already written by the method.
 
+Continuation audit: the implementation remains a real reproduction of the
+paper's synthetic CGPR/adaptive-ensemble procedure, and prior CPU container jobs
+validated the core and alpha=0.7 settings. The persisted scores predate the RRS
+scorer update, so a new CPU test submission is needed to refresh
+`scoring/scores.json` inside the container. A login-node attempt failed because
+the host Python lacks `numpy`; dependencies are installed by
+`environment/setup.sh` in the compute container.
+
 ## Remaining
 
 - Higher milestones would require reproducing additional axes from the paper, such as the WoofNette image benchmark or more synthetic sweeps. The current packaged gym covers the core synthetic claim and one additional human-accuracy setting.
