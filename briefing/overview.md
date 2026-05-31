@@ -10,3 +10,7 @@ aligned and complementary specialists and adaptively routes between them under
 the CGPR human-AI team model. The benchmark scores whether adaptive
 recommendations improve team accuracy while preserving the reliance quantity
 that makes humans willing to use AI advice.
+
+The packaged reproduction reaches `core_claim_plus`: the alpha=0.9 core
+setting matches the authors' reported synthetic result closely, and an
+additional alpha=0.7 setting preserves the same adaptive-routing advantage.

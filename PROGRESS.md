@@ -19,10 +19,19 @@ Core College Admission setting at alpha=0.9:
 
 The core claim is reproduced: adaptive routing between aligned and complementary specialists improves over the single behavior-aware model and component specialists while preserving the reliance signal.
 
+Job `29fb451a-dae` completed successfully and expanded the suite to alpha=0.7.
+
+Additional College Admission setting at alpha=0.7:
+
+- `adaptive_oracle`: team accuracy 0.6743 versus paper 0.688; reliance 0.6764 versus paper 0.6898; routing accuracy 1.0.
+- `adaptive_weighted_oracle`: team accuracy 0.6550 versus paper 0.6693; reliance 0.6757 versus paper 0.6904; routing accuracy 1.0.
+- Baselines remain nontrivial: behavior-aware 0.6543, aligned 0.6220, complementary 0.6603 team accuracy.
+
+The expanded setting is lower than the authors' reported values but keeps the core qualitative pattern: oracle adaptive routing beats the single behavior-aware model and the individual specialists under a different human-accuracy regime.
+
 ## Remaining
 
-- Run the added alpha=0.7 College Admission setting to expand beyond the core point.
-- Inspect the merged two-experiment `scoring/scores.json` and update the milestone if the second setting is also reproduced.
+- Higher milestones would require reproducing additional axes from the paper, such as the WoofNette image benchmark or more synthetic sweeps. The current packaged gym covers the core synthetic claim and one additional human-accuracy setting.
 
 ## Issues
 

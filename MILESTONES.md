@@ -1,6 +1,6 @@
 # Reproduction Milestones
 
-**Current: core_claim**
+**Current: core_claim_plus**
 
 ## Progress Log
 
@@ -19,6 +19,11 @@
 - CPU job `9cf433ae-84c` completed successfully in the container.
 - Reproduced the core College Admission setting: adaptive oracle team accuracy 0.8063 versus paper 0.806, and weighted oracle team accuracy 0.7967 versus paper 0.7947.
 - Validation passed with clean method/evaluation separation and plausible baseline scores.
+
+### [2026-05-31 16:40] - core_claim_plus
+- CPU job `29fb451a-dae` completed successfully in the container.
+- Added and reproduced a second College Admission human-accuracy setting at alpha=0.7.
+- The added setting preserved the paper's qualitative claim: adaptive oracle routing outperformed the single behavior-aware model and individual specialists while maintaining the reliance/routing constraints.
 
 ## Stop Justification
 
