@@ -1,9 +1,6 @@
-# This iteration writes files only — do NOT submit compute jobs.
-# Once you set action to 'done', STOP immediately.
-# Do NOT sleep, poll, or wait. The system reads this file
-# only after your turn ends.
-action: done
+# This iteration runs the train/test split evaluators on compute.
+action: submit
 gpus: 0
 test: false
 milestone: secondary_claims
-notes: "Improvements: enumerated prediction-column methods, added standalone/per-region triangulation metrics, made missing routing artifacts score zero, added metric descriptions, and wrote DESIGN_NOTES.md. Notes: static checks only; no evaluator or compute job was run."
+notes: "CPU split-evaluation job: run scripts/evaluate_train.sh and scripts/evaluate_test.sh against existing prediction checkpoints to populate scores_train/test."
