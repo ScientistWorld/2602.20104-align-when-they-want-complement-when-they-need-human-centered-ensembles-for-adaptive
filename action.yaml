@@ -1,8 +1,8 @@
 # IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends. Sleeping blocks the entire pipeline.
-action: done
-gpus: 0
-test: true
-milestone: core_claim_plus
-notes: "Reproduced the core synthetic claim and added an alpha=0.7 expansion. The packaged two-experiment suite validates cleanly."
+action: pending
+gpus: 1
+test: false
+milestone: core_claim
+notes: ""
