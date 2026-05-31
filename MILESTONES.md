@@ -25,5 +25,9 @@
 - Continuation audit confirmed the implementation is the paper's real synthetic CGPR/adaptive-ensemble algorithm, not a surrogate.
 - Found that persisted scores were stale relative to the newer RRS scorer, so the milestone is held at the reset `core_claim` until the refresh job completes.
 
+### [2026-05-31 16:40] - core_claim
+- Job `148f0607-883` refreshed scores but failed validation because default scoring included RRS without paper-reported synthetic reference entries.
+- Fixed the scorer to validate only paper-reported synthetic methods while retaining RRS implementation in method outputs.
+
 ## Stop Justification
-- Not stopped. Current submission refreshes scores after adding explicit RRS scoring.
+- Not stopped. Current submission refreshes scores after aligning the default scorer with `reference.json`.

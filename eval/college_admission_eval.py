@@ -16,7 +16,6 @@ METHOD_COLUMNS = {
     "complementary_ai": "complementary_ai",
     "adaptive_oracle": "adaptive_oracle",
     "adaptive_weighted_oracle": "adaptive_weighted_oracle",
-    "adaptive_rrs": "adaptive_rrs",
 }
 
 
@@ -81,11 +80,6 @@ def evaluate_predictions(prediction_path: Path, data_dir: Path, experiment_name:
         results["adaptive_oracle"]["routing_accuracy"] = accuracy(
             region, df["adaptive_oracle_route_aligned"].to_numpy(dtype=int)
         )
-    if "adaptive_rrs_route_aligned" in df.columns and "adaptive_rrs" in results:
-        results["adaptive_rrs"]["routing_accuracy"] = accuracy(
-            region, df["adaptive_rrs_route_aligned"].to_numpy(dtype=int)
-        )
-
     return {
         "experiments": {
             experiment_name: {

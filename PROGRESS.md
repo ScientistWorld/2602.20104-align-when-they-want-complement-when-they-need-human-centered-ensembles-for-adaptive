@@ -30,15 +30,21 @@ Additional College Admission setting at alpha=0.7:
 
 The expanded setting is lower than the authors' reported values but keeps the core qualitative pattern: oracle adaptive routing beats the single behavior-aware model and the individual specialists under a different human-accuracy regime.
 
-Current turn: submitting a CPU reproduction refresh so `scoring/scores.json` includes the RRS metrics already written by the method.
+Current turn: submitting a CPU reproduction refresh after keeping the default
+synthetic scorer aligned to paper-reported methods. RRS remains implemented in
+`method/`, but the synthetic reference table does not include RRS numbers, so it
+is not part of the default validated `scores.json`.
 
 Continuation audit: the implementation remains a real reproduction of the
 paper's synthetic CGPR/adaptive-ensemble procedure, and prior CPU container jobs
-validated the core and alpha=0.7 settings. The persisted scores predate the RRS
-scorer update, so a new CPU test submission is needed to refresh
-`scoring/scores.json` inside the container. A login-node attempt failed because
+validated the core and alpha=0.7 settings. A login-node attempt failed because
 the host Python lacks `numpy`; dependencies are installed by
 `environment/setup.sh` in the compute container.
+
+Job `148f0607-883` failed validation because the scorer included
+`adaptive_rrs` while `reference.json` correctly lacked paper-reported synthetic
+RRS reference values. The fix is to exclude RRS from default synthetic scoring
+while retaining the implementation and prediction artifacts.
 
 ## Remaining
 
