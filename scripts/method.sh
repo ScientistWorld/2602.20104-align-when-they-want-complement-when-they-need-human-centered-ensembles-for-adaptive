@@ -26,6 +26,8 @@ python data/college_admission.py \
   --aligned-fraction "$ALIGNED_FRACTION" \
   --delta "$DELTA" \
   --threshold "$TAU" \
+  --alpha "$ALPHA" \
+  --complementary-accuracy "$COMPLEMENTARY_ACCURACY" \
   --seed "$SEED"
 
 python method/college_admission_method.py \
@@ -37,4 +39,4 @@ python method/college_admission_method.py \
   --tau "$TAU" \
   --seed "$SEED"
 
-bash scripts/evaluate.sh "$OUTPUT_DIR/predictions.csv" scoring/scores.json
+bash scripts/evaluate.sh "$OUTPUT_DIR/predictions.csv" scoring/scores.json "$DATA_DIR"

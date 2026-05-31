@@ -1,7 +1,7 @@
 {
   "experiments": {
     "college_admission_core": {
-      "description": "Synthetic College Admission CGPR team decision task at p=0.5, delta=0.25, alpha=0.9. Reference values are from the authors' released synthetic experiment outputs near this setting, with WoofNette standard-AI team accuracy used only as the standard-AI baseline anchor.",
+      "description": "Synthetic College Admission CGPR team decision task at p=0.5, delta=0.25, alpha=0.9. Reference values are from the authors' released College Admission imperfect-human synthetic output for this setting.",
       "weight": 1.0,
       "primary_metric": "team_accuracy",
       "metrics": {
@@ -19,36 +19,31 @@
         }
       },
       "results": {
-        "standard_ai": {
-          "type": "baseline",
-          "team_accuracy": 0.6913,
-          "reliance_probability": 0.7468
-        },
         "behavior_aware_ai": {
           "type": "baseline",
           "team_accuracy": 0.766,
-          "reliance_probability": 0.7468
+          "reliance_probability": 0.7467616580310881
         },
         "aligned_ai": {
           "type": "baseline",
           "team_accuracy": 0.73,
-          "reliance_probability": 0.8795
+          "reliance_probability": 0.8795336787564767
         },
         "complementary_ai": {
           "type": "baseline",
-          "team_accuracy": 0.7783,
-          "reliance_probability": 0.5
+          "team_accuracy": 0.7783333333333333
         },
         "adaptive_oracle": {
           "type": "proposed",
           "team_accuracy": 0.806,
-          "reliance_probability": 0.8795,
+          "reliance_probability": 0.8795336787564767,
           "routing_accuracy": 1.0
         },
-        "adaptive_rrs": {
+        "adaptive_weighted_oracle": {
           "type": "proposed",
-          "team_accuracy": 0.7947,
-          "reliance_probability": 0.8737
+          "team_accuracy": 0.7946666666666666,
+          "reliance_probability": 0.8737046632124352,
+          "routing_accuracy": 1.0
         }
       }
     }

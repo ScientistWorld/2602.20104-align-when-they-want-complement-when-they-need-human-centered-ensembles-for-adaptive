@@ -13,5 +13,7 @@ with oracle region membership or with the Rational Routing Shortcut (RRS), which
 chooses the specialist with higher model confidence.
 
 The implementation in `method/college_admission_method.py` follows these steps
-with logistic-regression specialists, a behavior-aware single model, CGPR team
-decisions, oracle routing, and RRS routing.
+with logistic-regression specialists, a behavior-aware single model, oracle
+routing, weighted oracle routing, and RRS routing. `eval/` applies the CGPR
+team-decision rule to method predictions so the scorer remains independent of
+the paper-method implementation.

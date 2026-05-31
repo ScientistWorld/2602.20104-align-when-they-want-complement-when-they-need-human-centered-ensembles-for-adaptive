@@ -2,8 +2,8 @@
 
 This implements the computational steps described in the paper:
 single behavior-aware logistic model, aligned and complementary
-specialists, oracle adaptive routing, Rational Routing Shortcut (RRS),
-and CGPR team decisions.
+specialists, oracle adaptive routing, and Rational Routing Shortcut
+(RRS).  The evaluator owns CGPR team-decision scoring.
 """
 
 from __future__ import annotations
@@ -36,18 +36,6 @@ def train_single_ai(x, y, region, aligned_weight, human_pred=None, seed: int = 4
     return fit_logistic(x, target, sample_weight=sample_weight, seed=seed)
 
 
-def simulate_human(y, region, alpha, complementary_accuracy, seed: int):
-    rng = np.random.default_rng(seed)
-    p_correct = np.where(region == 1, alpha, complementary_accuracy)
-    correct = rng.random(len(y)) < p_correct
-    human_pred = np.where(correct, y, 1 - y).astype(int)
-
-    low = np.clip(p_correct - 0.1, 0.0, 1.0)
-    high = np.clip(p_correct + 0.1, 0.0, 1.0)
-    human_conf = rng.uniform(low, high)
-    return human_pred, human_conf
-
-
 def hard_predictions(model, x):
     prob = model.predict_proba(x)[:, 1]
     return prob, (prob >= 0.5).astype(int)
@@ -61,20 +49,6 @@ def route_by_rrs(model_aligned, model_complementary, x):
     use_aligned = conf_a >= conf_c
     prob = np.where(use_aligned, prob_a, prob_c)
     return prob, (prob >= 0.5).astype(int), use_aligned.astype(int), conf_a, conf_c
-
-
-def cgpr_team_decision(human_pred, human_conf, ai_pred, reliance, tau=0.5, seed=0):
-    rng = np.random.default_rng(seed)
-    high_conf = human_conf > tau
-    accepts_ai = rng.random(len(human_pred)) < reliance
-    return np.where(high_conf, human_pred, np.where(accepts_ai, ai_pred, human_pred)).astype(int)
-
-
-def reliance_from_alignment(human_pred, ai_pred, region):
-    mask = region == 1
-    if not np.any(mask):
-        return 0.0
-    return float(1.0 - np.mean(human_pred[mask] != ai_pred[mask]))
 
 
 def write_method_outputs(
@@ -93,16 +67,10 @@ def write_method_outputs(
     x_train = train[FEATURE_COLUMNS].to_numpy()
     y_train = train["label"].to_numpy(dtype=int)
     region_train = train["region"].to_numpy(dtype=int)
+    human_train = train["human_pred"].to_numpy(dtype=int)
+    conf_train = train["human_conf"].to_numpy(dtype=float)
     x_test = test[FEATURE_COLUMNS].to_numpy()
-    y_test = test["label"].to_numpy(dtype=int)
     region_test = test["region"].to_numpy(dtype=int)
-
-    human_train, conf_train = simulate_human(
-        y_train, region_train, alpha=alpha, complementary_accuracy=complementary_accuracy, seed=seed + 1
-    )
-    human_test, conf_test = simulate_human(
-        y_test, region_test, alpha=alpha, complementary_accuracy=complementary_accuracy, seed=seed + 2
-    )
 
     single = train_single_ai(
         x_train,
@@ -122,14 +90,9 @@ def write_method_outputs(
     rows = pd.DataFrame(
         {
             "example_id": test["example_id"].to_numpy(dtype=int),
-            "label": y_test,
-            "region": region_test,
-            "human_pred": human_test,
-            "human_conf": conf_test,
         }
     )
 
-    model_preds = {}
     for name, model in {
         "standard_ai": standard,
         "behavior_aware_ai": single,
@@ -139,7 +102,6 @@ def write_method_outputs(
         prob, pred = hard_predictions(model, x_test)
         rows[f"{name}_prob"] = prob
         rows[f"{name}_pred"] = pred
-        model_preds[name] = pred
 
     oracle_prob = np.where(
         region_test == 1,
@@ -149,7 +111,15 @@ def write_method_outputs(
     rows["adaptive_oracle_prob"] = oracle_prob
     rows["adaptive_oracle_pred"] = (oracle_prob >= 0.5).astype(int)
     rows["adaptive_oracle_route_aligned"] = region_test
-    model_preds["adaptive_oracle"] = rows["adaptive_oracle_pred"].to_numpy(dtype=int)
+
+    weighted_oracle_prob = np.where(
+        region_test == 1,
+        weighted_aligned.predict_proba(x_test)[:, 1],
+        weighted_complementary.predict_proba(x_test)[:, 1],
+    )
+    rows["adaptive_weighted_oracle_prob"] = weighted_oracle_prob
+    rows["adaptive_weighted_oracle_pred"] = (weighted_oracle_prob >= 0.5).astype(int)
+    rows["adaptive_weighted_oracle_route_aligned"] = region_test
 
     rrs_prob, rrs_pred, rrs_route_choice, conf_a, conf_c = route_by_rrs(
         weighted_aligned, weighted_complementary, x_test
@@ -159,13 +129,6 @@ def write_method_outputs(
     rows["adaptive_rrs_route_aligned"] = rrs_route_choice
     rows["aligned_confidence"] = conf_a
     rows["complementary_confidence"] = conf_c
-    model_preds["adaptive_rrs"] = rrs_pred
-
-    for name, pred in model_preds.items():
-        reliance = reliance_from_alignment(human_test, pred, region_test)
-        rows[f"{name}_reliance"] = reliance
-        team = cgpr_team_decision(human_test, conf_test, pred, reliance, tau=tau, seed=seed + 3)
-        rows[f"{name}_team_pred"] = team
 
     rows.to_csv(output_dir / "predictions.csv", index=False)
     pd.DataFrame(
