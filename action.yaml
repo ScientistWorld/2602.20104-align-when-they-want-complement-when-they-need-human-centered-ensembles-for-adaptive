@@ -2,8 +2,8 @@
 # Once you set action to 'done', STOP immediately.
 # Do NOT sleep, poll, or wait. The system reads this file
 # only after your turn ends.
-action: pending
+action: done
 gpus: 0
 test: false
 milestone: secondary_claims
-notes: ""
+notes: "deterministic 50/50 hash split of existing held-out College Admission evaluations; 3 train metrics, 3 test metrics; scripts written, scores produced later."
