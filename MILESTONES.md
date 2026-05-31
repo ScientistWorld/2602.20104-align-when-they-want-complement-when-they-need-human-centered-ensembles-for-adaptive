@@ -35,4 +35,4 @@
 - Restored `core_claim_plus`: adaptive oracle routing reproduces the paper's core synthetic claim, and the second human-accuracy setting provides additional coverage.
 
 ## Stop Justification
-- Completed at milestone `core_claim_plus`. Further progress would require a larger WoofNette image reproduction or broader synthetic sweeps beyond the validated core-plus environment.
+- Completed at milestone `core_claim_plus`.
