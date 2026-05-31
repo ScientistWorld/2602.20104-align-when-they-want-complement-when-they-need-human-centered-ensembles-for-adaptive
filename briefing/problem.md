@@ -10,7 +10,9 @@ assistant must improve the final team accuracy on cases where humans are weak,
 while preserving enough agreement with confident human judgments that humans
 remain willing to rely on the AI when they are uncertain.
 
-The reusable benchmark in this workspace uses the paper's synthetic College
-Admission setting. Applicants are described by GPA and standardized test score.
-There are two regions: an aligned/high-confidence region where humans are more
-reliable, and a complementary/low-confidence region where humans need AI help.
+The reusable benchmark in this workspace uses a synthetic College Admission
+setting. Applicants are described by GPA and standardized test score. The data
+contains two regimes: one where human predictions are usually more reliable and
+confidence is higher, and one where human predictions are weaker and advice is
+more valuable. Methods may use any recommendation strategy, as long as they
+write predictions in the format consumed by the evaluator.

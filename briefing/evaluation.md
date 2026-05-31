@@ -2,11 +2,12 @@
 
 Evaluation reads held-out predictions written by a method run and computes:
 
-- `team_accuracy`: accuracy of final CGPR team decisions.
+- `team_accuracy`: accuracy of final human-AI team decisions under the provided
+  probabilistic reliance rule.
 - `reliance_probability`: one minus the AI-human disagreement rate in the
-  aligned region, the paper's operational trust/reliance quantity.
-- `routing_accuracy`: for adaptive systems, how often the selected specialist
-  matches the known synthetic region.
+  high-confidence human-reliable regime.
+- `routing_accuracy`: for methods that emit a route or regime choice, how often
+  that choice matches the known synthetic regime.
 
 `scripts/evaluate.sh` is method-agnostic: it imports only `eval/` code and reads
 `checkpoints/college_admission/predictions.csv` by default. Future methods can

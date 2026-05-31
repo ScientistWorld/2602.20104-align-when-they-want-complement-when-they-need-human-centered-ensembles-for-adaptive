@@ -4,7 +4,7 @@
 
 Use the provided College Admission data generation protocol and held-out split.
 Do not alter ground-truth labels, human predictions, human confidence values, or
-the CGPR evaluation rule when comparing methods.
+the provided probabilistic reliance evaluation rule when comparing methods.
 
 ## Evaluation
 
@@ -14,8 +14,8 @@ The evaluator must remain method-agnostic and must not import from `method/`.
 ## Scope
 
 Do not score wall-clock speed. Improvements should come from recommendation,
-specialist, behavior modeling, or routing methodology rather than from changing
-the benchmark problem.
+human-behavior modeling, calibration, or regime-selection methodology rather
+than from changing the benchmark problem.
 
 ## Compliance Checklist
 

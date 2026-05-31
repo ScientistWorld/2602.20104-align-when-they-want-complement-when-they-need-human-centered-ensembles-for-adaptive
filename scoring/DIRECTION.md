@@ -5,16 +5,17 @@
 Improve human-AI assisted decision making when human confidence and competence
 vary across regions of the input space.
 
-## Core Contribution
+## Direction
 
-The paper's contribution is behavior-aware adaptive assistance: recommendations
-should preserve trust where humans are confident and provide complementary help
-where humans are weak.
+The research direction is behavior-aware assistance: recommendations should
+preserve trust where humans are confident and improve decisions where humans
+are weak.
 
 ## Approach Scope
 
-Valid directions include better specialist training, confidence calibration,
-routing, or behavior-aware objectives that preserve the CGPR reliance mechanism.
+Valid directions include better recommendation policies, confidence
+calibration, regime selection, or behavior-aware objectives that preserve the
+provided human-reliance evaluation mechanism.
 
 ## Out of Bounds
 

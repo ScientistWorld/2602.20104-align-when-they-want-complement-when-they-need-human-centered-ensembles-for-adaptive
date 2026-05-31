@@ -5,10 +5,10 @@
 This experiment checks whether an AI assistant can improve final team decisions
 in a two-region admission task where humans are reliable and confident in one
 region but weak in the other. The important outcome is not just team accuracy:
-the assistant must also preserve the aligned-region reliance signal that
-determines whether humans will use advice when they are uncertain. Adaptive
-systems are scored under the paper-reported synthetic condition where routing
-has access to the synthetic region label.
+the assistant must also preserve the agreement signal in the human-reliable
+regime that determines whether humans will use advice when they are uncertain.
+Methods that emit a regime choice are also checked against the known synthetic
+regime label.
 
 ## college_admission_alpha_0_7
 
@@ -19,8 +19,8 @@ the easiest high-accuracy setting.
 
 ## college_admission_alpha_0_5 / 0_8 / 1_0
 
-These experiments extend the same human-reliability sweep to a weak aligned
-human signal, a moderately strong signal, and a perfect aligned human signal.
+These experiments extend the same human-reliability sweep to a weak
+human-reliable-regime signal, a moderately strong signal, and a perfect signal.
 Together with the core and alpha=0.7 settings, they test whether the benchmark
-captures the paper's claim that adaptive assistance becomes more valuable as
-the reliable human region provides a stronger trust signal.
+captures the claim that behavior-aware assistance becomes more valuable as the
+reliable human regime provides a stronger trust signal.

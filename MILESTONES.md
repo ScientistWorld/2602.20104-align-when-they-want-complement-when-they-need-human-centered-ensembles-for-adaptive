@@ -4,6 +4,11 @@
 
 ## Progress Log
 
+### [2026-05-31 17:45] - secondary_claims
+- Final verification passed `python validate.py --compare`.
+- Tightened method-agnostic briefing and scoring documentation so from-scratch scientists see the task, metrics, and constraints without implementation hints.
+- Confirmed the remaining limitation is scope: the gym reproduces the synthetic College Admission core and human-reliability sweep, not the WoofNette image benchmark.
+
 ### [2026-05-31 17:25] - secondary_claims
 - Continuation audit found the existing package still implements the paper's synthetic CGPR adaptive-ensemble method and has prior passing CPU-container validation.
 - Submitting a fresh CPU end-to-end reproduction job to regenerate the full College Admission alpha sweep and re-run `python validate.py --compare` in the compute container.

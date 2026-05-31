@@ -1,6 +1,4 @@
-# Fresh end-to-end CPU validation of the packaged synthetic reproduction.
-action: submit
-gpus: 0
-test: true
+# Final verification complete.
+action: done
 milestone: secondary_claims
-notes: "Regenerate the College Admission alpha sweep with scripts/reproduce.sh and run python validate.py --compare in the compute container."
+notes: "Verified the secondary-claims synthetic College Admission gym, tightened method-agnostic docs, and confirmed validation passes."
