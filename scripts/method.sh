@@ -12,6 +12,8 @@ cd /home/user
 
 DATA_DIR="${DATA_DIR:-data/college_admission}"
 OUTPUT_DIR="${OUTPUT_DIR:-checkpoints/college_admission}"
+SCORES_OUTPUT="${SCORES_OUTPUT:-scoring/scores.json}"
+EXPERIMENT_NAME="${EXPERIMENT_NAME:-college_admission_core}"
 N_INSTANCES="${N_INSTANCES:-10000}"
 ALIGNED_FRACTION="${ALIGNED_FRACTION:-0.5}"
 DELTA="${DELTA:-0.25}"
@@ -39,4 +41,4 @@ python method/college_admission_method.py \
   --tau "$TAU" \
   --seed "$SEED"
 
-bash scripts/evaluate.sh "$OUTPUT_DIR/predictions.csv" scoring/scores.json "$DATA_DIR"
+bash scripts/evaluate.sh "$OUTPUT_DIR/predictions.csv" "$SCORES_OUTPUT" "$DATA_DIR" "$EXPERIMENT_NAME"

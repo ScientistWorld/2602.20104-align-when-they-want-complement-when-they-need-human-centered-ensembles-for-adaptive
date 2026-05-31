@@ -29,8 +29,10 @@ mkdir -p scoring
 PREDICTIONS="${1:-checkpoints/college_admission/predictions.csv}"
 OUTPUT="${2:-scoring/scores.json}"
 DATA_DIR="${3:-data/college_admission}"
+EXPERIMENT_NAME="${4:-college_admission_core}"
 
 python eval/college_admission_eval.py \
   --predictions "$PREDICTIONS" \
   --data-dir "$DATA_DIR" \
+  --experiment-name "$EXPERIMENT_NAME" \
   --output "$OUTPUT"

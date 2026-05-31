@@ -4,5 +4,5 @@
 action: submit
 gpus: 0
 test: true
-milestone: none
-notes: "CPU smoke job after audit fixes: generate held-out human behavior, run College Admission adaptive AI reproduction, evaluate, and validate scores."
+milestone: core_claim
+notes: "CPU expansion job: run the reproduced College Admission method at alpha=0.9 and alpha=0.7, merge scores, and validate the two-experiment suite."

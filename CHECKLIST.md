@@ -9,7 +9,7 @@
 ## Scoring
 - [x] `scoring/reference.json`
 - [x] Workspace validated via `python validate.py --reference-only`
-- [ ] `scoring/scores.json`
+- [x] `scoring/scores.json`
 - [x] `scoring/EXPERIMENTS.md`
 - [x] `scoring/TARGETS.md`
 - [x] `scoring/CONSTRAINTS.md`
@@ -34,8 +34,8 @@
 - [x] No pretrained models needed for the core synthetic benchmark
 
 ## Milestones
-- [ ] `method_runs`
-- [ ] `core_claim`
+- [x] `method_runs`
+- [x] `core_claim`
 - [ ] `core_claim_plus`
 - [ ] `secondary_claims`
 - [ ] `majority`

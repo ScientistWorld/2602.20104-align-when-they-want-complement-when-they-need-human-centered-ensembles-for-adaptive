@@ -44,7 +44,7 @@ def cgpr_team_decision(example_id, human_pred, human_conf, ai_pred, reliance, ta
     return np.where(high_conf, human_pred, np.where(accepts_ai, ai_pred, human_pred)).astype(int)
 
 
-def evaluate_predictions(prediction_path: Path, data_dir: Path) -> dict:
+def evaluate_predictions(prediction_path: Path, data_dir: Path, experiment_name: str) -> dict:
     predictions = pd.read_csv(prediction_path)
     test = pd.read_csv(data_dir / "test.csv")
     metadata = pd.read_csv(data_dir / "metadata.csv").iloc[0].to_dict()
@@ -83,7 +83,7 @@ def evaluate_predictions(prediction_path: Path, data_dir: Path) -> dict:
 
     return {
         "experiments": {
-            "college_admission_core": {
+            experiment_name: {
                 "results": results,
             }
         }
@@ -95,9 +95,10 @@ def main() -> None:
     parser.add_argument("--predictions", default="checkpoints/college_admission/predictions.csv")
     parser.add_argument("--data-dir", default="data/college_admission")
     parser.add_argument("--output", default="scoring/scores.json")
+    parser.add_argument("--experiment-name", default="college_admission_core")
     args = parser.parse_args()
 
-    scores = evaluate_predictions(Path(args.predictions), Path(args.data_dir))
+    scores = evaluate_predictions(Path(args.predictions), Path(args.data_dir), args.experiment_name)
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(scores, indent=2, sort_keys=True) + "\n")

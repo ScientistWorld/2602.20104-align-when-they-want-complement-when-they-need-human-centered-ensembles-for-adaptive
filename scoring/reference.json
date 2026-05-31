@@ -2,7 +2,7 @@
   "experiments": {
     "college_admission_core": {
       "description": "Synthetic College Admission CGPR team decision task at p=0.5, delta=0.25, alpha=0.9. Reference values are from the authors' released College Admission imperfect-human synthetic output for this setting.",
-      "weight": 1.0,
+      "weight": 0.7,
       "primary_metric": "team_accuracy",
       "metrics": {
         "team_accuracy": {
@@ -43,6 +43,53 @@
           "type": "proposed",
           "team_accuracy": 0.7946666666666666,
           "reliance_probability": 0.8737046632124352,
+          "routing_accuracy": 1.0
+        }
+      }
+    },
+    "college_admission_alpha_0_7": {
+      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.7 from the authors' released alpha sweep.",
+      "weight": 0.3,
+      "primary_metric": "team_accuracy",
+      "metrics": {
+        "team_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 1.0
+        },
+        "reliance_probability": {
+          "higher_is_better": true,
+          "coefficient": 0.4
+        },
+        "routing_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2
+        }
+      },
+      "results": {
+        "behavior_aware_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.6663333333333333,
+          "reliance_probability": 0.5958549222797928
+        },
+        "aligned_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.6276666666666667,
+          "reliance_probability": 0.6897668393782384
+        },
+        "complementary_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.67
+        },
+        "adaptive_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.688,
+          "reliance_probability": 0.6897668393782384,
+          "routing_accuracy": 1.0
+        },
+        "adaptive_weighted_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.6693333333333333,
+          "reliance_probability": 0.6904145077720207,
           "routing_accuracy": 1.0
         }
       }

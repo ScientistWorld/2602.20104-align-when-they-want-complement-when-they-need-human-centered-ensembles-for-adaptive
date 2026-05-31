@@ -18,4 +18,23 @@ set -e
 
 cd /home/user
 
+mkdir -p tmp/reproduce_scores
+
+ALPHA=0.9 \
+DATA_DIR=data/college_admission \
+OUTPUT_DIR=checkpoints/college_admission \
+SCORES_OUTPUT=tmp/reproduce_scores/college_admission_core.json \
+EXPERIMENT_NAME=college_admission_core \
 bash scripts/method.sh
+
+ALPHA=0.7 \
+DATA_DIR=data/college_admission_alpha_0_7 \
+OUTPUT_DIR=checkpoints/college_admission_alpha_0_7 \
+SCORES_OUTPUT=tmp/reproduce_scores/college_admission_alpha_0_7.json \
+EXPERIMENT_NAME=college_admission_alpha_0_7 \
+bash scripts/method.sh
+
+python eval/merge_scores.py \
+  tmp/reproduce_scores/college_admission_core.json \
+  tmp/reproduce_scores/college_admission_alpha_0_7.json \
+  --output scoring/scores.json
