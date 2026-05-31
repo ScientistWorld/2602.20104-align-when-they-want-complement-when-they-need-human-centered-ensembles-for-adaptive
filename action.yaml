@@ -1,6 +1,6 @@
-# Train/test split evaluation completed and sanity-checked.
-action: done
+# Fresh end-to-end CPU validation of the packaged synthetic reproduction.
+action: submit
 gpus: 0
-test: false
+test: true
 milestone: secondary_claims
-notes: "Packager audit complete: procedural data path requires no external fetches; download.sh prepares data/downloads; validate.py passes."
+notes: "Regenerate the College Admission alpha sweep with scripts/reproduce.sh and run python validate.py --compare in the compute container."

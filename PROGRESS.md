@@ -8,6 +8,7 @@
 - Implemented an evaluator that reads method prediction artifacts, joins them to held-out problem data, recomputes CGPR team decisions, and writes `scoring/scores.json`.
 - The method writes RRS prediction artifacts, while the default scorer includes the paper-reported synthetic methods that have reference values.
 - Inspected the official repository linked by the paper and confirmed the packaged synthetic reproduction follows the released College Admission generator, single-model surrogate, specialist training, and CGPR result columns.
+- Current continuation audit confirmed that the default scoring intentionally excludes synthetic RRS from `scores.json` because the paper does not report synthetic RRS reference values; RRS predictions remain implemented as reusable method artifacts.
 
 ## Results
 
@@ -114,6 +115,9 @@ passed. The reproduced values remain:
 - Higher milestones would require reproducing additional axes from the paper,
   such as the WoofNette image benchmark or broader College Admission sweeps
   beyond imperfect-human reliability.
+- A fresh CPU end-to-end validation job is being submitted to regenerate the
+  five-setting synthetic alpha sweep and rerun `python validate.py --compare`
+  in the compute container.
 
 ## Issues
 

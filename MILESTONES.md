@@ -4,6 +4,10 @@
 
 ## Progress Log
 
+### [2026-05-31 17:25] - secondary_claims
+- Continuation audit found the existing package still implements the paper's synthetic CGPR adaptive-ensemble method and has prior passing CPU-container validation.
+- Submitting a fresh CPU end-to-end reproduction job to regenerate the full College Admission alpha sweep and re-run `python validate.py --compare` in the compute container.
+
 ### [2026-05-31 16:59] - secondary_claims
 - Job `d4985458-aae` completed successfully and `python validate.py --compare` passed for the five-setting imperfect-human alpha sweep.
 - The corrected simulator recovered the low-alpha qualitative pattern: at alpha=0.5, adaptive oracle team accuracy was 0.609 versus behavior-aware 0.579 and complementary 0.583.
