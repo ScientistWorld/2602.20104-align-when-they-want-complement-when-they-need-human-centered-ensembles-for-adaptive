@@ -21,6 +21,13 @@ def accuracy(y_true, y_pred) -> float:
     return float(np.mean(np.asarray(y_true) == np.asarray(y_pred)))
 
 
+def masked_accuracy(y_true, y_pred, mask) -> float:
+    mask = np.asarray(mask, dtype=bool)
+    if not np.any(mask):
+        return 0.0
+    return accuracy(np.asarray(y_true)[mask], np.asarray(y_pred)[mask])
+
+
 def in_train_slice(experiment_name: str, example_id: int) -> bool:
     key = f"{SPLIT_SALT}:{experiment_name}:{int(example_id)}".encode("utf-8")
     digest = hashlib.sha256(key).digest()
@@ -54,18 +61,6 @@ def load_reference_experiments(path: Path) -> list[str]:
     return list(payload.get("experiments", {}).keys())
 
 
-def methods_from_score_file(path: Path, experiment_name: str) -> set[str]:
-    if not path.is_file():
-        return set()
-    payload = json.loads(path.read_text())
-    experiments = payload.get("experiments", payload)
-    experiment = experiments.get(experiment_name, {})
-    results = experiment.get("results", experiment)
-    if not isinstance(results, dict):
-        return set()
-    return {name for name in results if not name.startswith("_")}
-
-
 def methods_from_predictions(predictions: pd.DataFrame) -> set[str]:
     methods = set()
     for column in predictions.columns:
@@ -91,7 +86,7 @@ def evaluate_predictions(
         raise ValueError(f"{experiment_name}: train split is empty")
 
     available_methods = methods_from_predictions(predictions)
-    methods = sorted(requested_methods or available_methods)
+    methods = sorted(available_methods if requested_methods is None else requested_methods)
     missing = [name for name in methods if name not in available_methods]
     if missing:
         raise ValueError(f"{experiment_name}: missing prediction columns for methods: {missing}")
@@ -110,12 +105,17 @@ def evaluate_predictions(
         reliance = reliance_from_alignment(human, ai_pred, region)
         team_pred = cgpr_team_decision(human, human_conf, ai_pred, reliance, tau=tau, seed=team_seed)
         method_scores = {
+            "ai_accuracy": accuracy(y, ai_pred),
+            "aligned_region_accuracy": masked_accuracy(y, ai_pred, region == 1),
+            "complementary_region_accuracy": masked_accuracy(y, ai_pred, region == 0),
             "team_accuracy": accuracy(y, team_pred),
             "reliance_probability": reliance,
         }
         route_column = f"{method_name}_route_aligned"
         if route_column in df.columns:
             method_scores["routing_accuracy"] = accuracy(region, df[route_column].to_numpy(dtype=int))
+        else:
+            method_scores["routing_accuracy"] = 0.0
         results[method_name] = method_scores
 
     return {
@@ -141,14 +141,11 @@ def evaluate_suite(method_source: Path, reference: Path) -> dict:
     }
     for experiment_name in load_reference_experiments(reference):
         data_dir, prediction_path = experiment_paths(experiment_name)
-        requested = methods_from_score_file(method_source, experiment_name)
-        if not requested:
-            requested = methods_from_score_file(reference, experiment_name)
         scores["experiments"][experiment_name] = evaluate_predictions(
             prediction_path=prediction_path,
             data_dir=data_dir,
             experiment_name=experiment_name,
-            requested_methods=requested,
+            requested_methods=None,
         )
     return scores
 
@@ -168,9 +165,6 @@ def main() -> None:
         experiment_name = args.experiment_name or "college_admission_core"
         data_dir = Path(args.data_dir or "data/college_admission")
         method_source = Path(args.method_source)
-        requested = methods_from_score_file(method_source, experiment_name)
-        if not requested:
-            requested = methods_from_score_file(Path(args.reference), experiment_name)
         scores = {
             "_metadata": {"slice": SLICE_NAME, "method_source": str(method_source)},
             "experiments": {
@@ -178,7 +172,7 @@ def main() -> None:
                     prediction_path=Path(args.predictions),
                     data_dir=data_dir,
                     experiment_name=experiment_name,
-                    requested_methods=requested,
+                    requested_methods=None,
                 )
             },
         }

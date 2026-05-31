@@ -4,8 +4,9 @@
 # Argument shape mirrors scripts/evaluate.sh:
 #   ./evaluate_train.sh <predictions.csv> <output.json> <data_dir> <experiment_name>
 #
-# With no arguments, scores every experiment in scoring/reference.json using
-# the method keys from scoring/scores.json and writes scoring/scores_train.json.
+# With no arguments, scores every experiment in scoring/reference.json by
+# enumerating *_pred columns in each predictions.csv and writes
+# scoring/scores_train.json.
 
 set -e
 

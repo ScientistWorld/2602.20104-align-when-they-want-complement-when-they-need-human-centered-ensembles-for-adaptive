@@ -7,15 +7,33 @@
       "metrics": {
         "team_accuracy": {
           "higher_is_better": true,
-          "coefficient": 1.0
+          "coefficient": 1.0,
+          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4
+          "coefficient": 0.4,
+          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+        },
+        "ai_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.25,
+          "description": "Standalone AI prediction accuracy before CGPR human reliance is applied."
+        },
+        "aligned_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2,
+          "description": "AI accuracy on the region where human decisions are intended to be reliable."
+        },
+        "complementary_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.35,
+          "description": "AI accuracy on the complementary region where the assistant should compensate for weak human decisions."
         },
         "routing_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.2
+          "coefficient": 0.2,
+          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
         }
       },
       "results": {
@@ -54,15 +72,33 @@
       "metrics": {
         "team_accuracy": {
           "higher_is_better": true,
-          "coefficient": 1.0
+          "coefficient": 1.0,
+          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4
+          "coefficient": 0.4,
+          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+        },
+        "ai_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.25,
+          "description": "Standalone AI prediction accuracy before CGPR human reliance is applied."
+        },
+        "aligned_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2,
+          "description": "AI accuracy on the region where human decisions are intended to be reliable."
+        },
+        "complementary_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.35,
+          "description": "AI accuracy on the complementary region where the assistant should compensate for weak human decisions."
         },
         "routing_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.2
+          "coefficient": 0.2,
+          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
         }
       },
       "results": {
@@ -101,15 +137,33 @@
       "metrics": {
         "team_accuracy": {
           "higher_is_better": true,
-          "coefficient": 1.0
+          "coefficient": 1.0,
+          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4
+          "coefficient": 0.4,
+          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+        },
+        "ai_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.25,
+          "description": "Standalone AI prediction accuracy before CGPR human reliance is applied."
+        },
+        "aligned_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2,
+          "description": "AI accuracy on the region where human decisions are intended to be reliable."
+        },
+        "complementary_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.35,
+          "description": "AI accuracy on the complementary region where the assistant should compensate for weak human decisions."
         },
         "routing_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.2
+          "coefficient": 0.2,
+          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
         }
       },
       "results": {
@@ -148,15 +202,33 @@
       "metrics": {
         "team_accuracy": {
           "higher_is_better": true,
-          "coefficient": 1.0
+          "coefficient": 1.0,
+          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4
+          "coefficient": 0.4,
+          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+        },
+        "ai_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.25,
+          "description": "Standalone AI prediction accuracy before CGPR human reliance is applied."
+        },
+        "aligned_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2,
+          "description": "AI accuracy on the region where human decisions are intended to be reliable."
+        },
+        "complementary_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.35,
+          "description": "AI accuracy on the complementary region where the assistant should compensate for weak human decisions."
         },
         "routing_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.2
+          "coefficient": 0.2,
+          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
         }
       },
       "results": {
@@ -195,15 +267,33 @@
       "metrics": {
         "team_accuracy": {
           "higher_is_better": true,
-          "coefficient": 1.0
+          "coefficient": 1.0,
+          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4
+          "coefficient": 0.4,
+          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+        },
+        "ai_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.25,
+          "description": "Standalone AI prediction accuracy before CGPR human reliance is applied."
+        },
+        "aligned_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2,
+          "description": "AI accuracy on the region where human decisions are intended to be reliable."
+        },
+        "complementary_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.35,
+          "description": "AI accuracy on the complementary region where the assistant should compensate for weak human decisions."
         },
         "routing_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.2
+          "coefficient": 0.2,
+          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
         }
       },
       "results": {
