@@ -3,4 +3,4 @@ action: done
 gpus: 0
 test: false
 milestone: secondary_claims
-notes: "Deterministic 50/50 hash split; 210 train metrics and 210 test metrics populated across 5 experiments and 7 methods; primary train/test gaps are modest (max 0.041 team_accuracy); caveat: labels are from existing visible CSVs, so this is not a cryptographically hidden-data split."
+notes: "Deterministic 50/50 hash split; 150 train metrics and 150 test metrics populated across 5 experiments and 5 reference methods; primary train/test gaps are modest (max 0.041 team_accuracy); validate.py passes; caveat: labels are from existing visible CSVs, so this is not a cryptographically hidden-data split."

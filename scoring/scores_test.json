@@ -22,14 +22,6 @@
           "routing_accuracy": 1.0,
           "team_accuracy": 0.6123557365919892
         },
-        "adaptive_rrs": {
-          "ai_accuracy": 0.8214528173794976,
-          "aligned_region_accuracy": 0.8375499334221038,
-          "complementary_region_accuracy": 0.8047091412742382,
-          "reliance_probability": 0.511318242343542,
-          "routing_accuracy": 0.4874405974202308,
-          "team_accuracy": 0.5858791581805839
-        },
         "adaptive_weighted_oracle": {
           "ai_accuracy": 0.7447386286490156,
           "aligned_region_accuracy": 0.681757656458056,
@@ -61,14 +53,6 @@
           "reliance_probability": 0.5126498002663116,
           "routing_accuracy": 0.0,
           "team_accuracy": 0.5824847250509165
-        },
-        "standard_ai": {
-          "ai_accuracy": 0.8207739307535642,
-          "aligned_region_accuracy": 0.8268974700399467,
-          "complementary_region_accuracy": 0.814404432132964,
-          "reliance_probability": 0.5139813581890813,
-          "routing_accuracy": 0.0,
-          "team_accuracy": 0.5858791581805839
         }
       }
     },
@@ -88,14 +72,6 @@
           "reliance_probability": 0.6762778505897772,
           "routing_accuracy": 1.0,
           "team_accuracy": 0.688135593220339
-        },
-        "adaptive_rrs": {
-          "ai_accuracy": 0.8386440677966102,
-          "aligned_region_accuracy": 0.8269986893840104,
-          "complementary_region_accuracy": 0.851123595505618,
-          "reliance_probability": 0.63564875491481,
-          "routing_accuracy": 0.4888135593220339,
-          "team_accuracy": 0.6677966101694915
         },
         "adaptive_weighted_oracle": {
           "ai_accuracy": 0.928135593220339,
@@ -128,14 +104,6 @@
           "reliance_probability": 0.6041939711664482,
           "routing_accuracy": 0.0,
           "team_accuracy": 0.6833898305084746
-        },
-        "standard_ai": {
-          "ai_accuracy": 0.8298305084745763,
-          "aligned_region_accuracy": 0.8401048492791612,
-          "complementary_region_accuracy": 0.8188202247191011,
-          "reliance_probability": 0.6382699868938402,
-          "routing_accuracy": 0.0,
-          "team_accuracy": 0.6596610169491526
         }
       }
     },
@@ -155,14 +123,6 @@
           "reliance_probability": 0.800771208226221,
           "routing_accuracy": 1.0,
           "team_accuracy": 0.7513262599469496
-        },
-        "adaptive_rrs": {
-          "ai_accuracy": 0.8209549071618037,
-          "aligned_region_accuracy": 0.7930591259640103,
-          "complementary_region_accuracy": 0.8506849315068493,
-          "reliance_probability": 0.6760925449871465,
-          "routing_accuracy": 0.4874005305039788,
-          "team_accuracy": 0.7122015915119363
         },
         "adaptive_weighted_oracle": {
           "ai_accuracy": 0.9389920424403183,
@@ -195,14 +155,6 @@
           "reliance_probability": 0.589974293059126,
           "routing_accuracy": 0.0,
           "team_accuracy": 0.7214854111405835
-        },
-        "standard_ai": {
-          "ai_accuracy": 0.8149867374005305,
-          "aligned_region_accuracy": 0.8187660668380463,
-          "complementary_region_accuracy": 0.810958904109589,
-          "reliance_probability": 0.6915167095115682,
-          "routing_accuracy": 0.0,
-          "team_accuracy": 0.7068965517241379
         }
       }
     },
@@ -222,14 +174,6 @@
           "reliance_probability": 0.9973333333333333,
           "routing_accuracy": 1.0,
           "team_accuracy": 0.8788282290279628
-        },
-        "adaptive_rrs": {
-          "ai_accuracy": 0.8169107856191744,
-          "aligned_region_accuracy": 0.752,
-          "complementary_region_accuracy": 0.8816489361702128,
-          "reliance_probability": 0.752,
-          "routing_accuracy": 0.49134487350199735,
-          "team_accuracy": 0.822237017310253
         },
         "adaptive_weighted_oracle": {
           "ai_accuracy": 0.9833555259653795,
@@ -262,14 +206,6 @@
           "reliance_probability": 0.64,
           "routing_accuracy": 0.0,
           "team_accuracy": 0.8348868175765646
-        },
-        "standard_ai": {
-          "ai_accuracy": 0.8162450066577897,
-          "aligned_region_accuracy": 0.8066666666666666,
-          "complementary_region_accuracy": 0.8257978723404256,
-          "reliance_probability": 0.8066666666666666,
-          "routing_accuracy": 0.0,
-          "team_accuracy": 0.8162450066577897
         }
       }
     },
@@ -289,14 +225,6 @@
           "reliance_probability": 0.8734177215189873,
           "routing_accuracy": 1.0,
           "team_accuracy": 0.794
-        },
-        "adaptive_rrs": {
-          "ai_accuracy": 0.8293333333333334,
-          "aligned_region_accuracy": 0.7835443037974683,
-          "complementary_region_accuracy": 0.8802816901408451,
-          "reliance_probability": 0.7278481012658228,
-          "routing_accuracy": 0.4826666666666667,
-          "team_accuracy": 0.756
         },
         "adaptive_weighted_oracle": {
           "ai_accuracy": 0.9586666666666667,
@@ -329,14 +257,6 @@
           "reliance_probability": 0.6265822784810127,
           "routing_accuracy": 0.0,
           "team_accuracy": 0.7586666666666667
-        },
-        "standard_ai": {
-          "ai_accuracy": 0.8266666666666667,
-          "aligned_region_accuracy": 0.8379746835443038,
-          "complementary_region_accuracy": 0.8140845070422535,
-          "reliance_probability": 0.7670886075949367,
-          "routing_accuracy": 0.0,
-          "team_accuracy": 0.744
         }
       }
     }

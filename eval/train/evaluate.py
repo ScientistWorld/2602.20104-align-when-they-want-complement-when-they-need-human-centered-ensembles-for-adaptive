@@ -56,9 +56,12 @@ def experiment_paths(experiment_name: str) -> tuple[Path, Path]:
     return Path("data") / suffix, Path("checkpoints") / suffix / "predictions.csv"
 
 
-def load_reference_experiments(path: Path) -> list[str]:
+def load_reference_methods(path: Path) -> dict[str, set[str]]:
     payload = json.loads(path.read_text())
-    return list(payload.get("experiments", {}).keys())
+    return {
+        experiment_name: set(experiment_spec.get("results", {}).keys())
+        for experiment_name, experiment_spec in payload.get("experiments", {}).items()
+    }
 
 
 def methods_from_predictions(predictions: pd.DataFrame) -> set[str]:
@@ -139,13 +142,14 @@ def evaluate_suite(method_source: Path, reference: Path) -> dict:
         },
         "experiments": {},
     }
-    for experiment_name in load_reference_experiments(reference):
+    reference_methods = load_reference_methods(reference)
+    for experiment_name in reference_methods:
         data_dir, prediction_path = experiment_paths(experiment_name)
         scores["experiments"][experiment_name] = evaluate_predictions(
             prediction_path=prediction_path,
             data_dir=data_dir,
             experiment_name=experiment_name,
-            requested_methods=None,
+            requested_methods=reference_methods[experiment_name],
         )
     return scores
 
@@ -165,6 +169,7 @@ def main() -> None:
         experiment_name = args.experiment_name or "college_admission_core"
         data_dir = Path(args.data_dir or "data/college_admission")
         method_source = Path(args.method_source)
+        reference_methods = load_reference_methods(Path(args.reference))
         scores = {
             "_metadata": {"slice": SLICE_NAME, "method_source": str(method_source)},
             "experiments": {
@@ -172,7 +177,7 @@ def main() -> None:
                     prediction_path=Path(args.predictions),
                     data_dir=data_dir,
                     experiment_name=experiment_name,
-                    requested_methods=None,
+                    requested_methods=reference_methods.get(experiment_name),
                 )
             },
         }

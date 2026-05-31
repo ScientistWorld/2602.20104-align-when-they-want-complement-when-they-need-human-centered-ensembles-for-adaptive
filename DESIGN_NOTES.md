@@ -9,7 +9,7 @@
 
 ## Changes Made
 
-- Changed both train and test slice evaluators to enumerate all `*_pred` columns in each predictions file by default. This avoids silently ignoring future agent variants that add new method outputs without editing `scoring/scores.json`.
+- Changed both train and test slice evaluators to score every method declared for the experiment in `scoring/reference.json`. This avoids hardcoded single-method scoring while keeping split score files compatible with the validator's reference-method registry.
 - Added three triangulation metrics to both slices: `ai_accuracy`, `aligned_region_accuracy`, and `complementary_region_accuracy`. These make a shortcut that only optimizes the CGPR team metric or only echoes human decisions easier to detect.
 - Made `routing_accuracy` total rather than optional: methods without an explicit `<method>_route_aligned` column now receive `routing_accuracy = 0.0`. This closes the loophole where a method could avoid a routed-assistance constraint by omitting the route artifact.
 - Added required `description` fields to every metric entry in `scoring/reference.json` and registered the new triangulation metrics across all existing experiments.
@@ -24,7 +24,12 @@
 ## Runner Assessment
 
 - Job `2100744c-980` exited with code 0 and produced `scoring/scores_train.json` and `scoring/scores_test.json`.
-- Coverage is complete: 5 experiments, 7 discovered methods per experiment, and all 6 reference metrics populated on both train and test slices.
+- Coverage is complete after the validator fix: 5 experiments, 5 reference-declared methods per experiment, and all 6 reference metrics populated on both train and test slices.
 - Train and test method sets match exactly for every experiment. The hash split sizes are balanced, ranging from 1492/1508 to 1527/1473 examples.
 - The scores are not byte-identical across slices. Maximum per-method train/test gaps are modest for the primary metric (`team_accuracy`): 0.022 on core, 0.041 at alpha 0.5, 0.010 at alpha 0.7, 0.013 at alpha 0.8, and 0.010 at alpha 1.0.
-- No active metric is constant across every method on either slice. Oracle `routing_accuracy` remains 1.0 by construction while non-routed methods score 0.0 and adaptive RRS scores near chance, so the metric functions as an artifact/constraint check rather than a standalone benefit score.
+- No active benefit metric is constant across every method on either slice. Oracle `routing_accuracy` remains 1.0 by construction while non-routed methods score 0.0, so it functions as an artifact/constraint check rather than a standalone benefit score.
+
+## Validation Fix
+
+- The first validator run rejected `standard_ai` and `adaptive_rrs` because they were discovered from `*_pred` columns but are not registered methods in `scoring/reference.json`.
+- The split evaluators now restrict the default suite to the methods declared under each experiment's `results` block in `scoring/reference.json`; this preserves multi-method scoring and removes unregistered methods from regenerated split scores.
