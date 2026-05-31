@@ -26,5 +26,4 @@
 - The added setting preserved the paper's qualitative claim: adaptive oracle routing outperformed the single behavior-aware model and individual specialists while maintaining the reliance/routing constraints.
 
 ## Stop Justification
-
-Not stopped.
+- Completed at milestone `core_claim_plus`.
