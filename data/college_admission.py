@@ -77,12 +77,16 @@ def add_human_behavior_with_rng(
     region = output["region"].to_numpy(dtype=int)
 
     p_correct = np.where(region == 1, alpha, complementary_accuracy)
-    correct = rng.random(len(output)) < p_correct
-    output["human_pred"] = np.where(correct, label, 1 - label).astype(int)
-
-    low = np.clip(p_correct - 0.1, 0.0, 1.0)
-    high = np.clip(p_correct + 0.1, 0.0, 1.0)
-    output["human_conf"] = rng.uniform(low, high)
+    human_pred = np.empty(len(output), dtype=int)
+    human_conf = np.empty(len(output), dtype=float)
+    for idx, p in enumerate(p_correct):
+        correct = rng.random() < p
+        human_pred[idx] = label[idx] if correct else 1 - label[idx]
+        low = max(float(p) - 0.1, 0.0)
+        high = min(float(p) + 0.1, 1.0)
+        human_conf[idx] = rng.uniform(low, high)
+    output["human_pred"] = human_pred
+    output["human_conf"] = human_conf
     return output
 
 

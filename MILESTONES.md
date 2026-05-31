@@ -4,6 +4,11 @@
 
 ## Progress Log
 
+### [2026-05-31 16:57] - core_claim_plus
+- Job `179f7023-580` completed and passed validation, but alpha=0.5 still failed to reproduce the paper's adaptive advantage.
+- Identified a remaining human-simulation mismatch: vectorized random draws changed the paper's per-example RNG order for correctness and confidence.
+- Updated the simulator to follow the authors' released per-example draw sequence and resubmitting before claiming a higher milestone.
+
 ### [2026-05-31 16:55] - core_claim_plus
 - Job `772f9aa7-605` failed before running the method because the new paper-protocol sweep passed an RNG into a generator function whose signature still only accepted a seed.
 - Fixed `data/college_admission.py` so the generator supports both the old seed-based path and the new shared-RNG alpha-sweep path.

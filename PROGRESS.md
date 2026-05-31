@@ -67,6 +67,13 @@ signature had not yet been updated. The signature now accepts an optional RNG,
 which preserves the old seed-based standalone path and enables the paper-style
 shared-RNG sweep.
 
+Job `179f7023-580` completed successfully, but the alpha=0.5 adaptive and
+aligned-specialist scores still did not match the released sweep qualitatively.
+The remaining mismatch was in the human simulator: the released code draws
+correctness and confidence sequentially per example, while the packaged version
+drew all correctness Bernoulli samples first and all confidences second. The
+simulator now follows the per-example RNG order from the authors' code.
+
 Continuation audit: the implementation remains a real reproduction of the
 paper's synthetic CGPR/adaptive-ensemble procedure, and prior CPU container jobs
 validated the core and alpha=0.7 settings. A login-node attempt failed because
@@ -108,6 +115,8 @@ passed. The reproduced values remain:
   match the released experiment implementation.
 - Job `772f9aa7-605` caught a missed function-signature change before any
   expensive work ran; fixed in `data/college_admission.py`.
+- Job `179f7023-580` showed that matching the shared RNG stream is not enough
+  unless the per-example draw order also matches the paper implementation.
 
 ## Deviations from Paper
 
