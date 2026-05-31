@@ -5,4 +5,4 @@ action: submit
 gpus: 0
 test: true
 milestone: none
-notes: "CPU smoke job: install dependencies, run the College Admission adaptive AI reproduction, and validate scores."
+notes: "CPU smoke job after audit fixes: generate held-out human behavior, run College Admission adaptive AI reproduction, evaluate, and validate scores."

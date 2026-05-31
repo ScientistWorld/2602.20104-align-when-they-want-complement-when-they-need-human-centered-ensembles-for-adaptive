@@ -1,0 +1,30 @@
+{
+  "experiments": {
+    "college_admission_core": {
+      "results": {
+        "adaptive_oracle": {
+          "reliance_probability": 0.8850498338870432,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.8063333333333333
+        },
+        "adaptive_weighted_oracle": {
+          "reliance_probability": 0.8817275747508305,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.7966666666666666
+        },
+        "aligned_ai": {
+          "reliance_probability": 0.8850498338870432,
+          "team_accuracy": 0.738
+        },
+        "behavior_aware_ai": {
+          "reliance_probability": 0.717607973421927,
+          "team_accuracy": 0.7603333333333333
+        },
+        "complementary_ai": {
+          "reliance_probability": 0.5960132890365448,
+          "team_accuracy": 0.7726666666666666
+        }
+      }
+    }
+  }
+}
