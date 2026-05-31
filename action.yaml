@@ -1,8 +1,8 @@
 # IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends. Sleeping blocks the entire pipeline.
-action: submit
+action: done
 gpus: 0
 test: true
-milestone: core_claim
-notes: "CPU test refresh after fixing validation by excluding non-paper-referenced RRS from default synthetic scores."
+milestone: core_claim_plus
+notes: "Validated core College Admission reproduction plus an additional alpha=0.7 setting in job f814d317-529."

@@ -46,6 +46,15 @@ Job `148f0607-883` failed validation because the scorer included
 RRS reference values. The fix is to exclude RRS from default synthetic scoring
 while retaining the implementation and prediction artifacts.
 
+Job `f814d317-529` completed successfully after that fix. It regenerated
+`scoring/scores.json` in the container and `python validate.py --compare`
+passed. The reproduced values remain:
+
+- alpha=0.9 core: adaptive oracle team accuracy 0.8063 versus paper reference
+  0.806; behavior-aware baseline 0.7603.
+- alpha=0.7 expansion: adaptive oracle team accuracy 0.6743 versus paper
+  reference 0.688; behavior-aware baseline 0.6543.
+
 ## Remaining
 
 - Higher milestones would require reproducing additional axes from the paper, such as the WoofNette image benchmark or more synthetic sweeps. The current packaged gym covers the core synthetic claim and one additional human-accuracy setting.

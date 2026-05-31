@@ -1,6 +1,6 @@
 # Reproduction Milestones
 
-**Current: core_claim**
+**Current: core_claim_plus**
 
 ## Progress Log
 
@@ -29,5 +29,10 @@
 - Job `148f0607-883` refreshed scores but failed validation because default scoring included RRS without paper-reported synthetic reference entries.
 - Fixed the scorer to validate only paper-reported synthetic methods while retaining RRS implementation in method outputs.
 
+### [2026-05-31 16:43] - core_claim_plus
+- Job `f814d317-529` completed successfully in the compute container.
+- Validated the core alpha=0.9 College Admission setting and the additional alpha=0.7 setting with method-independent CGPR scoring.
+- Restored `core_claim_plus`: adaptive oracle routing reproduces the paper's core synthetic claim, and the second human-accuracy setting provides additional coverage.
+
 ## Stop Justification
-- Not stopped. Current submission refreshes scores after aligning the default scorer with `reference.json`.
+- Completed at milestone `core_claim_plus`. Further progress would require a larger WoofNette image reproduction or broader synthetic sweeps beyond the validated core-plus environment.
