@@ -19,7 +19,8 @@ the human reliance probability in the CGPR model.
 ## Constraint: routing
 
 For adaptive systems, checks whether the route selection matches the known
-region in the synthetic benchmark.
+region in the synthetic benchmark. Oracle routing should match by construction;
+Rational Routing Shortcut is scored as the practical no-human-confidence router.
 
 - **Metric**: `routing_accuracy` (higher is better)
 - **Run**: `bash scripts/evaluate.sh`

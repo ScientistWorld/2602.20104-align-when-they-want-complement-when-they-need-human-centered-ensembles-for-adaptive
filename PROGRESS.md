@@ -6,6 +6,7 @@
 - Implemented tracked data-generation code for the paper's two-region synthetic task, including held-out human predictions and confidence values.
 - Implemented the paper's logistic behavior-aware single model, aligned specialist, complementary specialist, oracle adaptive ensemble, weighted oracle ensemble, and RRS routing.
 - Implemented an evaluator that reads method prediction artifacts, joins them to held-out problem data, recomputes CGPR team decisions, and writes `scoring/scores.json`.
+- Updated the scorer to include the practical RRS adaptive variant in addition to oracle routing.
 
 ## Results
 
@@ -28,6 +29,8 @@ Additional College Admission setting at alpha=0.7:
 - Baselines remain nontrivial: behavior-aware 0.6543, aligned 0.6220, complementary 0.6603 team accuracy.
 
 The expanded setting is lower than the authors' reported values but keeps the core qualitative pattern: oracle adaptive routing beats the single behavior-aware model and the individual specialists under a different human-accuracy regime.
+
+Current turn: submitting a CPU reproduction refresh so `scoring/scores.json` includes the RRS metrics already written by the method.
 
 ## Remaining
 
