@@ -74,6 +74,21 @@ correctness and confidence sequentially per example, while the packaged version
 drew all correctness Bernoulli samples first and all confidences second. The
 simulator now follows the per-example RNG order from the authors' code.
 
+Job `d4985458-aae` completed successfully after the simulator fix, and
+`python validate.py --compare` passed. The five-setting alpha sweep now
+reproduces the paper's secondary imperfect-human reliability pattern:
+
+- alpha=0.5: adaptive oracle 0.609 team accuracy versus behavior-aware 0.579
+  and complementary 0.583; paper reference 0.593.
+- alpha=0.7: adaptive oracle 0.690 versus behavior-aware 0.667 and
+  complementary 0.677; paper reference 0.688.
+- alpha=0.8: adaptive oracle 0.753 versus behavior-aware 0.722 and
+  complementary 0.730; paper reference 0.753.
+- alpha=0.9 core: adaptive oracle 0.810 versus behavior-aware 0.764 and
+  complementary 0.777; paper reference 0.806.
+- alpha=1.0: adaptive oracle 0.875 versus behavior-aware 0.818 and
+  complementary 0.830; paper reference 0.881.
+
 Continuation audit: the implementation remains a real reproduction of the
 paper's synthetic CGPR/adaptive-ensemble procedure, and prior CPU container jobs
 validated the core and alpha=0.7 settings. A login-node attempt failed because
@@ -96,12 +111,9 @@ passed. The reproduced values remain:
 
 ## Remaining
 
-- Submit the corrected paper-protocol alpha sweep and compare against the
-  released reference values. If the five-setting sweep matches qualitatively,
-  the package reaches `secondary_claims`.
-- Higher milestones after that would require reproducing additional axes from
-  the paper, such as the WoofNette image benchmark or broader College Admission
-  sweeps beyond imperfect-human reliability.
+- Higher milestones would require reproducing additional axes from the paper,
+  such as the WoofNette image benchmark or broader College Admission sweeps
+  beyond imperfect-human reliability.
 
 ## Issues
 

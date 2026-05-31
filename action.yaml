@@ -1,8 +1,8 @@
 # IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends. Sleeping blocks the entire pipeline.
-action: submit
+action: done
 gpus: 0
-test: true
-milestone: core_claim_plus
-notes: "Rerun the five-alpha College Admission sweep after matching the authors' per-example human-simulation RNG order; expected to support secondary_claims if alpha=0.5 recovers."
+test: false
+milestone: secondary_claims
+notes: "Core College Admission adaptive ensemble and the five-setting imperfect-human alpha sweep are reproduced and validated; stopping before image and additional parameter-sweep experiments."

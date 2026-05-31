@@ -1,8 +1,13 @@
 # Reproduction Milestones
 
-**Current: core_claim_plus**
+**Current: secondary_claims**
 
 ## Progress Log
+
+### [2026-05-31 16:59] - secondary_claims
+- Job `d4985458-aae` completed successfully and `python validate.py --compare` passed for the five-setting imperfect-human alpha sweep.
+- The corrected simulator recovered the low-alpha qualitative pattern: at alpha=0.5, adaptive oracle team accuracy was 0.609 versus behavior-aware 0.579 and complementary 0.583.
+- The package now reproduces the core synthetic claim and the secondary human-reliability sweep under the authors' released College Admission protocol.
 
 ### [2026-05-31 16:57] - core_claim_plus
 - Job `179f7023-580` completed and passed validation, but alpha=0.5 still failed to reproduce the paper's adaptive advantage.
@@ -31,6 +36,8 @@
 - Inspected the official code release at `https://github.com/shasanamin/aaai26-adaptive-ai` and confirmed the local College Admission implementation mirrors the released synthetic generator and specialist-training procedure.
 
 ## Stop Justification
-- Not stopping yet. A CPU job is being submitted to rerun the expanded
-  human-reliability sweep under the corrected paper protocol and test whether
-  the reproduction can advance to `secondary_claims`.
+- Completed at `secondary_claims`. The environment reproduces the paper's core
+  College Admission adaptive-ensemble result and the imperfect-human alpha
+  sweep on five representative settings. Higher milestones would require
+  adding other paper axes such as WoofNette image experiments or additional
+  College Admission parameter sweeps.

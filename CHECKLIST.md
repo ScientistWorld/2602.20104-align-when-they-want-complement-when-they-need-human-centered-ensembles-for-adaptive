@@ -37,7 +37,7 @@
 - [x] `method_runs`
 - [x] `core_claim`
 - [x] `core_claim_plus`
-- [ ] `secondary_claims`
+- [x] `secondary_claims`
 - [ ] `majority`
 - [ ] `near_complete`
 - [ ] `full`
