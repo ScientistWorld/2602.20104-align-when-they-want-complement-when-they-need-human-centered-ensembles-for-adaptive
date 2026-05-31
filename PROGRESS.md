@@ -4,9 +4,10 @@
 
 - Paper analysis is complete for the synthetic College Admission setting.
 - Implemented tracked data-generation code for the paper's two-region synthetic task, including held-out human predictions and confidence values.
-- Implemented the paper's logistic behavior-aware single model, aligned specialist, complementary specialist, oracle adaptive ensemble, weighted oracle ensemble, and RRS routing.
+- Implemented the paper's logistic single-model surrogate, aligned specialist, complementary specialist, oracle adaptive ensemble, weighted oracle ensemble, and RRS routing.
 - Implemented an evaluator that reads method prediction artifacts, joins them to held-out problem data, recomputes CGPR team decisions, and writes `scoring/scores.json`.
-- Updated the scorer to include the practical RRS adaptive variant in addition to oracle routing.
+- The method writes RRS prediction artifacts, while the default scorer includes the paper-reported synthetic methods that have reference values.
+- Inspected the official repository linked by the paper and confirmed the packaged synthetic reproduction follows the released College Admission generator, single-model surrogate, specialist training, and CGPR result columns.
 
 ## Results
 
@@ -30,10 +31,11 @@ Additional College Admission setting at alpha=0.7:
 
 The expanded setting is lower than the authors' reported values but keeps the core qualitative pattern: oracle adaptive routing beats the single behavior-aware model and the individual specialists under a different human-accuracy regime.
 
-Current turn: submitting a CPU reproduction refresh after keeping the default
-synthetic scorer aligned to paper-reported methods. RRS remains implemented in
-`method/`, but the synthetic reference table does not include RRS numbers, so it
-is not part of the default validated `scores.json`.
+Current turn: audited the existing package against the official code release and
+updated `MILESTONES.md` to reflect the previously validated `core_claim_plus`
+state. RRS remains implemented in `method/`, but the synthetic reference table
+does not include RRS numbers, so it is not part of the default validated
+`scores.json`.
 
 Continuation audit: the implementation remains a real reproduction of the
 paper's synthetic CGPR/adaptive-ensemble procedure, and prior CPU container jobs
