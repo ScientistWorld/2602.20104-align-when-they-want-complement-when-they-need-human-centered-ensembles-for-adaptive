@@ -61,6 +61,12 @@ a seeded NumPy RNG for each CGPR team decision. The data generator, evaluator,
 and reproduction script have been updated to follow that protocol, while still
 keeping evaluation independent from `method/`.
 
+Job `772f9aa7-605` failed immediately in data generation because the new sweep
+path passed a shared RNG into `generate_college_admission`, but that function's
+signature had not yet been updated. The signature now accepts an optional RNG,
+which preserves the old seed-based standalone path and enables the paper-style
+shared-RNG sweep.
+
 Continuation audit: the implementation remains a real reproduction of the
 paper's synthetic CGPR/adaptive-ensemble procedure, and prior CPU container jobs
 validated the core and alpha=0.7 settings. A login-node attempt failed because
@@ -100,6 +106,8 @@ passed. The reproduced values remain:
 - The first five-alpha run exposed a protocol mismatch at alpha=0.5. The fix
   preserves the paper's algorithm and changes only data/evaluation protocol to
   match the released experiment implementation.
+- Job `772f9aa7-605` caught a missed function-signature change before any
+  expensive work ran; fixed in `data/college_admission.py`.
 
 ## Deviations from Paper
 

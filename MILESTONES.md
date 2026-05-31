@@ -4,6 +4,11 @@
 
 ## Progress Log
 
+### [2026-05-31 16:55] - core_claim_plus
+- Job `772f9aa7-605` failed before running the method because the new paper-protocol sweep passed an RNG into a generator function whose signature still only accepted a seed.
+- Fixed `data/college_admission.py` so the generator supports both the old seed-based path and the new shared-RNG alpha-sweep path.
+- Structural validation still passes; resubmitting the corrected CPU sweep.
+
 ### [2026-05-31 16:53] - core_claim_plus
 - Job `59e5cbe0-420` completed successfully and produced scores for all five requested alpha-sweep settings.
 - The run exposed a low-alpha protocol mismatch: independently regenerated alpha settings did not reproduce the paper's shared-RNG imperfect-human sweep at alpha=0.5.

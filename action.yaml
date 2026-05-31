@@ -5,4 +5,4 @@ action: submit
 gpus: 0
 test: true
 milestone: core_claim_plus
-notes: "Rerun the five-alpha College Admission sweep after fixing the data/eval protocol to match the authors' shared-RNG imperfect-human experiment; expected to support secondary_claims if alpha=0.5 recovers."
+notes: "Rerun the five-alpha College Admission sweep after fixing the missing RNG parameter in data generation; expected to support secondary_claims if the corrected shared-RNG protocol recovers alpha=0.5."

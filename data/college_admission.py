@@ -26,8 +26,10 @@ def generate_college_admission(
     delta: float,
     threshold: float = 0.5,
     seed: int = 42,
+    rng: np.random.Generator | None = None,
 ) -> pd.DataFrame:
-    rng = np.random.default_rng(seed)
+    if rng is None:
+        rng = np.random.default_rng(seed)
     group = rng.choice([1, 0], size=n_instances, p=[aligned_fraction, 1.0 - aligned_fraction])
     features = rng.uniform(0.0, 1.0, size=(n_instances, 2))
 
