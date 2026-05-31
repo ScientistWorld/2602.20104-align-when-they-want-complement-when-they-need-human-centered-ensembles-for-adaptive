@@ -67,6 +67,7 @@ docker_*.tar.xz
 
 # Swarm/worker artifacts
 trajectory/
+jobs/
 .empty_*/
 outputs/
 logs/

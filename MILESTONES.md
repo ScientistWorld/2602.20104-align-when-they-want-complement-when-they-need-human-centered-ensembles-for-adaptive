@@ -4,6 +4,11 @@
 
 ## Progress Log
 
+### [2026-05-31 17:50] - secondary_claims
+- Final verification confirmed the claimed `secondary_claims` milestone is justified.
+- `python validate.py --compare` passes with the five College Admission alpha-sweep experiments, train/test score files, and structural separation checks.
+- Cleaned final packaging by ignoring/removing tracked job logs, correcting the overview milestone, and marking AI-only train/test diagnostics as zero-coefficient metrics so they do not distort the gym score.
+
 ### [2026-05-31 17:45] - secondary_claims
 - Final verification passed `python validate.py --compare`.
 - Tightened method-agnostic briefing and scoring documentation so from-scratch scientists see the task, metrics, and constraints without implementation hints.

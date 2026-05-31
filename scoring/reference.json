@@ -17,18 +17,18 @@
         },
         "ai_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.25,
-          "description": "Standalone AI prediction accuracy before CGPR human reliance is applied."
+          "coefficient": 0.0,
+          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
         },
         "aligned_region_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.2,
-          "description": "AI accuracy on the region where human decisions are intended to be reliable."
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
         },
         "complementary_region_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.35,
-          "description": "AI accuracy on the complementary region where the assistant should compensate for weak human decisions."
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
         },
         "routing_accuracy": {
           "higher_is_better": true,
@@ -82,18 +82,18 @@
         },
         "ai_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.25,
-          "description": "Standalone AI prediction accuracy before CGPR human reliance is applied."
+          "coefficient": 0.0,
+          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
         },
         "aligned_region_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.2,
-          "description": "AI accuracy on the region where human decisions are intended to be reliable."
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
         },
         "complementary_region_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.35,
-          "description": "AI accuracy on the complementary region where the assistant should compensate for weak human decisions."
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
         },
         "routing_accuracy": {
           "higher_is_better": true,
@@ -147,18 +147,18 @@
         },
         "ai_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.25,
-          "description": "Standalone AI prediction accuracy before CGPR human reliance is applied."
+          "coefficient": 0.0,
+          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
         },
         "aligned_region_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.2,
-          "description": "AI accuracy on the region where human decisions are intended to be reliable."
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
         },
         "complementary_region_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.35,
-          "description": "AI accuracy on the complementary region where the assistant should compensate for weak human decisions."
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
         },
         "routing_accuracy": {
           "higher_is_better": true,
@@ -212,18 +212,18 @@
         },
         "ai_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.25,
-          "description": "Standalone AI prediction accuracy before CGPR human reliance is applied."
+          "coefficient": 0.0,
+          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
         },
         "aligned_region_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.2,
-          "description": "AI accuracy on the region where human decisions are intended to be reliable."
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
         },
         "complementary_region_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.35,
-          "description": "AI accuracy on the complementary region where the assistant should compensate for weak human decisions."
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
         },
         "routing_accuracy": {
           "higher_is_better": true,
@@ -277,18 +277,18 @@
         },
         "ai_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.25,
-          "description": "Standalone AI prediction accuracy before CGPR human reliance is applied."
+          "coefficient": 0.0,
+          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
         },
         "aligned_region_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.2,
-          "description": "AI accuracy on the region where human decisions are intended to be reliable."
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
         },
         "complementary_region_accuracy": {
           "higher_is_better": true,
-          "coefficient": 0.35,
-          "description": "AI accuracy on the complementary region where the assistant should compensate for weak human decisions."
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
         },
         "routing_accuracy": {
           "higher_is_better": true,

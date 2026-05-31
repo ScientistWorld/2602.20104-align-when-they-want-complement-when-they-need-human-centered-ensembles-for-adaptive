@@ -2,40 +2,46 @@
 
 ## Initial Assessment
 
-The workspace already claimed `secondary_claims` and had prior successful
-CPU-container jobs. Local `python validate.py --compare` passed, and the claimed
-milestone is justified for the synthetic College Admission benchmark and
-human-reliability alpha sweep.
+The workspace claimed `secondary_claims`. That claim is justified: the
+implementation reproduces the paper's synthetic College Admission core and the
+human-reliability alpha sweep, and the evaluator reads method-produced
+artifacts rather than recomputing the method inline. The problem/evaluation
+briefings and `scoring/EXPERIMENTS.md` are method-agnostic, while method
+details are confined to `briefing/method.md` and `method/`.
 
 ## Issues Found
 
-- minor: Some method-agnostic and high-level documentation used
-  solution-specific vocabulary (`adaptive`, `specialist`, `CGPR`, and
-  paper-specific routing wording), which could leak implementation hints to
-  from-scratch agents.
-- minor: `action.yaml` still requested a validation submit from the previous
-  turn even though final verification did not require another job.
-- limitation: The gym does not reproduce the WoofNette image benchmark or score
-  the practical RRS result; RRS artifacts exist but are excluded from default
-  scoring because the paper does not report synthetic RRS reference values.
+- minor: `briefing/overview.md` still described the result as
+  `core_claim_plus`, even though the workspace has five alpha-sweep settings
+  and a justified `secondary_claims` milestone.
+- minor: `scoring/reference.json` gave nonzero coefficients to AI-only
+  diagnostic metrics that are not part of the main `scores.json` contract. This
+  could distort train/test scoring incentives away from the actual team and
+  reliance claims.
+- cosmetic: Generated `jobs/` logs and Python bytecode caches were present in
+  the working tree. They are not reusable gym assets.
 
 ## Fixes Applied
 
-- Reworded method-agnostic briefing and scoring docs to describe regimes,
-  metrics, and constraints without naming the paper's implementation pattern.
-- Updated `action.yaml` to signal final `done` at `secondary_claims`.
-- Documented the final scope limitation and validation status.
+- Updated `briefing/overview.md` to state the correct `secondary_claims` scope.
+- Kept the diagnostic AI-only metric definitions for train/test validation, but
+  set their coefficients to `0.0`. The active scoring metrics are now team
+  accuracy, reliance probability, and routing accuracy.
+- Added `jobs/` to `.gitignore`, removed tracked job-log files, and deleted
+  Python bytecode caches.
+- Re-ran `python validate.py --compare`; it passes for `reference.json`,
+  `scores.json`, `scores_train.json`, `scores_test.json`, train/test split
+  checks, import separation, and shared-path checks.
 
 ## Final Judgment
 
-The workspace is ready as a synthetic College Admission research gym.
-Improve-mode and from-scratch agents can use the tracked data generator,
-method-agnostic evaluator, documented scoring targets, and existing scores. The
-benchmark is meaningful for the synthetic core and human-reliability secondary
-claim, but not for the paper's WoofNette/RRS image benchmark.
+The workspace is ready to serve as a research gym for the reproduced synthetic
+College Admission problem. Improve-mode agents can compare against the existing
+method outputs, and from-scratch agents can use the method-agnostic data and
+evaluation contract without seeing implementation details.
 
 - Milestone: secondary_claims
 - Ready for gym use: yes
-- Confidence: medium
-- Key limitation: Synthetic College Admission only; WoofNette/RRS image
+- Confidence: high
+- Key limitation: Synthetic College Admission only; the WoofNette/RRS image
   benchmark is not reproduced.
