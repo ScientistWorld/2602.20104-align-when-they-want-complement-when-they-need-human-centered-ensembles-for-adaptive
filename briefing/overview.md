@@ -1,14 +1,12 @@
 # Overview
 
-- **Paper ID:** <!-- e.g. 1706.03762 -->
-- **Title:** <!-- e.g. Attention Is All You Need -->
-- **Domain:** <!-- e.g. Computer Vision / Object Detection -->
-- **TL;DR:** <!-- One sentence: what this paper does and why it matters -->
+Paper: "Align When They Want, Complement When They Need! Human-Centered
+Ensembles for Adaptive Human-AI Collaboration" by Hasan Amin, Ming Yin, and
+Rajiv Khanna.
 
-## Short Summary
-
-<!-- 3-5 sentences covering the problem, approach, and main findings -->
-
-## Key Results
-
-<!-- 2-3 bullet points: main findings or numbers in bullet points -->
+This reproduction packages the core synthetic experiment: a two-region admission
+task where human confidence and ability differ by region. The method trains
+aligned and complementary specialists and adaptively routes between them under
+the CGPR human-AI team model. The benchmark scores whether adaptive
+recommendations improve team accuracy while preserving the reliance quantity
+that makes humans willing to use AI advice.

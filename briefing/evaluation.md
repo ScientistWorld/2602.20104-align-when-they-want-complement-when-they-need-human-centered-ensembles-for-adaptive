@@ -1,15 +1,13 @@
 # Evaluation
 
-How success is measured. Describe only the metrics, targets, and evaluation procedure — do NOT describe the paper's method or how they achieved these results. Think of this as a general evaluation protocal for other scientists trying to solve the same problem, where they should not see this paper's solution.
+Evaluation reads held-out predictions written by a method run and computes:
 
-## Metrics
+- `team_accuracy`: accuracy of final CGPR team decisions.
+- `reliance_probability`: one minus the AI-human disagreement rate in the
+  aligned region, the paper's operational trust/reliance quantity.
+- `routing_accuracy`: for adaptive systems, how often the selected specialist
+  matches the known synthetic region.
 
-<!-- What metrics are used? How are they computed? What does higher/lower mean? -->
-
-## Baselines and Targets
-
-<!-- What performance levels exist as reference points? Include the paper's reported numbers as targets, and any standard baselines. A scientist agent should know what "good" looks like. -->
-
-## Evaluation Protocol
-
-<!-- How should evaluation be run? What data split, what conditions? Any important details about how to compare fairly (e.g., fixed seeds, specific test sets, averaging over runs). -->
+`scripts/evaluate.sh` is method-agnostic: it imports only `eval/` code and reads
+`checkpoints/college_admission/predictions.csv` by default. Future methods can
+be scored by writing the same prediction columns and running the same evaluator.

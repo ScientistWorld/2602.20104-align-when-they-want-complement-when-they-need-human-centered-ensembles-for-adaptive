@@ -1,0 +1,56 @@
+{
+  "experiments": {
+    "college_admission_core": {
+      "description": "Synthetic College Admission CGPR team decision task at p=0.5, delta=0.25, alpha=0.9. Reference values are from the authors' released synthetic experiment outputs near this setting, with WoofNette standard-AI team accuracy used only as the standard-AI baseline anchor.",
+      "weight": 1.0,
+      "primary_metric": "team_accuracy",
+      "metrics": {
+        "team_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 1.0
+        },
+        "reliance_probability": {
+          "higher_is_better": true,
+          "coefficient": 0.4
+        },
+        "routing_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2
+        }
+      },
+      "results": {
+        "standard_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.6913,
+          "reliance_probability": 0.7468
+        },
+        "behavior_aware_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.766,
+          "reliance_probability": 0.7468
+        },
+        "aligned_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.73,
+          "reliance_probability": 0.8795
+        },
+        "complementary_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.7783,
+          "reliance_probability": 0.5
+        },
+        "adaptive_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.806,
+          "reliance_probability": 0.8795,
+          "routing_accuracy": 1.0
+        },
+        "adaptive_rrs": {
+          "type": "proposed",
+          "team_accuracy": 0.7947,
+          "reliance_probability": 0.8737
+        }
+      }
+    }
+  }
+}

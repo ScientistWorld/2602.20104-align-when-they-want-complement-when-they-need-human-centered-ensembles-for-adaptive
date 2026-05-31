@@ -10,5 +10,31 @@ set -e
 
 cd /home/user
 
-# TODO: run the paper's method
-# TODO: call scripts/evaluate.sh to score
+DATA_DIR="${DATA_DIR:-data/college_admission}"
+OUTPUT_DIR="${OUTPUT_DIR:-checkpoints/college_admission}"
+N_INSTANCES="${N_INSTANCES:-10000}"
+ALIGNED_FRACTION="${ALIGNED_FRACTION:-0.5}"
+DELTA="${DELTA:-0.25}"
+ALPHA="${ALPHA:-0.9}"
+COMPLEMENTARY_ACCURACY="${COMPLEMENTARY_ACCURACY:-0.5}"
+TAU="${TAU:-0.5}"
+SEED="${SEED:-42}"
+
+python data/college_admission.py \
+  --output-dir "$DATA_DIR" \
+  --n-instances "$N_INSTANCES" \
+  --aligned-fraction "$ALIGNED_FRACTION" \
+  --delta "$DELTA" \
+  --threshold "$TAU" \
+  --seed "$SEED"
+
+python method/college_admission_method.py \
+  --data-dir "$DATA_DIR" \
+  --output-dir "$OUTPUT_DIR" \
+  --aligned-fraction "$ALIGNED_FRACTION" \
+  --alpha "$ALPHA" \
+  --complementary-accuracy "$COMPLEMENTARY_ACCURACY" \
+  --tau "$TAU" \
+  --seed "$SEED"
+
+bash scripts/evaluate.sh "$OUTPUT_DIR/predictions.csv" scoring/scores.json

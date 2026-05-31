@@ -2,36 +2,25 @@
 
 ## What Works
 
-<!-- What has been successfully reproduced so far. -->
+- Paper analysis is complete for the synthetic College Admission setting.
+- Implemented tracked data-generation code for the paper's two-region synthetic task.
+- Implemented the paper's logistic behavior-aware single model, aligned specialist, complementary specialist, oracle adaptive ensemble, RRS routing, and CGPR team decision simulation.
+- Implemented an evaluator that reads method prediction artifacts and writes `scoring/scores.json`.
 
 ## Results
 
-<!-- Reproduced numbers compared to the paper's reported numbers. -->
+No completed job results yet. A local smoke test could not run because the login-node Python environment lacks NumPy; dependencies are declared in `environment/setup.sh` for the compute container.
 
 ## Remaining
 
-<!-- What still needs to be done to reach higher milestones. -->
+- Run the packaged pipeline in the container.
+- Inspect `scoring/scores.json` and compare against `scoring/reference.json`.
+- If the core claim is supported, update milestone to `core_claim`; otherwise debug and resubmit.
 
 ## Issues
 
-<!-- Blockers, bugs, or difficulties encountered. -->
+- Login-node Python does not have the scientific Python stack installed. This is expected to be handled by `environment/setup.sh` during the submitted job.
 
 ## Deviations from Paper
 
-<!-- Do not edit this section unless you deviated from the paper's original setup.
-     For each deviation, document: what the paper used, what you substituted, and why.
-
-     ACCEPTABLE deviations (data/resource/scale substitutions — milestones still valid):
-       - Replaced a proprietary dataset with a public one
-       - Used a smaller model of the same architecture
-       - Scaled down training (fewer epochs, smaller batch)
-       - Used a different library for the same algorithm
-
-     UNACCEPTABLE deviations (algorithm substitutions — milestones above 'none' are void):
-       - Replaced the paper's algorithm with a fundamentally different one
-       - Wrote a generic model trained to approximate the method's outputs
-         instead of implementing the method's computational steps
-
-     The test: could someone reading your code identify which algorithm from
-     the paper you implemented? If not, you replaced the method. -->
-
+- The first runnable target focuses on the paper's synthetic College Admission benchmark rather than the WoofNette image benchmark. This preserves the paper's algorithmic procedure while avoiding large image/model downloads before the core synthetic claim is verified.
