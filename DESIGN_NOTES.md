@@ -3,7 +3,7 @@
 ## Checks Performed
 
 - Read `scripts/evaluate_train.sh` and `scripts/evaluate_test.sh` side by side. The train script invokes `eval/train/evaluate.py` and writes `scoring/scores_train.json`; the test script invokes `eval/test/evaluate.py` and writes `scoring/scores_test.json`.
-- Checked for train/test cross-imports and score-stub artifacts. No `scoring/scores_train.json` or `scoring/scores_test.json` is present.
+- Checked for train/test cross-imports and score-stub artifacts before the runner job; the split score files were then produced by job `2100744c-980`.
 - Checked `scoring/reference.json` for paper-agreement metrics. The active metrics measure team accuracy, reliance, standalone accuracy, per-region accuracy, and routing quality rather than distance to published values.
 - Confirmed the split evaluators read method-produced prediction artifacts from `checkpoints/*/predictions.csv` rather than regenerating the method inline.
 
@@ -19,5 +19,12 @@
 
 - The train/test split is a deterministic 50/50 hash partition of the existing labeled test CSVs. That is lightweight and comparable across slices, but it is not a hidden-data split; a deliberately label-memorizing method could still exploit the visible CSV labels.
 - `routing_accuracy` can saturate at 1.0 for methods that output the synthetic region label directly. This matches the paper's oracle-routing synthetic condition, but future hidden tests should watch whether this metric adds discrimination beyond artifact completeness.
-- The added per-region metrics should be checked for saturation on the current reproduction once the runner iteration is allowed to execute evaluators.
 - Both split evaluators still assume each experiment has `data/<experiment>/test.csv`, `data/<experiment>/metadata.csv`, and `checkpoints/<experiment>/predictions.csv` with a one-to-one `example_id` merge.
+
+## Runner Assessment
+
+- Job `2100744c-980` exited with code 0 and produced `scoring/scores_train.json` and `scoring/scores_test.json`.
+- Coverage is complete: 5 experiments, 7 discovered methods per experiment, and all 6 reference metrics populated on both train and test slices.
+- Train and test method sets match exactly for every experiment. The hash split sizes are balanced, ranging from 1492/1508 to 1527/1473 examples.
+- The scores are not byte-identical across slices. Maximum per-method train/test gaps are modest for the primary metric (`team_accuracy`): 0.022 on core, 0.041 at alpha 0.5, 0.010 at alpha 0.7, 0.013 at alpha 0.8, and 0.010 at alpha 1.0.
+- No active metric is constant across every method on either slice. Oracle `routing_accuracy` remains 1.0 by construction while non-routed methods score 0.0 and adaptive RRS scores near chance, so the metric functions as an artifact/constraint check rather than a standalone benefit score.

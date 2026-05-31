@@ -1,6 +1,6 @@
-# This iteration runs the train/test split evaluators on compute.
-action: submit
+# Train/test split evaluation completed and sanity-checked.
+action: done
 gpus: 0
 test: false
 milestone: secondary_claims
-notes: "CPU split-evaluation job: run scripts/evaluate_train.sh and scripts/evaluate_test.sh against existing prediction checkpoints to populate scores_train/test."
+notes: "Deterministic 50/50 hash split; 210 train metrics and 210 test metrics populated across 5 experiments and 7 methods; primary train/test gaps are modest (max 0.041 team_accuracy); caveat: labels are from existing visible CSVs, so this is not a cryptographically hidden-data split."
