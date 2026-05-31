@@ -36,8 +36,4 @@
 - Inspected the official code release at `https://github.com/shasanamin/aaai26-adaptive-ai` and confirmed the local College Admission implementation mirrors the released synthetic generator and specialist-training procedure.
 
 ## Stop Justification
-- Completed at `secondary_claims`. The environment reproduces the paper's core
-  College Admission adaptive-ensemble result and the imperfect-human alpha
-  sweep on five representative settings. Higher milestones would require
-  adding other paper axes such as WoofNette image experiments or additional
-  College Admission parameter sweeps.
+- Completed at milestone `secondary_claims`.
