@@ -1,8 +1,6 @@
 # Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends.
-action: submit
-gpus: 0
-test: false
+action: done
 milestone: secondary_claims
-notes: "Final check: rebuild gym (determinism), reproduce reference + baselines, hidden test, hardening checks (variants, shortcuts, sandboxes) under reliance coefficient 0.5, validate."
+notes: "Hardened gym final: better variants +0.004 to +0.016 over the reference (SE <=0.001), shortcuts score 0 or worst values, reliance coefficient 0.5 puts the simple GBM behaviour-aware model below the reference; HARDENING.md written; validate passes."
