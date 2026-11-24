@@ -1,4 +1,5 @@
 # Overview
+
 Paper: "Align When They Want, Complement When They Need! Human-Centered
 Ensembles for Adaptive Human-AI Collaboration" by Hasan Amin, Ming Yin, and
 Rajiv Khanna.
@@ -25,7 +26,10 @@ The paper's own College Admission sweep is also reproduced, unscored and
 exactly matching the released numbers. Milestone: `secondary_claims` (the
 WoofNette image benchmark is not reproduced).
 
+---
+
 # Problem Definition
+
 AI-assisted binary decision making in which a human decision maker keeps the
 final say. For every case the AI gives one recommendation (admit = 1,
 reject = 0). The human then decides with the following confidence-gated,
@@ -87,7 +91,10 @@ For every experiment, write one binary recommendation per `example_id` of
 - Any recommendation strategy is allowed, but it may use only the inputs
   available at test time.
 
+---
+
 # Paper's Method
+
 Paper: "Align When They Want, Complement When They Need! Human-Centered
 Ensembles for Adaptive Human-AI Collaboration" (Amin, Yin, Khanna, AAAI 2026).
 
@@ -148,7 +155,10 @@ authors' release) reproduce the paper's own two-feature College Admission
 sweep. They feed the unscored `scoring/paper_reproduction.json`, which matches
 the authors' released numbers exactly.
 
+---
+
 # Evaluation
+
 All scores are recomputed by `eval/` from the binary recommendations alone.
 Nothing a method writes besides `example_id,prediction` is read.
 
@@ -210,9 +220,7 @@ The rank sums, over experiments, `weight × Σ_metrics coefficient ×
 | `admission_group_known` | 0.25 |
 | `admission_group_known_low_reliability` | 0.20 |
 
-# Hardening (iteration 11)
-
-The hidden test was rebuilt in iteration 11; see `HARDENING.md` for what changed, the variant and shortcut scores before and after, and what remains open. The log below records earlier iterations on the pre-hardening gym.
+---
 
 # Reproduction Log
 
@@ -626,6 +634,72 @@ The hidden test was rebuilt in iteration 11; see `HARDENING.md` for what changed
 
 <details>
 <summary>Progress Log</summary>
+
+### [2026-05-31 17:50] - secondary_claims
+- Final verification confirmed the claimed `secondary_claims` milestone is justified.
+- `python validate.py --compare` passes with the five College Admission alpha-sweep experiments, train/test score files, and structural separation checks.
+- Cleaned final packaging by ignoring/removing tracked job logs, correcting the overview milestone, and marking AI-only train/test diagnostics as zero-coefficient metrics so they do not distort the gym score.
+
+### [2026-05-31 17:45] - secondary_claims
+- Final verification passed `python validate.py --compare`.
+- Tightened method-agnostic briefing and scoring documentation so from-scratch scientists see the task, metrics, and constraints without implementation hints.
+- Confirmed the remaining limitation is scope: the gym reproduces the synthetic College Admission core and human-reliability sweep, not the WoofNette image benchmark.
+
+### [2026-05-31 17:25] - secondary_claims
+- Continuation audit found the existing package still implements the paper's synthetic CGPR adaptive-ensemble method and has prior passing CPU-container validation.
+- Submitting a fresh CPU end-to-end reproduction job to regenerate the full College Admission alpha sweep and re-run `python validate.py --compare` in the compute container.
+
+### [2026-05-31 16:59] - secondary_claims
+- Job `d4985458-aae` completed successfully and `python validate.py --compare` passed for the five-setting imperfect-human alpha sweep.
+- The corrected simulator recovered the low-alpha qualitative pattern: at alpha=0.5, adaptive oracle team accuracy was 0.609 versus behavior-aware 0.579 and complementary 0.583.
+- The package now reproduces the core synthetic claim and the secondary human-reliability sweep under the authors' released College Admission protocol.
+
+### [2026-05-31 16:57] - core_claim_plus
+- Job `179f7023-580` completed and passed validation, but alpha=0.5 still failed to reproduce the paper's adaptive advantage.
+- Identified a remaining human-simulation mismatch: vectorized random draws changed the paper's per-example RNG order for correctness and confidence.
+- Updated the simulator to follow the authors' released per-example draw sequence and resubmitting before claiming a higher milestone.
+
+### [2026-05-31 16:55] - core_claim_plus
+- Job `772f9aa7-605` failed before running the method because the new paper-protocol sweep passed an RNG into a generator function whose signature still only accepted a seed.
+- Fixed `data/college_admission.py` so the generator supports both the old seed-based path and the new shared-RNG alpha-sweep path.
+- Structural validation still passes; resubmitting the corrected CPU sweep.
+
+### [2026-05-31 16:53] - core_claim_plus
+- Job `59e5cbe0-420` completed successfully and produced scores for all five requested alpha-sweep settings.
+- The run exposed a low-alpha protocol mismatch: independently regenerated alpha settings did not reproduce the paper's shared-RNG imperfect-human sweep at alpha=0.5.
+- Updated data generation, evaluation, and reproduction scripts to match the authors' released sweep protocol before attempting to claim `secondary_claims`.
+
+### [2026-05-31 16:45] - core_claim_plus
+- Audited the reset workspace and found the existing implementation intact: method code contains the paper's synthetic CGPR data generation, single-model surrogate, aligned/complementary specialists, adaptive routing, and RRS artifacts.
+- Verified that `eval/` remains independent from `method/` and that `python validate.py --compare` passes on the existing reproduced scores.
+- Added three more alpha-sweep settings from the authors' released synthetic results to prepare a secondary-claim reproduction job.
+
+### [2026-05-31 16:42] - core_claim_plus
+- Reproduced the paper's synthetic College Admission core setting with the actual CGPR adaptive-ensemble procedure: aligned and complementary logistic specialists, oracle adaptive routing, weighted specialist variant, and CGPR team scoring.
+- Prior compute-container validation passed with `python validate.py --compare`.
+- Expanded beyond the minimum by reproducing a second human-accuracy setting (`alpha=0.7`) from the authors' released synthetic sweep.
+- Inspected the official code release at `https://github.com/shasanamin/aaai26-adaptive-ai` and confirmed the local College Admission implementation mirrors the released synthetic generator and specialist-training procedure.
+
+</details>
+
+### Iteration 11: claude-opus-5-5 (hardener)
+- **Milestone**: `secondary_claims` | **Status**: error
+- **Working time**: 43m | **GPU**: 0.0h
+- **Jobs**: 6 total (5 completed, 0 failed)
+
+<details>
+<summary>Progress Log</summary>
+
+### [2026-11-24 01:40] - secondary_claims
+- Hardening (iteration 11): the scored hidden test was rebuilt as an extended College Admission world.
+  - Answers and the generator are only in `eval/test/`.
+  - Four experiments: group known or hidden, crossed with reliable or less reliable evaluators.
+  - Exact expected CGPR team accuracy.
+  - Strict per-id validation with worst values on failure.
+  - Baselines frozen in `eval/`.
+- The paper's adaptive ensemble (logistic regression, the paper's synthetic scale) beats all four paper single-model baselines in every experiment, by +0.06 to +0.11 team accuracy.
+- The paper's own College Admission alpha sweep now reproduces the released numbers exactly. It is kept as an unscored check in `scoring/paper_reproduction.json`.
+- See HARDENING.md.
 
 ### [2026-05-31 17:50] - secondary_claims
 - Final verification confirmed the claimed `secondary_claims` milestone is justified.
