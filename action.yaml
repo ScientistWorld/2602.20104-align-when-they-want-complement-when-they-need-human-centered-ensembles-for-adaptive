@@ -5,4 +5,4 @@ action: submit
 gpus: 0
 test: false
 milestone: secondary_claims
-notes: "Round 2: rebuild hidden-test world with confident linear human bias, rerun reference/baselines, red-team v2 checks, and 4-world sweep (CPU)"
+notes: "Round 3: rebuild world (non-linear outcome in the deferring group, wider gate), rerun reference/baselines, red-team v2 checks incl. hybrid variants, 4-world sweep (CPU)"

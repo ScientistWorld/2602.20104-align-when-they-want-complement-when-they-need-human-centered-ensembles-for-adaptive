@@ -13,34 +13,34 @@
       "_n_scored": 3000,
       "results": {
         "aligned_ai": {
-          "ai_accuracy": 0.751,
-          "complementary_region_accuracy": 0.5817117749716666,
-          "reliance_probability": 0.9867256659663043,
-          "team_accuracy": 0.7472965856307496
+          "ai_accuracy": 0.728,
+          "complementary_region_accuracy": 0.5422269749360175,
+          "reliance_probability": 0.9870447718350817,
+          "team_accuracy": 0.7249817927352448
         },
         "behavior_aware_ai": {
-          "ai_accuracy": 0.7736666666666666,
-          "complementary_region_accuracy": 0.758632121794178,
-          "reliance_probability": 0.8133016105732379,
-          "team_accuracy": 0.8138728348933607
+          "ai_accuracy": 0.7536666666666667,
+          "complementary_region_accuracy": 0.7349992246635197,
+          "reliance_probability": 0.7956882351488135,
+          "team_accuracy": 0.8008719483798049
         },
         "complementary_ai": {
-          "ai_accuracy": 0.7726666666666666,
-          "complementary_region_accuracy": 0.9401975898113224,
-          "reliance_probability": 0.623613037277587,
-          "team_accuracy": 0.8471933091684759
+          "ai_accuracy": 0.7593333333333333,
+          "complementary_region_accuracy": 0.9293355781231977,
+          "reliance_probability": 0.5977395505208353,
+          "team_accuracy": 0.8377338602743566
         },
         "standard_ai": {
-          "ai_accuracy": 0.7723333333333333,
-          "complementary_region_accuracy": 0.7554705982408603,
-          "reliance_probability": 0.8034724309188928,
-          "team_accuracy": 0.8113264305202617
+          "ai_accuracy": 0.7486666666666667,
+          "complementary_region_accuracy": 0.7274673707318114,
+          "reliance_probability": 0.7842113188805578,
+          "team_accuracy": 0.796483242759103
         },
         "submission": {
-          "ai_accuracy": 0.908,
-          "complementary_region_accuracy": 0.9160775359962298,
-          "reliance_probability": 0.9572871352987193,
-          "team_accuracy": 0.9088654573753951
+          "ai_accuracy": 0.8906666666666667,
+          "complementary_region_accuracy": 0.8918038685077112,
+          "reliance_probability": 0.9457384429754879,
+          "team_accuracy": 0.8949402247330411
         }
       }
     },
@@ -49,34 +49,34 @@
       "_n_scored": 3000,
       "results": {
         "aligned_ai": {
-          "ai_accuracy": 0.7583333333333333,
-          "complementary_region_accuracy": 0.59765342060436,
-          "reliance_probability": 0.8037777976993127,
-          "team_accuracy": 0.668057305059189
+          "ai_accuracy": 0.7436666666666667,
+          "complementary_region_accuracy": 0.5720201430648914,
+          "reliance_probability": 0.8017556803031844,
+          "team_accuracy": 0.6566005180980328
         },
         "behavior_aware_ai": {
-          "ai_accuracy": 0.776,
-          "complementary_region_accuracy": 0.8106322290410295,
-          "reliance_probability": 0.6645043237433955,
-          "team_accuracy": 0.7361702556882822
+          "ai_accuracy": 0.7636666666666667,
+          "complementary_region_accuracy": 0.8001203527707571,
+          "reliance_probability": 0.654558582489984,
+          "team_accuracy": 0.7309829669753605
         },
         "complementary_ai": {
-          "ai_accuracy": 0.7683333333333333,
-          "complementary_region_accuracy": 0.9079687476394438,
-          "reliance_probability": 0.5664953314635824,
-          "team_accuracy": 0.7490050412126348
+          "ai_accuracy": 0.7546666666666667,
+          "complementary_region_accuracy": 0.8977994363549514,
+          "reliance_probability": 0.5446716943604614,
+          "team_accuracy": 0.7414900342537365
         },
         "standard_ai": {
-          "ai_accuracy": 0.783,
-          "complementary_region_accuracy": 0.7722446021262821,
-          "reliance_probability": 0.7025845934174246,
-          "team_accuracy": 0.728203662832395
+          "ai_accuracy": 0.7673333333333333,
+          "complementary_region_accuracy": 0.7559691340701736,
+          "reliance_probability": 0.6806787060303101,
+          "team_accuracy": 0.7190802512021847
         },
         "submission": {
-          "ai_accuracy": 0.9053333333333333,
-          "complementary_region_accuracy": 0.9123966896513557,
-          "reliance_probability": 0.767102740576873,
-          "team_accuracy": 0.7956869438822326
+          "ai_accuracy": 0.8913333333333333,
+          "complementary_region_accuracy": 0.8973740467753952,
+          "reliance_probability": 0.7564872920554254,
+          "team_accuracy": 0.7876546162051495
         }
       }
     },
@@ -85,34 +85,34 @@
       "_n_scored": 3000,
       "results": {
         "aligned_ai": {
-          "ai_accuracy": 0.7666666666666667,
-          "complementary_region_accuracy": 0.6216559835265296,
-          "reliance_probability": 0.9810279791792237,
-          "team_accuracy": 0.759080727893606
+          "ai_accuracy": 0.747,
+          "complementary_region_accuracy": 0.5882935314727814,
+          "reliance_probability": 0.9822983921439976,
+          "team_accuracy": 0.7400907041298141
         },
         "behavior_aware_ai": {
-          "ai_accuracy": 0.7786666666666666,
-          "complementary_region_accuracy": 0.7965915929819555,
-          "reliance_probability": 0.7884439882226973,
-          "team_accuracy": 0.8197310204267921
+          "ai_accuracy": 0.7646666666666667,
+          "complementary_region_accuracy": 0.7770468515032496,
+          "reliance_probability": 0.7758094933081876,
+          "team_accuracy": 0.8083591147290634
         },
         "complementary_ai": {
-          "ai_accuracy": 0.7826666666666666,
-          "complementary_region_accuracy": 0.9495388247391054,
-          "reliance_probability": 0.6298330415452189,
-          "team_accuracy": 0.846382224491801
+          "ai_accuracy": 0.7636666666666667,
+          "complementary_region_accuracy": 0.9343877183737009,
+          "reliance_probability": 0.5920683966587237,
+          "team_accuracy": 0.8313830101571569
         },
         "standard_ai": {
-          "ai_accuracy": 0.7836666666666666,
-          "complementary_region_accuracy": 0.7867988146911025,
-          "reliance_probability": 0.7994259857229989,
-          "team_accuracy": 0.8172858963269394
+          "ai_accuracy": 0.7656666666666667,
+          "complementary_region_accuracy": 0.768237104204163,
+          "reliance_probability": 0.7796240190159047,
+          "team_accuracy": 0.8052897027954583
         },
         "submission": {
-          "ai_accuracy": 0.9396666666666667,
-          "complementary_region_accuracy": 0.9558596200484575,
-          "reliance_probability": 0.9810279791792237,
-          "team_accuracy": 0.9287985682916118
+          "ai_accuracy": 0.9323333333333333,
+          "complementary_region_accuracy": 0.9411861049437775,
+          "reliance_probability": 0.9822983921439976,
+          "team_accuracy": 0.922143339473835
         }
       }
     },
@@ -121,34 +121,34 @@
       "_n_scored": 3000,
       "results": {
         "aligned_ai": {
-          "ai_accuracy": 0.7596666666666667,
-          "complementary_region_accuracy": 0.6079938491009131,
-          "reliance_probability": 0.8003773500393395,
-          "team_accuracy": 0.6720332927763523
+          "ai_accuracy": 0.7353333333333333,
+          "complementary_region_accuracy": 0.5683026970173933,
+          "reliance_probability": 0.7980479591268381,
+          "team_accuracy": 0.651361485182566
         },
         "behavior_aware_ai": {
-          "ai_accuracy": 0.7833333333333333,
-          "complementary_region_accuracy": 0.8210166808647276,
-          "reliance_probability": 0.676502158252779,
-          "team_accuracy": 0.7429287427054918
+          "ai_accuracy": 0.7636666666666667,
+          "complementary_region_accuracy": 0.8145963180235406,
+          "reliance_probability": 0.6459322599193831,
+          "team_accuracy": 0.7328442581713357
         },
         "complementary_ai": {
-          "ai_accuracy": 0.776,
-          "complementary_region_accuracy": 0.9296041320172427,
-          "reliance_probability": 0.5848070899806186,
-          "team_accuracy": 0.761167855979811
+          "ai_accuracy": 0.747,
+          "complementary_region_accuracy": 0.9131496512595988,
+          "reliance_probability": 0.5562079400157515,
+          "team_accuracy": 0.7472562741772164
         },
         "standard_ai": {
-          "ai_accuracy": 0.7823333333333333,
-          "complementary_region_accuracy": 0.7578896299418637,
-          "reliance_probability": 0.7152390232368763,
-          "team_accuracy": 0.7252178399891148
+          "ai_accuracy": 0.7626666666666667,
+          "complementary_region_accuracy": 0.7436543874582416,
+          "reliance_probability": 0.6928274388570194,
+          "team_accuracy": 0.7140250501070332
         },
         "submission": {
-          "ai_accuracy": 0.9466666666666667,
-          "complementary_region_accuracy": 0.9504565711789843,
-          "reliance_probability": 0.8003773500393395,
-          "team_accuracy": 0.8217038572337088
+          "ai_accuracy": 0.9393333333333334,
+          "complementary_region_accuracy": 0.938836156824533,
+          "reliance_probability": 0.7980479591268381,
+          "team_accuracy": 0.8141632688444409
         }
       }
     }
