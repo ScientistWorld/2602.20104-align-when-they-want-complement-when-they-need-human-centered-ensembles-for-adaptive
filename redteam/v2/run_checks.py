@@ -263,8 +263,8 @@ def main() -> None:
                                            "my_method": rank(s, ref_test, spec, "my_method")}
     shutil.rmtree(PREDS / "my_method")
 
-    (HERE / "summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n")
     write_markdown(summary, spec)
+    (HERE / "summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n")
 
 
 def fmt(x, nd=4):
@@ -302,7 +302,47 @@ def write_markdown(summary: dict, spec: dict) -> None:
     boots = [summary["runs"][f"ref_boot{s}"]["test"]["total"] for s in range(1, 6) if f"ref_boot{s}" in summary["runs"]]
     if boots:
         lines += ["", f"Reference retrained on 5 bootstrap resamples of the training rows: raw gain mean {np.mean(boots):+.4f}, sd {np.std(boots, ddof=1):.4f}, range {max(boots) - min(boots):.4f}."]
+    lines += normalized_section(summary, spec)
     (HERE / "summary.md").write_text("\n".join(lines) + "\n")
+
+
+def normalized_section(summary: dict, spec: dict) -> list[str]:
+    """Rank gain with each metric's improvement divided by its spread across a pool of attempts.
+
+    The real rank divides by the spread across future attempts, which is unknown here; two
+    stand-in pools bracket it: every honest run (weak ones included) and only the competitive
+    honest runs (raw gain above -0.03).  Shortcuts and the hidden-generator ceiling are excluded
+    from both pools.
+    """
+    honest = {m: r["test"]["per_experiment"] for m, r in summary["runs"].items()
+              if not m.startswith(("sc_", "sb_", "generator_")) and (r.get("test") or {}).get("total") is not None}
+    competitive = {m: v for m, v in honest.items() if summary["runs"][m]["test"]["total"] > -0.03}
+    metrics = []
+    for exp, e in spec["experiments"].items():
+        for metric, md in e["metrics"].items():
+            if abs(float(md["coefficient"])) > 0:
+                metrics.append((exp, metric, float(e["weight"]) * abs(float(md["coefficient"]))))
+
+    def sigma(pool):
+        return {(exp, met): float(np.std([pool[m][exp].get(met, 0.0) for m in pool])) or 1.0 for exp, met, _ in metrics}
+
+    s_all, s_comp = sigma(honest), sigma(competitive)
+    lines = ["", "## Spread-normalized rank gain (estimate)", "",
+             "Each metric's improvement divided by its standard deviation across a stand-in pool of attempts "
+             f"(all honest runs: {len(honest)}; competitive honest runs, raw gain > -0.03: {len(competitive)}).", "",
+             "| run | raw gain | normalized (all honest) | normalized (competitive) |", "|---|---|---|---|"]
+    rows = []
+    for m, r in summary["runs"].items():
+        per = (r.get("test") or {}).get("per_experiment")
+        if not per or (r.get("test") or {}).get("total") is None or m.startswith("sb_"):
+            continue
+        n_all = sum(wc * per.get(exp, {}).get(met, 0.0) / s_all[(exp, met)] for exp, met, wc in metrics)
+        n_comp = sum(wc * per.get(exp, {}).get(met, 0.0) / s_comp[(exp, met)] for exp, met, wc in metrics)
+        rows.append((r["test"]["total"], m, n_all, n_comp))
+    for raw, m, n_all, n_comp in sorted(rows, reverse=True):
+        lines.append(f"| {m} | {raw:+.4f} | {n_all:+.3f} | {n_comp:+.3f} |")
+    summary["normalized_gain"] = {m: {"raw": raw, "all_honest": n_all, "competitive": n_comp} for raw, m, n_all, n_comp in rows}
+    return lines
     print("\n".join(lines))
 
 

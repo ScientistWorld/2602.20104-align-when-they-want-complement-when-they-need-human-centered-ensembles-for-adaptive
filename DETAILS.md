@@ -171,7 +171,7 @@ probability that the human feels sure on case i.
   final human decision. It is computed exactly over the threshold draw and the
   reliance coin, so there is no simulation noise:
   `mean_i( P_i [h_i = y_i] + (1 - P_i) (r [m_i = y_i] + (1 - r) [h_i = y_i]) )`
-- `reliance_probability` (constraint: trust, coefficient 0.4) is the r above:
+- `reliance_probability` (constraint: trust, coefficient 0.5) is the r above:
   `sum_i P_i [m_i = h_i] / sum_i P_i`. It is the agreement with the human's own
   judgement where the human feels sure.
 - Two diagnostics, not ranked (coefficient 0):

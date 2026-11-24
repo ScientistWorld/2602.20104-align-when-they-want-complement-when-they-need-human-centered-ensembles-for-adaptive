@@ -1,3 +1,5 @@
+> **Superseded (iteration 11, hardening).** This file describes the gym before it was hardened (the five-setting alpha sweep scored on visible test files, with a routing metric). The scored gym is now the hidden-test admissions world described in `DETAILS.md` and `briefing/`; what changed and why is in `HARDENING.md`. Kept as a historical record.
+
 # Train/Test Evaluation Design Notes
 
 ## Checks Performed

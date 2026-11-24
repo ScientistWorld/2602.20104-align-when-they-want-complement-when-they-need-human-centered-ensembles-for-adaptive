@@ -201,7 +201,7 @@
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4,
+          "coefficient": 0.5,
           "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {
@@ -265,7 +265,7 @@
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4,
+          "coefficient": 0.5,
           "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {
@@ -329,7 +329,7 @@
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4,
+          "coefficient": 0.5,
           "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {
@@ -393,7 +393,7 @@
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4,
+          "coefficient": 0.5,
           "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {

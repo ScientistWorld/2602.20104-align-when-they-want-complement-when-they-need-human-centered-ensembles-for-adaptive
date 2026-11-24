@@ -24,7 +24,7 @@ The agreement between the AI and the human's own judgement where the human
 feels sure. It is the probability that unsure humans take the AI's advice. An
 assistant that gains accuracy by contradicting confident humans loses it here.
 
-- **Metric**: `reliance_probability` (higher is better, coefficient 0.4)
+- **Metric**: `reliance_probability` (higher is better, coefficient 0.5)
 - **Experiments**: all four.
 
 ## Paper claim checked in the scores

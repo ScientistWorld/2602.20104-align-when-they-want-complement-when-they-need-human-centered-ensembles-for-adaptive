@@ -232,3 +232,6 @@ tmp/
 protocol.md
 *.egg-info
 core.[0-9]*
+
+# Authors' public release, fetched by scripts/download.sh (pinned commit)
+method/aaai26-adaptive-ai/
