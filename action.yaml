@@ -1,8 +1,8 @@
 # Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends.
-action: submit
+action: pending
 gpus: 0
 test: false
 milestone: secondary_claims
-notes: "Final confirmation: rebuild + determinism check, reproduce reference end to end, hidden test, red-team v2 checks with final coefficients (reliance 0.4), validate"
+notes: ""
