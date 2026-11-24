@@ -4,6 +4,15 @@
 
 ## Progress Log
 
+### [2026-11-24 06:45] - secondary_claims
+- Final hardening round (job `bc60a3d0-ddf`):
+  - The rebuilt gym and the reference scores are byte-identical to the committed ones.
+  - `validate.py --compare --post-design` passes.
+- The trust (`reliance_probability`) coefficient went from 0.4 to 0.5. A single gradient-boosted behaviour-aware model now scores −0.0022 below the reference (SE 0.0009); before, it tied at −0.0008.
+- Better variants score +0.0043 to +0.0155 (SE ≤ 0.0010). The hidden-generator bound is +0.0321. Every shortcut scores 0 or the worst values.
+- The authors' release is fetched by `scripts/download.sh` (pinned commit) instead of being tracked in git.
+- HARDENING.md written.
+
 ### [2026-11-24 01:40] - secondary_claims
 - Hardening (iteration 11): the scored hidden test was rebuilt as an extended College Admission world.
   - Answers and the generator are only in `eval/test/`.
