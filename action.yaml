@@ -5,4 +5,4 @@ action: submit
 gpus: 0
 test: false
 milestone: secondary_claims
-notes: "Round 3: rebuild world (non-linear outcome in the deferring group, wider gate), rerun reference/baselines, red-team v2 checks incl. hybrid variants, 4-world sweep (CPU)"
+notes: "Final confirmation: rebuild + determinism check, reproduce reference end to end, hidden test, red-team v2 checks with final coefficients (reliance 0.4), validate"
