@@ -5,4 +5,4 @@ action: submit
 gpus: 0
 test: false
 milestone: secondary_claims
-notes: "Rerun hardened-gym build + reference + red-team v2 checks + world sweep with OMP/BLAS threads pinned to 1 (previous job stalled in gradient boosting from thread oversubscription)"
+notes: "Round 2: rebuild hidden-test world with confident linear human bias, rerun reference/baselines, red-team v2 checks, and 4-world sweep (CPU)"
