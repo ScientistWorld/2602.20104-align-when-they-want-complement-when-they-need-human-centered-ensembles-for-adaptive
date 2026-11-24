@@ -1,0 +1,329 @@
+{
+  "experiments": {
+    "college_admission_core": {
+      "description": "Synthetic College Admission CGPR team decision task at p=0.5, delta=0.25, alpha=0.9. Reference values are from the authors' released College Admission imperfect-human synthetic output for this setting.",
+      "weight": 0.4,
+      "primary_metric": "team_accuracy",
+      "metrics": {
+        "team_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 1.0,
+          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
+        },
+        "reliance_probability": {
+          "higher_is_better": true,
+          "coefficient": 0.4,
+          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+        },
+        "ai_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
+        },
+        "aligned_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
+        },
+        "complementary_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
+        },
+        "routing_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2,
+          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
+        }
+      },
+      "results": {
+        "behavior_aware_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.766,
+          "reliance_probability": 0.7467616580310881
+        },
+        "aligned_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.73,
+          "reliance_probability": 0.8795336787564767
+        },
+        "complementary_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.7783333333333333
+        },
+        "adaptive_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.806,
+          "reliance_probability": 0.8795336787564767,
+          "routing_accuracy": 1.0
+        },
+        "adaptive_weighted_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.7946666666666666,
+          "reliance_probability": 0.8737046632124352,
+          "routing_accuracy": 1.0
+        }
+      }
+    },
+    "college_admission_alpha_0_5": {
+      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.5 from the authors' released alpha sweep.",
+      "weight": 0.15,
+      "primary_metric": "team_accuracy",
+      "metrics": {
+        "team_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 1.0,
+          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
+        },
+        "reliance_probability": {
+          "higher_is_better": true,
+          "coefficient": 0.4,
+          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+        },
+        "ai_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
+        },
+        "aligned_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
+        },
+        "complementary_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
+        },
+        "routing_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2,
+          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
+        }
+      },
+      "results": {
+        "behavior_aware_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.5673333333333334,
+          "reliance_probability": 0.5025906735751295
+        },
+        "aligned_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.545,
+          "reliance_probability": 0.49870466321243523
+        },
+        "complementary_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.569
+        },
+        "adaptive_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.5926666666666667,
+          "reliance_probability": 0.49870466321243523,
+          "routing_accuracy": 1.0
+        },
+        "adaptive_weighted_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.5506666666666666,
+          "reliance_probability": 0.4961139896373057,
+          "routing_accuracy": 1.0
+        }
+      }
+    },
+    "college_admission_alpha_0_7": {
+      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.7 from the authors' released alpha sweep.",
+      "weight": 0.15,
+      "primary_metric": "team_accuracy",
+      "metrics": {
+        "team_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 1.0,
+          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
+        },
+        "reliance_probability": {
+          "higher_is_better": true,
+          "coefficient": 0.4,
+          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+        },
+        "ai_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
+        },
+        "aligned_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
+        },
+        "complementary_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
+        },
+        "routing_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2,
+          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
+        }
+      },
+      "results": {
+        "behavior_aware_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.6663333333333333,
+          "reliance_probability": 0.5958549222797928
+        },
+        "aligned_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.6276666666666667,
+          "reliance_probability": 0.6897668393782384
+        },
+        "complementary_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.67
+        },
+        "adaptive_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.688,
+          "reliance_probability": 0.6897668393782384,
+          "routing_accuracy": 1.0
+        },
+        "adaptive_weighted_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.6693333333333333,
+          "reliance_probability": 0.6904145077720207,
+          "routing_accuracy": 1.0
+        }
+      }
+    },
+    "college_admission_alpha_0_8": {
+      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.8 from the authors' released alpha sweep.",
+      "weight": 0.15,
+      "primary_metric": "team_accuracy",
+      "metrics": {
+        "team_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 1.0,
+          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
+        },
+        "reliance_probability": {
+          "higher_is_better": true,
+          "coefficient": 0.4,
+          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+        },
+        "ai_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
+        },
+        "aligned_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
+        },
+        "complementary_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
+        },
+        "routing_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2,
+          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
+        }
+      },
+      "results": {
+        "behavior_aware_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.721,
+          "reliance_probability": 0.6651554404145077
+        },
+        "aligned_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.6896666666666667,
+          "reliance_probability": 0.7972797927461139
+        },
+        "complementary_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.7276666666666667
+        },
+        "adaptive_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.7533333333333333,
+          "reliance_probability": 0.7972797927461139,
+          "routing_accuracy": 1.0
+        },
+        "adaptive_weighted_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.7366666666666667,
+          "reliance_probability": 0.7927461139896373,
+          "routing_accuracy": 1.0
+        }
+      }
+    },
+    "college_admission_alpha_1_0": {
+      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=1.0 from the authors' released alpha sweep.",
+      "weight": 0.15,
+      "primary_metric": "team_accuracy",
+      "metrics": {
+        "team_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 1.0,
+          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
+        },
+        "reliance_probability": {
+          "higher_is_better": true,
+          "coefficient": 0.4,
+          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+        },
+        "ai_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
+        },
+        "aligned_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
+        },
+        "complementary_region_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.0,
+          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
+        },
+        "routing_accuracy": {
+          "higher_is_better": true,
+          "coefficient": 0.2,
+          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
+        }
+      },
+      "results": {
+        "behavior_aware_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.82,
+          "reliance_probability": 0.8322538860103627
+        },
+        "aligned_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.7933333333333333,
+          "reliance_probability": 0.9948186528497409
+        },
+        "complementary_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.8366666666666667
+        },
+        "adaptive_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.8813333333333333,
+          "reliance_probability": 0.9948186528497409,
+          "routing_accuracy": 1.0
+        },
+        "adaptive_weighted_oracle": {
+          "type": "proposed",
+          "team_accuracy": 0.874,
+          "reliance_probability": 0.9747409326424871,
+          "routing_accuracy": 1.0
+        }
+      }
+    }
+  }
+}
