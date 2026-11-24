@@ -1,33 +1,13 @@
 #!/bin/bash
-# Visible train-slice evaluation entry point.
+# Visible dev-slice entry point. Takes no arguments.
 #
-# Argument shape mirrors scripts/evaluate.sh:
-#   ./evaluate_train.sh <predictions.csv> <output.json> <data_dir> <experiment_name>
-#
-# With no arguments, scores every experiment in scoring/reference.json by
-# scoring the reference-declared methods in each predictions.csv and writes
-# scoring/scores_train.json.
+# Same measurement as the hidden test, on the visible dev split
+# (data/<experiment>/dev.csv). Scores every method directory under
+# checkpoints/ plus the ranked slot `submission` and the frozen baselines in
+# eval/train/baselines/, and writes scoring/scores_train.json.
 
 set -e
 
-cd /home/user
+cd "$(dirname "$0")/.."
 
-mkdir -p scoring
-
-PREDICTIONS="${1:-}"
-OUTPUT="${2:-scoring/scores_train.json}"
-DATA_DIR="${3:-}"
-EXPERIMENT_NAME="${4:-}"
-
-if [[ -n "$PREDICTIONS" ]]; then
-  python eval/train/evaluate.py \
-    --predictions "$PREDICTIONS" \
-    --data-dir "${DATA_DIR:-data/college_admission}" \
-    --experiment-name "${EXPERIMENT_NAME:-college_admission_core}" \
-    --method-source scoring/scores.json \
-    --output "$OUTPUT"
-else
-  python eval/train/evaluate.py \
-    --method-source scoring/scores.json \
-    --output "$OUTPUT"
-fi
+python eval/train/evaluate.py

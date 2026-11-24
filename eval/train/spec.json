@@ -1,0 +1,19 @@
+{
+  "description": "Visible dev-slice contract (same measurement as the hidden test, on the visible dev split whose answers are in data/<experiment>/dev.csv).",
+  "tau_low": 0.6,
+  "tau_high": 0.8,
+  "submission_slot": "submission",
+  "baselines": ["standard_ai", "behavior_aware_ai", "aligned_ai", "complementary_ai"],
+  "experiments": {
+    "admission_group_hidden": {"dev": "data/admission_group_hidden/dev.csv", "n_scored": 3000},
+    "admission_group_hidden_low_reliability": {"dev": "data/admission_group_hidden_low_reliability/dev.csv", "n_scored": 3000},
+    "admission_group_known": {"dev": "data/admission_group_known/dev.csv", "n_scored": 3000},
+    "admission_group_known_low_reliability": {"dev": "data/admission_group_known_low_reliability/dev.csv", "n_scored": 3000}
+  },
+  "worst": {
+    "team_accuracy": 0.0,
+    "reliance_probability": 0.0,
+    "ai_accuracy": 0.0,
+    "complementary_region_accuracy": 0.0
+  }
+}

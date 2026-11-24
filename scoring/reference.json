@@ -1,327 +1,407 @@
 {
+  "_paper_reported": {
+    "note": "Numbers the paper (and its released code) report, kept unchanged. They come from the paper's own College Admission generator (2 features, group drawn independently of the features, tau = 0.5, one CGPR coin-flip draw) and from WoofNette images; the gym's scored experiments use an extended admissions world (hidden test, tau ~ U[0.6, 0.8], exact expected team accuracy), so these numbers are not on the gym's scale and are not results the gym must match. scripts/reproduce.sh still reproduces the College Admission sweep below on the paper's generator and writes the comparison to scoring/paper_reproduction.json.",
+    "college_admission_alpha_sweep_released_results": {
+      "college_admission_core": {
+        "description": "Synthetic College Admission CGPR team decision task at p=0.5, delta=0.25, alpha=0.9. Reference values are from the authors' released College Admission imperfect-human synthetic output for this setting.",
+        "results": {
+          "behavior_aware_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.766,
+            "reliance_probability": 0.7467616580310881
+          },
+          "aligned_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.73,
+            "reliance_probability": 0.8795336787564767
+          },
+          "complementary_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.7783333333333333
+          },
+          "adaptive_oracle": {
+            "type": "proposed",
+            "team_accuracy": 0.806,
+            "reliance_probability": 0.8795336787564767,
+            "routing_accuracy": 1.0
+          },
+          "adaptive_weighted_oracle": {
+            "type": "proposed",
+            "team_accuracy": 0.7946666666666666,
+            "reliance_probability": 0.8737046632124352,
+            "routing_accuracy": 1.0
+          }
+        }
+      },
+      "college_admission_alpha_0_5": {
+        "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.5 from the authors' released alpha sweep.",
+        "results": {
+          "behavior_aware_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.5673333333333334,
+            "reliance_probability": 0.5025906735751295
+          },
+          "aligned_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.545,
+            "reliance_probability": 0.49870466321243523
+          },
+          "complementary_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.569
+          },
+          "adaptive_oracle": {
+            "type": "proposed",
+            "team_accuracy": 0.5926666666666667,
+            "reliance_probability": 0.49870466321243523,
+            "routing_accuracy": 1.0
+          },
+          "adaptive_weighted_oracle": {
+            "type": "proposed",
+            "team_accuracy": 0.5506666666666666,
+            "reliance_probability": 0.4961139896373057,
+            "routing_accuracy": 1.0
+          }
+        }
+      },
+      "college_admission_alpha_0_7": {
+        "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.7 from the authors' released alpha sweep.",
+        "results": {
+          "behavior_aware_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.6663333333333333,
+            "reliance_probability": 0.5958549222797928
+          },
+          "aligned_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.6276666666666667,
+            "reliance_probability": 0.6897668393782384
+          },
+          "complementary_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.67
+          },
+          "adaptive_oracle": {
+            "type": "proposed",
+            "team_accuracy": 0.688,
+            "reliance_probability": 0.6897668393782384,
+            "routing_accuracy": 1.0
+          },
+          "adaptive_weighted_oracle": {
+            "type": "proposed",
+            "team_accuracy": 0.6693333333333333,
+            "reliance_probability": 0.6904145077720207,
+            "routing_accuracy": 1.0
+          }
+        }
+      },
+      "college_admission_alpha_0_8": {
+        "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.8 from the authors' released alpha sweep.",
+        "results": {
+          "behavior_aware_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.721,
+            "reliance_probability": 0.6651554404145077
+          },
+          "aligned_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.6896666666666667,
+            "reliance_probability": 0.7972797927461139
+          },
+          "complementary_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.7276666666666667
+          },
+          "adaptive_oracle": {
+            "type": "proposed",
+            "team_accuracy": 0.7533333333333333,
+            "reliance_probability": 0.7972797927461139,
+            "routing_accuracy": 1.0
+          },
+          "adaptive_weighted_oracle": {
+            "type": "proposed",
+            "team_accuracy": 0.7366666666666667,
+            "reliance_probability": 0.7927461139896373,
+            "routing_accuracy": 1.0
+          }
+        }
+      },
+      "college_admission_alpha_1_0": {
+        "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=1.0 from the authors' released alpha sweep.",
+        "results": {
+          "behavior_aware_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.82,
+            "reliance_probability": 0.8322538860103627
+          },
+          "aligned_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.7933333333333333,
+            "reliance_probability": 0.9948186528497409
+          },
+          "complementary_ai": {
+            "type": "baseline",
+            "team_accuracy": 0.8366666666666667
+          },
+          "adaptive_oracle": {
+            "type": "proposed",
+            "team_accuracy": 0.8813333333333333,
+            "reliance_probability": 0.9948186528497409,
+            "routing_accuracy": 1.0
+          },
+          "adaptive_weighted_oracle": {
+            "type": "proposed",
+            "team_accuracy": 0.874,
+            "reliance_probability": 0.9747409326424871,
+            "routing_accuracy": 1.0
+          }
+        }
+      }
+    },
+    "woofnette_table1_percent": {
+      "human_accuracy": 65.1,
+      "results": {
+        "standard_ai": {
+          "ai_accuracy": 69.87,
+          "team_accuracy": 69.13
+        },
+        "aligned_ai": {
+          "ai_accuracy": 61.71,
+          "team_accuracy": 60.73
+        },
+        "complementary_ai": {
+          "ai_accuracy": 61.01,
+          "team_accuracy": 69.96
+        },
+        "behavior_aware_ai": {
+          "ai_accuracy": 64.99,
+          "team_accuracy": 70.9
+        },
+        "adaptive_oracle": {
+          "ai_accuracy": 80.37,
+          "team_accuracy": 74.75
+        },
+        "adaptive_rrs": {
+          "ai_accuracy": 82.64,
+          "team_accuracy": 75.13
+        }
+      }
+    }
+  },
   "experiments": {
-    "college_admission_core": {
-      "description": "Synthetic College Admission CGPR team decision task at p=0.5, delta=0.25, alpha=0.9. Reference values are from the authors' released College Admission imperfect-human synthetic output for this setting.",
-      "weight": 0.4,
+    "admission_group_hidden": {
+      "description": "Admissions world, group membership NOT given at test time (only applicant features); confident-human accuracy ~0.90. The paper's practical setting: the AI cannot observe the human's confidence or group and must infer where to align and where to complement. Results: the gym's reference run (no paper number exists for this extended setting; see _paper_reported).",
+      "weight": 0.35,
       "primary_metric": "team_accuracy",
       "metrics": {
         "team_accuracy": {
           "higher_is_better": true,
           "coefficient": 1.0,
-          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
+          "description": "Expected accuracy of the final human decision under the CGPR team model (tau ~ U[0.6, 0.8] per decision, reliance = agreement rate in the alignment region), computed exactly over tau and the reliance coin."
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4,
-          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+          "coefficient": 0.25,
+          "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
-        },
-        "aligned_region_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.0,
-          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
+          "description": "Diagnostic: standalone accuracy of the AI recommendations; not ranked."
         },
         "complementary_region_accuracy": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
-        },
-        "routing_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.2,
-          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
+          "description": "Diagnostic: AI accuracy weighted by the probability that the human is unsure (the region where advice can be taken); not ranked."
         }
       },
       "results": {
+        "standard_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
+        },
         "behavior_aware_ai": {
           "type": "baseline",
-          "team_accuracy": 0.766,
-          "reliance_probability": 0.7467616580310881
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
         "aligned_ai": {
           "type": "baseline",
-          "team_accuracy": 0.73,
-          "reliance_probability": 0.8795336787564767
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
         "complementary_ai": {
           "type": "baseline",
-          "team_accuracy": 0.7783333333333333
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
-        "adaptive_oracle": {
+        "submission": {
           "type": "proposed",
-          "team_accuracy": 0.806,
-          "reliance_probability": 0.8795336787564767,
-          "routing_accuracy": 1.0
-        },
-        "adaptive_weighted_oracle": {
-          "type": "proposed",
-          "team_accuracy": 0.7946666666666666,
-          "reliance_probability": 0.8737046632124352,
-          "routing_accuracy": 1.0
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         }
       }
     },
-    "college_admission_alpha_0_5": {
-      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.5 from the authors' released alpha sweep.",
-      "weight": 0.15,
+    "admission_group_hidden_low_reliability": {
+      "description": "Same as admission_group_hidden with less reliable confident humans (accuracy ~0.75, lower and more variable confidence). Results: the gym's reference run (no paper number exists for this extended setting; see _paper_reported).",
+      "weight": 0.2,
       "primary_metric": "team_accuracy",
       "metrics": {
         "team_accuracy": {
           "higher_is_better": true,
           "coefficient": 1.0,
-          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
+          "description": "Expected accuracy of the final human decision under the CGPR team model (tau ~ U[0.6, 0.8] per decision, reliance = agreement rate in the alignment region), computed exactly over tau and the reliance coin."
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4,
-          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+          "coefficient": 0.25,
+          "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
-        },
-        "aligned_region_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.0,
-          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
+          "description": "Diagnostic: standalone accuracy of the AI recommendations; not ranked."
         },
         "complementary_region_accuracy": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
-        },
-        "routing_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.2,
-          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
+          "description": "Diagnostic: AI accuracy weighted by the probability that the human is unsure (the region where advice can be taken); not ranked."
         }
       },
       "results": {
+        "standard_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
+        },
         "behavior_aware_ai": {
           "type": "baseline",
-          "team_accuracy": 0.5673333333333334,
-          "reliance_probability": 0.5025906735751295
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
         "aligned_ai": {
           "type": "baseline",
-          "team_accuracy": 0.545,
-          "reliance_probability": 0.49870466321243523
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
         "complementary_ai": {
           "type": "baseline",
-          "team_accuracy": 0.569
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
-        "adaptive_oracle": {
+        "submission": {
           "type": "proposed",
-          "team_accuracy": 0.5926666666666667,
-          "reliance_probability": 0.49870466321243523,
-          "routing_accuracy": 1.0
-        },
-        "adaptive_weighted_oracle": {
-          "type": "proposed",
-          "team_accuracy": 0.5506666666666666,
-          "reliance_probability": 0.4961139896373057,
-          "routing_accuracy": 1.0
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         }
       }
     },
-    "college_admission_alpha_0_7": {
-      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.7 from the authors' released alpha sweep.",
-      "weight": 0.15,
+    "admission_group_known": {
+      "description": "Admissions world, group membership given at test time (the paper's synthetic default, 'group membership is treated as known'); confident-human accuracy ~0.90. Results: the gym's reference run (no paper number exists for this extended setting; see _paper_reported).",
+      "weight": 0.25,
       "primary_metric": "team_accuracy",
       "metrics": {
         "team_accuracy": {
           "higher_is_better": true,
           "coefficient": 1.0,
-          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
+          "description": "Expected accuracy of the final human decision under the CGPR team model (tau ~ U[0.6, 0.8] per decision, reliance = agreement rate in the alignment region), computed exactly over tau and the reliance coin."
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4,
-          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+          "coefficient": 0.25,
+          "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
-        },
-        "aligned_region_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.0,
-          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
+          "description": "Diagnostic: standalone accuracy of the AI recommendations; not ranked."
         },
         "complementary_region_accuracy": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
-        },
-        "routing_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.2,
-          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
+          "description": "Diagnostic: AI accuracy weighted by the probability that the human is unsure (the region where advice can be taken); not ranked."
         }
       },
       "results": {
+        "standard_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
+        },
         "behavior_aware_ai": {
           "type": "baseline",
-          "team_accuracy": 0.6663333333333333,
-          "reliance_probability": 0.5958549222797928
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
         "aligned_ai": {
           "type": "baseline",
-          "team_accuracy": 0.6276666666666667,
-          "reliance_probability": 0.6897668393782384
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
         "complementary_ai": {
           "type": "baseline",
-          "team_accuracy": 0.67
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
-        "adaptive_oracle": {
+        "submission": {
           "type": "proposed",
-          "team_accuracy": 0.688,
-          "reliance_probability": 0.6897668393782384,
-          "routing_accuracy": 1.0
-        },
-        "adaptive_weighted_oracle": {
-          "type": "proposed",
-          "team_accuracy": 0.6693333333333333,
-          "reliance_probability": 0.6904145077720207,
-          "routing_accuracy": 1.0
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         }
       }
     },
-    "college_admission_alpha_0_8": {
-      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=0.8 from the authors' released alpha sweep.",
-      "weight": 0.15,
+    "admission_group_known_low_reliability": {
+      "description": "Same as admission_group_known with less reliable confident humans (accuracy ~0.75). Results: the gym's reference run (no paper number exists for this extended setting; see _paper_reported).",
+      "weight": 0.2,
       "primary_metric": "team_accuracy",
       "metrics": {
         "team_accuracy": {
           "higher_is_better": true,
           "coefficient": 1.0,
-          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
+          "description": "Expected accuracy of the final human decision under the CGPR team model (tau ~ U[0.6, 0.8] per decision, reliance = agreement rate in the alignment region), computed exactly over tau and the reliance coin."
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.4,
-          "description": "Probability proxy for humans accepting AI advice in the aligned region."
+          "coefficient": 0.25,
+          "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
-        },
-        "aligned_region_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.0,
-          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
+          "description": "Diagnostic: standalone accuracy of the AI recommendations; not ranked."
         },
         "complementary_region_accuracy": {
           "higher_is_better": true,
           "coefficient": 0.0,
-          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
-        },
-        "routing_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.2,
-          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
+          "description": "Diagnostic: AI accuracy weighted by the probability that the human is unsure (the region where advice can be taken); not ranked."
         }
       },
       "results": {
+        "standard_ai": {
+          "type": "baseline",
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
+        },
         "behavior_aware_ai": {
           "type": "baseline",
-          "team_accuracy": 0.721,
-          "reliance_probability": 0.6651554404145077
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
         "aligned_ai": {
           "type": "baseline",
-          "team_accuracy": 0.6896666666666667,
-          "reliance_probability": 0.7972797927461139
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
         "complementary_ai": {
           "type": "baseline",
-          "team_accuracy": 0.7276666666666667
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         },
-        "adaptive_oracle": {
+        "submission": {
           "type": "proposed",
-          "team_accuracy": 0.7533333333333333,
-          "reliance_probability": 0.7972797927461139,
-          "routing_accuracy": 1.0
-        },
-        "adaptive_weighted_oracle": {
-          "type": "proposed",
-          "team_accuracy": 0.7366666666666667,
-          "reliance_probability": 0.7927461139896373,
-          "routing_accuracy": 1.0
-        }
-      }
-    },
-    "college_admission_alpha_1_0": {
-      "description": "Synthetic College Admission imperfect-human setting at p=0.5, delta=0.25, alpha=1.0 from the authors' released alpha sweep.",
-      "weight": 0.15,
-      "primary_metric": "team_accuracy",
-      "metrics": {
-        "team_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 1.0,
-          "description": "Final human-AI team decision accuracy under the CGPR team-decision rule."
-        },
-        "reliance_probability": {
-          "higher_is_better": true,
-          "coefficient": 0.4,
-          "description": "Probability proxy for humans accepting AI advice in the aligned region."
-        },
-        "ai_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.0,
-          "description": "Diagnostic standalone AI prediction accuracy before human reliance is applied; reported by train/test slices but not used in the gym score."
-        },
-        "aligned_region_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.0,
-          "description": "Diagnostic AI accuracy on the human-reliable regime; reported by train/test slices but not used in the gym score."
-        },
-        "complementary_region_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.0,
-          "description": "Diagnostic AI accuracy on the regime where human predictions are weaker; reported by train/test slices but not used in the gym score."
-        },
-        "routing_accuracy": {
-          "higher_is_better": true,
-          "coefficient": 0.2,
-          "description": "Agreement between an explicit adaptive route choice and the synthetic region label; missing route outputs score zero."
-        }
-      },
-      "results": {
-        "behavior_aware_ai": {
-          "type": "baseline",
-          "team_accuracy": 0.82,
-          "reliance_probability": 0.8322538860103627
-        },
-        "aligned_ai": {
-          "type": "baseline",
-          "team_accuracy": 0.7933333333333333,
-          "reliance_probability": 0.9948186528497409
-        },
-        "complementary_ai": {
-          "type": "baseline",
-          "team_accuracy": 0.8366666666666667
-        },
-        "adaptive_oracle": {
-          "type": "proposed",
-          "team_accuracy": 0.8813333333333333,
-          "reliance_probability": 0.9948186528497409,
-          "routing_accuracy": 1.0
-        },
-        "adaptive_weighted_oracle": {
-          "type": "proposed",
-          "team_accuracy": 0.874,
-          "reliance_probability": 0.9747409326424871,
-          "routing_accuracy": 1.0
+          "team_accuracy": 0.0,
+          "reliance_probability": 0.0
         }
       }
     }

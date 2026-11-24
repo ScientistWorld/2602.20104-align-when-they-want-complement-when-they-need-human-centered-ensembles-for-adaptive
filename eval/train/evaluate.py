@@ -1,191 +1,139 @@
-"""Visible train-slice scorer for College Admission method outputs."""
+"""Visible dev-slice scorer for the admissions human-AI team task.
+
+Same measurement as the hidden test, applied to the visible dev split
+(data/<experiment>/dev.csv holds its answers).  Run with no arguments via
+scripts/evaluate_train.sh; it scores every method directory under
+checkpoints/ plus the ranked slot `submission` and the frozen baselines in
+eval/train/baselines/.
+
+Prediction contract: checkpoints/<method>/<experiment>/predictions.csv with
+columns example_id, prediction (0 or 1); every dev example_id exactly once.
+"""
 
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
+import math
+import os
+import tempfile
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-
-SLICE_NAME = "train"
-SPLIT_SALT = "college-admission-eval-split-v1"
-DEFAULT_REFERENCE = Path("scoring/reference.json")
-DEFAULT_METHOD_SOURCE = Path("scoring/scores.json")
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 
 
-def accuracy(y_true, y_pred) -> float:
-    return float(np.mean(np.asarray(y_true) == np.asarray(y_pred)))
+def read_spec() -> dict:
+    return json.loads((HERE / "spec.json").read_text())
 
 
-def masked_accuracy(y_true, y_pred, mask) -> float:
-    mask = np.asarray(mask, dtype=bool)
-    if not np.any(mask):
-        return 0.0
-    return accuracy(np.asarray(y_true)[mask], np.asarray(y_pred)[mask])
+def p_alignment(conf: np.ndarray, lo: float, hi: float) -> np.ndarray:
+    return np.clip((conf - lo) / (hi - lo), 0.0, 1.0)
 
 
-def in_train_slice(experiment_name: str, example_id: int) -> bool:
-    key = f"{SPLIT_SALT}:{experiment_name}:{int(example_id)}".encode("utf-8")
-    digest = hashlib.sha256(key).digest()
-    return int.from_bytes(digest[:8], "big") % 2 == 0
+def dev_answers(path: Path) -> pd.DataFrame:
+    df = pd.read_csv(path, usecols=["example_id", "label", "human_pred", "human_conf"])
+    df["example_id"] = df["example_id"].astype(np.int64)
+    return df.sort_values("example_id").reset_index(drop=True)
 
 
-def reliance_from_alignment(human_pred, ai_pred, region) -> float:
-    mask = region == 1
-    if not np.any(mask):
-        return 0.0
-    return float(1.0 - np.mean(human_pred[mask] != ai_pred[mask]))
-
-
-def cgpr_team_decision(human_pred, human_conf, ai_pred, reliance, tau: float, seed: int):
-    high_conf = human_conf > tau
-    rng = np.random.Generator(np.random.PCG64(seed))
-    accepts_ai = rng.random(len(human_pred)) < reliance
-    return np.where(high_conf, human_pred, np.where(accepts_ai, ai_pred, human_pred)).astype(int)
-
-
-def experiment_paths(experiment_name: str) -> tuple[Path, Path]:
-    if experiment_name == "college_admission_core":
-        suffix = "college_admission"
-    else:
-        suffix = experiment_name
-    return Path("data") / suffix, Path("checkpoints") / suffix / "predictions.csv"
-
-
-def load_reference_methods(path: Path) -> dict[str, set[str]]:
-    payload = json.loads(path.read_text())
-    return {
-        experiment_name: set(experiment_spec.get("results", {}).keys())
-        for experiment_name, experiment_spec in payload.get("experiments", {}).items()
-    }
-
-
-def methods_from_predictions(predictions: pd.DataFrame) -> set[str]:
-    methods = set()
-    for column in predictions.columns:
-        if column.endswith("_pred"):
-            methods.add(column[: -len("_pred")])
-    return methods
-
-
-def evaluate_predictions(
-    prediction_path: Path,
-    data_dir: Path,
-    experiment_name: str,
-    requested_methods: set[str] | None,
-) -> dict:
-    predictions = pd.read_csv(prediction_path)
-    test = pd.read_csv(data_dir / "test.csv")
-    metadata = pd.read_csv(data_dir / "metadata.csv").iloc[0].to_dict()
-
-    df = test.merge(predictions, on="example_id", validate="one_to_one")
-    split_mask = df["example_id"].map(lambda value: in_train_slice(experiment_name, int(value)))
-    df = df.loc[split_mask].copy()
-    if df.empty:
-        raise ValueError(f"{experiment_name}: train split is empty")
-
-    available_methods = methods_from_predictions(predictions)
-    methods = sorted(available_methods if requested_methods is None else requested_methods)
-    missing = [name for name in methods if name not in available_methods]
+def aligned_predictions(path: Path, ids: np.ndarray) -> np.ndarray:
+    if not path.is_file():
+        raise ValueError("predictions.csv missing")
+    table = pd.read_csv(path)
+    if "example_id" not in table.columns or "prediction" not in table.columns:
+        raise ValueError("columns example_id and prediction are required")
+    eid = pd.to_numeric(table["example_id"], errors="coerce").to_numpy(dtype=float)
+    if np.isnan(eid).any() or np.any(np.mod(eid, 1.0) != 0.0):
+        raise ValueError("non-integer example_id")
+    eid = eid.astype(np.int64)
+    if len(set(eid.tolist())) != len(eid):
+        raise ValueError("duplicate example_id rows")
+    lookup = dict(zip(eid.tolist(), pd.to_numeric(table["prediction"], errors="coerce").tolist()))
+    missing = [i for i in ids.tolist() if i not in lookup]
     if missing:
-        raise ValueError(f"{experiment_name}: missing prediction columns for methods: {missing}")
+        raise ValueError(f"{len(missing)} dev example_ids missing")
+    vals = np.array([lookup[i] for i in ids.tolist()], dtype=float)
+    if np.isnan(vals).any() or not np.isin(vals, (0.0, 1.0)).all():
+        raise ValueError("prediction values must be exactly 0 or 1")
+    return vals.astype(np.int64)
 
-    y = df["label"].to_numpy(dtype=int)
-    human = df["human_pred"].to_numpy(dtype=int)
-    human_conf = df["human_conf"].to_numpy(dtype=float)
-    region = df["region"].to_numpy(dtype=int)
-    tau = float(metadata.get("threshold", 0.5))
-    team_seed = int(metadata.get("team_seed", 0))
 
-    results = {}
-    for method_name in methods:
-        pred_column = f"{method_name}_pred"
-        ai_pred = df[pred_column].to_numpy(dtype=int)
-        reliance = reliance_from_alignment(human, ai_pred, region)
-        team_pred = cgpr_team_decision(human, human_conf, ai_pred, reliance, tau=tau, seed=team_seed)
-        method_scores = {
-            "ai_accuracy": accuracy(y, ai_pred),
-            "aligned_region_accuracy": masked_accuracy(y, ai_pred, region == 1),
-            "complementary_region_accuracy": masked_accuracy(y, ai_pred, region == 0),
-            "team_accuracy": accuracy(y, team_pred),
-            "reliance_probability": reliance,
-        }
-        route_column = f"{method_name}_route_aligned"
-        if route_column in df.columns:
-            method_scores["routing_accuracy"] = accuracy(region, df[route_column].to_numpy(dtype=int))
-        else:
-            method_scores["routing_accuracy"] = 0.0
-        results[method_name] = method_scores
-
-    return {
-        "results": results,
-        "_metadata": {
-            "slice": SLICE_NAME,
-            "data_dir": str(data_dir),
-            "predictions": str(prediction_path),
-            "split_rule": f"sha256({SPLIT_SALT}:experiment_name:example_id) % 2 == 0",
-            "n_examples": int(len(df)),
-        },
+def metrics(pred: np.ndarray, ans: pd.DataFrame, lo: float, hi: float) -> dict:
+    y = ans["label"].to_numpy(dtype=np.int64)
+    h = ans["human_pred"].to_numpy(dtype=np.int64)
+    p = p_alignment(ans["human_conf"].to_numpy(dtype=float), lo, hi)
+    r = float((p * (pred == h)).sum() / p.sum()) if p.sum() > 0 else 0.0
+    human_ok = (h == y).astype(float)
+    ai_ok = (pred == y).astype(float)
+    team = float(np.mean(p * human_ok + (1.0 - p) * (r * ai_ok + (1.0 - r) * human_ok)))
+    q = 1.0 - p
+    res = {
+        "team_accuracy": team,
+        "reliance_probability": r,
+        "ai_accuracy": float(ai_ok.mean()),
+        "complementary_region_accuracy": float((q * ai_ok).sum() / q.sum()) if q.sum() > 0 else 0.0,
     }
+    if any(not (math.isfinite(v) and 0.0 <= v <= 1.0) for v in res.values()):
+        raise ValueError("impossible metric value")
+    return res
 
 
-def evaluate_suite(method_source: Path, reference: Path) -> dict:
-    scores = {
+def discover_methods(spec: dict) -> tuple[list[str], list[str]]:
+    reserved = set(spec["baselines"])
+    found = {spec["submission_slot"]}
+    base = ROOT / "checkpoints"
+    if base.is_dir():
+        found |= {d.name for d in base.iterdir() if d.is_dir() and not d.name.startswith((".", "_"))}
+    return sorted(found - reserved), sorted(found & reserved)
+
+
+def run(spec: dict) -> dict:
+    lo, hi = float(spec["tau_low"]), float(spec["tau_high"])
+    methods, ignored = discover_methods(spec)
+    payload = {
         "_metadata": {
-            "slice": SLICE_NAME,
-            "method_source": str(method_source),
-            "split_rule": f"sha256({SPLIT_SALT}:experiment_name:example_id) % 2 == 0",
+            "slice": "train",
+            "team_model": f"exact expectation of CGPR, tau ~ U[{lo}, {hi}]",
+            "methods_scored": methods,
+            "reserved_names_ignored": ignored,
         },
         "experiments": {},
     }
-    reference_methods = load_reference_methods(reference)
-    for experiment_name in reference_methods:
-        data_dir, prediction_path = experiment_paths(experiment_name)
-        scores["experiments"][experiment_name] = evaluate_predictions(
-            prediction_path=prediction_path,
-            data_dir=data_dir,
-            experiment_name=experiment_name,
-            requested_methods=reference_methods[experiment_name],
-        )
-    return scores
+    for exp, exp_spec in spec["experiments"].items():
+        ans = dev_answers(ROOT / exp_spec["dev"])
+        ids = ans["example_id"].to_numpy(dtype=np.int64)
+        results, failures = {}, {}
+        todo = [(b, HERE / "baselines" / exp / f"{b}.csv") for b in spec["baselines"]]
+        todo += [(m, ROOT / "checkpoints" / m / exp / "predictions.csv") for m in methods]
+        for name, path in todo:
+            try:
+                results[name] = metrics(aligned_predictions(path, ids), ans, lo, hi)
+            except Exception as exc:
+                results[name] = dict(spec["worst"])
+                failures[name] = f"{type(exc).__name__}: {exc}"
+        payload["experiments"][exp] = {"results": results, "_failures": failures, "_n_scored": int(len(ids))}
+    return payload
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--predictions")
-    parser.add_argument("--data-dir")
-    parser.add_argument("--output", default="scoring/scores_train.json")
-    parser.add_argument("--experiment-name")
-    parser.add_argument("--method-source", default=str(DEFAULT_METHOD_SOURCE))
-    parser.add_argument("--reference", default=str(DEFAULT_REFERENCE))
-    args = parser.parse_args()
-
-    output = Path(args.output)
-    if args.predictions:
-        experiment_name = args.experiment_name or "college_admission_core"
-        data_dir = Path(args.data_dir or "data/college_admission")
-        method_source = Path(args.method_source)
-        reference_methods = load_reference_methods(Path(args.reference))
-        scores = {
-            "_metadata": {"slice": SLICE_NAME, "method_source": str(method_source)},
-            "experiments": {
-                experiment_name: evaluate_predictions(
-                    prediction_path=Path(args.predictions),
-                    data_dir=data_dir,
-                    experiment_name=experiment_name,
-                    requested_methods=reference_methods.get(experiment_name),
-                )
-            },
-        }
-    else:
-        scores = evaluate_suite(method_source=Path(args.method_source), reference=Path(args.reference))
-
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(scores, indent=2, sort_keys=True) + "\n")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--output", default=str(ROOT / "scoring" / "scores_train.json"))
+    args = ap.parse_args()
+    out = Path(args.output)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    if out.exists() or out.is_symlink():
+        out.unlink()
+    payload = run(read_spec())
+    fd, tmp = tempfile.mkstemp(dir=str(out.parent), prefix=".scores_train.", suffix=".json")
+    with os.fdopen(fd, "w") as fh:
+        fh.write(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    os.replace(tmp, out)
+    for exp, block in payload["experiments"].items():
+        print(f"[train] {exp}: methods={sorted(block['results'])} failures={sorted(block['_failures'])}")
 
 
 if __name__ == "__main__":

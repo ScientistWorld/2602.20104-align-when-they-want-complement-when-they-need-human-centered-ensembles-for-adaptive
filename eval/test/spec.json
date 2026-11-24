@@ -1,0 +1,19 @@
+{
+  "description": "Hidden-test contract. Everything on the far side of the comparison is fixed here: experiments, answers, test size, team-model threshold distribution, frozen baselines, the ranked submission slot and worst values. Nothing is read from scoring/reference.json or data/.",
+  "tau_low": 0.6,
+  "tau_high": 0.8,
+  "submission_slot": "submission",
+  "baselines": ["standard_ai", "behavior_aware_ai", "aligned_ai", "complementary_ai"],
+  "experiments": {
+    "admission_group_hidden": {"answers": "answers/admission_group_hidden.csv", "n_scored": 20000},
+    "admission_group_hidden_low_reliability": {"answers": "answers/admission_group_hidden_low_reliability.csv", "n_scored": 20000},
+    "admission_group_known": {"answers": "answers/admission_group_known.csv", "n_scored": 20000},
+    "admission_group_known_low_reliability": {"answers": "answers/admission_group_known_low_reliability.csv", "n_scored": 20000}
+  },
+  "worst": {
+    "team_accuracy": 0.0,
+    "reliance_probability": 0.0,
+    "ai_accuracy": 0.0,
+    "complementary_region_accuracy": 0.0
+  }
+}

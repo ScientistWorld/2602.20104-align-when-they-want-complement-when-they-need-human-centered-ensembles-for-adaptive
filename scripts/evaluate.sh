@@ -1,38 +1,16 @@
 #!/bin/bash
-# Evaluation script — the standard way to evaluate work in this environment.
+# Standard evaluation entry point (method-agnostic; imports only eval/ code).
 #
-# This script must be SELF-CONTAINED using only code in eval/.
-# Do NOT import from method/ — evaluate.sh must work even when the
-# paper's method code is hidden from a scientist agent.
-#
-# Design it so that anyone following the same output format can run
-# this script to evaluate their results.
-#
-# OUTPUT CONTRACT: This script MUST write scoring/scores.json containing
-# a JSON dict nested by experiment, e.g.:
-#   {"imagenet_classification": {"top1_accuracy": 82.1, "top5_accuracy": 94.8}}
-# Experiment and metric names must match the keys in scoring/reference.json.
-# This file is read by the system for automated comparison.
-#
-# Example usage:
-#   ./evaluate.sh <method_and_run_name>                             # evaluate with defaults
-#   ./evaluate.sh <method_and_run_name> checkpoints/epoch_10.pt     # evaluate a specific checkpoint
-#
-# Called from run.sh after training, or independently.
+# Scores every method directory under checkpoints/ on the visible dev split
+# and writes scoring/scores.json (same contract and numbers as
+# scripts/evaluate_train.sh). Prediction format per method and experiment:
+#   checkpoints/<method>/<experiment>/predictions.csv  with columns
+#   example_id,prediction   (prediction in {0,1}; one row per dev and
+#   test-input example_id). The ranked entry is checkpoints/submission/.
 
 set -e
 
-cd /home/user
+cd "$(dirname "$0")/.."
 
 mkdir -p scoring
-
-PREDICTIONS="${1:-checkpoints/college_admission/predictions.csv}"
-OUTPUT="${2:-scoring/scores.json}"
-DATA_DIR="${3:-data/college_admission}"
-EXPERIMENT_NAME="${4:-college_admission_core}"
-
-python eval/college_admission_eval.py \
-  --predictions "$PREDICTIONS" \
-  --data-dir "$DATA_DIR" \
-  --experiment-name "$EXPERIMENT_NAME" \
-  --output "$OUTPUT"
+python eval/train/evaluate.py --output scoring/scores.json

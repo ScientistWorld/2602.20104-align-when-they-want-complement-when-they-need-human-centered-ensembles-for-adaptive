@@ -1,4 +1,11 @@
-"""Evaluate College Admission predictions produced by a method run."""
+"""Unscored paper-reproduction check on the paper's own College Admission generator.
+
+Applies the authors' released protocol (tau = 0.5, reliance measured on the
+privileged group, one CGPR coin-flip draw with seed 0) to predictions from
+method/college_admission_method.py, so the numbers can be compared with the
+paper's released results kept in scoring/reference.json["_paper_reported"].
+Not part of the ranked gym (the hidden test lives in eval/test/).
+"""
 
 from __future__ import annotations
 

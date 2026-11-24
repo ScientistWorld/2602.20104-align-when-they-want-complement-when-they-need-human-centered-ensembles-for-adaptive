@@ -1,34 +1,14 @@
 #!/bin/bash
-# Held-out test-slice evaluation entry point.
+# Hidden-test entry point. Takes no arguments.
 #
-# Argument shape mirrors scripts/evaluate.sh:
-#   ./evaluate_test.sh <predictions.csv> <output.json> <data_dir> <experiment_name>
-#
-# With no arguments, scores every experiment in scoring/reference.json by
-# scoring the reference-declared methods in each predictions.csv and writes
-# scoring/scores_test.json.
+# Scores every method directory under checkpoints/ (each holding
+# <experiment>/predictions.csv with columns example_id,prediction), always
+# including the ranked slot `submission` (scored as failed when absent), plus
+# the baselines frozen in eval/test/baselines/. Writes scoring/scores_test.json
+# (deleted first, so a failed run never leaves an old file behind).
 
 set -e
 
-cd /home/user
+cd "$(dirname "$0")/.."
 
-mkdir -p scoring
-
-PREDICTIONS="${1:-}"
-OUTPUT="${2:-scoring/scores_test.json}"
-DATA_DIR="${3:-}"
-EXPERIMENT_NAME="${4:-}"
-TRAIN_SCORES="${TRAIN_SCORES:-scoring/scores_train.json}"
-
-if [[ -n "$PREDICTIONS" ]]; then
-  python eval/test/evaluate.py \
-    --predictions "$PREDICTIONS" \
-    --data-dir "${DATA_DIR:-data/college_admission}" \
-    --experiment-name "${EXPERIMENT_NAME:-college_admission_core}" \
-    --method-source "$TRAIN_SCORES" \
-    --output "$OUTPUT"
-else
-  python eval/test/evaluate.py \
-    --method-source "$TRAIN_SCORES" \
-    --output "$OUTPUT"
-fi
+python eval/test/evaluate.py

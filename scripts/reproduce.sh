@@ -1,61 +1,50 @@
 #!/bin/bash
-# Reproduce the paper's results end-to-end.
+# Reproduce the paper's results end-to-end (runs inside the compute container).
 #
-# This script runs inside the compute container and should call
-# scripts/baseline.sh and scripts/method.sh to run baselines and
-# the paper's method, each of which calls scripts/evaluate.sh.
+# Part 1 - the gym: the paper's adaptive ensemble on the admissions world.
+#   Writes checkpoints/submission/ (the reference), scoring/scores_train.json
+#   and scoring/scores.json (visible dev slice). The hidden test
+#   (scripts/evaluate_test.sh) scores the same predictions on held-out rows.
+#   Baselines are frozen in eval/; `bash scripts/baseline.sh` regenerates them.
 #
-# Assumes:
-#   - Container is built (environment/container.sif)
-#   - Data and models are downloaded (via scripts/download.sh)
-#   - Working directory is /home/user
-#
-# This is the "gold standard" reproduction — 
-# You do not need to run this, but keep this in good shape
-# so other agents can easily run a full loop of reproduction and get the paper's numbers.
+# Part 2 - unscored check on the paper's own College Admission generator:
+#   regenerates the authors' imperfect-human alpha sweep (same RNG protocol),
+#   runs method/college_admission_method.py and applies the authors' CGPR
+#   protocol; writes scoring/paper_reproduction.json for comparison with the
+#   paper's released numbers in scoring/reference.json["_paper_reported"].
 
 set -e
 
-cd /home/user
+cd "$(dirname "$0")/.."
 
-mkdir -p tmp/reproduce_scores
+# ---- Part 1
+bash scripts/method.sh
+bash scripts/evaluate_train.sh
+bash scripts/evaluate.sh
 
+# ---- Part 2
+OUT=tmp/paper_reproduction
+mkdir -p "$OUT"
 python data/college_admission.py \
   --sweep-alphas 0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0 \
-  --sweep-output-root data \
-  --n-instances "${N_INSTANCES:-10000}" \
-  --aligned-fraction "${ALIGNED_FRACTION:-0.5}" \
-  --delta "${DELTA:-0.25}" \
-  --threshold "${TAU:-0.5}" \
-  --complementary-accuracy "${COMPLEMENTARY_ACCURACY:-0.5}" \
-  --seed "${SEED:-42}"
+  --sweep-output-root data --n-instances 10000 --aligned-fraction 0.5 \
+  --delta 0.25 --threshold 0.5 --complementary-accuracy 0.5 --seed 42
 
-run_alpha_setting() {
-  local alpha="$1"
-  local experiment_name="$2"
-  local data_dir="$3"
-  local output_dir="$4"
-  local scores_file="$5"
-
-  ALPHA="$alpha" \
-  DATA_DIR="$data_dir" \
-  OUTPUT_DIR="$output_dir" \
-  SCORES_OUTPUT="$scores_file" \
-  EXPERIMENT_NAME="$experiment_name" \
-  GENERATE_DATA=0 \
-  bash scripts/method.sh
+paper_setting() {
+  local alpha="$1" exp="$2" dir="$3"
+  python method/college_admission_method.py --data-dir "data/$dir" --output-dir "$OUT/$dir" \
+    --aligned-fraction 0.5 --alpha "$alpha" --complementary-accuracy 0.5 --tau 0.5 --seed 42
+  python eval/paper_reproduction_eval.py --predictions "$OUT/$dir/predictions.csv" \
+    --data-dir "data/$dir" --experiment-name "$exp" --output "$OUT/$exp.json"
 }
 
-run_alpha_setting 0.5 college_admission_alpha_0_5 data/college_admission_alpha_0_5 checkpoints/college_admission_alpha_0_5 tmp/reproduce_scores/college_admission_alpha_0_5.json
-run_alpha_setting 0.7 college_admission_alpha_0_7 data/college_admission_alpha_0_7 checkpoints/college_admission_alpha_0_7 tmp/reproduce_scores/college_admission_alpha_0_7.json
-run_alpha_setting 0.8 college_admission_alpha_0_8 data/college_admission_alpha_0_8 checkpoints/college_admission_alpha_0_8 tmp/reproduce_scores/college_admission_alpha_0_8.json
-run_alpha_setting 0.9 college_admission_core data/college_admission checkpoints/college_admission tmp/reproduce_scores/college_admission_core.json
-run_alpha_setting 1.0 college_admission_alpha_1_0 data/college_admission_alpha_1_0 checkpoints/college_admission_alpha_1_0 tmp/reproduce_scores/college_admission_alpha_1_0.json
+paper_setting 0.5 college_admission_alpha_0_5 college_admission_alpha_0_5
+paper_setting 0.7 college_admission_alpha_0_7 college_admission_alpha_0_7
+paper_setting 0.8 college_admission_alpha_0_8 college_admission_alpha_0_8
+paper_setting 0.9 college_admission_core college_admission
+paper_setting 1.0 college_admission_alpha_1_0 college_admission_alpha_1
 
 python eval/merge_scores.py \
-  tmp/reproduce_scores/college_admission_alpha_0_5.json \
-  tmp/reproduce_scores/college_admission_core.json \
-  tmp/reproduce_scores/college_admission_alpha_0_7.json \
-  tmp/reproduce_scores/college_admission_alpha_0_8.json \
-  tmp/reproduce_scores/college_admission_alpha_1_0.json \
-  --output scoring/scores.json
+  "$OUT/college_admission_alpha_0_5.json" "$OUT/college_admission_alpha_0_7.json" \
+  "$OUT/college_admission_alpha_0_8.json" "$OUT/college_admission_core.json" \
+  "$OUT/college_admission_alpha_1_0.json" --output scoring/paper_reproduction.json

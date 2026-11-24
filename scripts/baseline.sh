@@ -1,20 +1,18 @@
 #!/bin/bash
-# Run a baseline method from the paper.
+# Run the paper's single-model baselines (standard AI, behaviour-aware single
+# AI, aligned AI, complementary AI; logistic regression) and write their
+# predictions to tmp/baselines/<baseline>/<experiment>/predictions.csv.
 #
-# Baselines are simple reference methods the paper compares against. 
-# Implement this only if applicable, i.e. the paper has baselines.
-# You do not need to implement all baselines to begin — 
-# just enough to validate that the evaluation pipeline works 
-# and provide a reference point. You can decide to expand more baselines later.
-# Each baseline must be actually run and scored through evaluate.sh
-# so the numbers are verified, not self-reported.
-# You can decide what this baseline script should do yourself.
+# The scores the gym compares against come from copies of these predictions
+# frozen in eval/train/baselines/ and eval/test/baselines/ (written by
+# scripts/build_world.sh); predictions an agent writes under a baseline name
+# in checkpoints/ are ignored by the evaluators.
 #
 # Usage:
-#   bash scripts/baseline.sh <name>
+#   bash scripts/baseline.sh
 
 set -e
 
-cd /home/user
+cd "$(dirname "$0")/.."
 
-# TODO: run baseline
+python method/adaptive_team_ai.py --data-root data --baselines-only --out-root tmp/baselines
