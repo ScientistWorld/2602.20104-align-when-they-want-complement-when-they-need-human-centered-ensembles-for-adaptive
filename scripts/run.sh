@@ -1,7 +1,10 @@
 #!/bin/bash
 # Job script: rebuild the gym, reproduce the reference end to end, score it on
-# the hidden test, then run the hardening checks (variants, shortcuts, world
-# sensitivity) through the hidden test.
+# the hidden test, run the hardening checks (variants and shortcuts through
+# the hidden test, see redteam/v2/), and validate.
+#
+# The world-design sweep that chose the gym's world is
+# `python redteam/v2/design_sweep.py <worlds>` (results in redteam/v2/design_sweep*.md).
 
 set -e
 
@@ -19,9 +22,9 @@ echo "[run] $(date) reproduce"
 bash scripts/reproduce.sh
 echo "[run] $(date) hidden test"
 bash scripts/evaluate_test.sh
+echo "[run] $(date) determinism check of the reference scores (empty = identical)"
+git status --short scoring/scores_test.json scoring/scores_train.json scoring/scores.json scoring/paper_reproduction.json || true
 echo "[run] $(date) hardening checks"
 python redteam/v2/run_checks.py
-echo "[run] $(date) world sweep"
-python redteam/v2/design_sweep.py default,under_mild,under_strong,under_narrow_gate
 echo "[run] $(date) validate"
-python validate.py --compare --post-design || echo "validate.py reported issues (reference.json results are filled in after this job)"
+python validate.py --compare --post-design

@@ -190,7 +190,7 @@
   },
   "experiments": {
     "admission_group_hidden": {
-      "description": "Admissions world, group membership NOT given at test time (only applicant features); confident-human accuracy ~0.90. The paper's practical setting: the AI cannot observe the human's confidence or group and must infer where to align and where to complement. Results: the gym's reference run (no paper number exists for this extended setting; see _paper_reported).",
+      "description": "Admissions world, group membership NOT given at test time (only applicant features); confident-human accuracy ~0.90. The paper's practical setting: the AI cannot observe the human's confidence or group and must infer where to align and where to complement. Results: the gym's reference run on the hidden test (20,000 rows; no paper number exists for this extended setting, the paper's own numbers are kept under _paper_reported).",
       "weight": 0.35,
       "primary_metric": "team_accuracy",
       "metrics": {
@@ -201,7 +201,7 @@
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.25,
+          "coefficient": 0.4,
           "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {
@@ -218,33 +218,43 @@
       "results": {
         "standard_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.8028713707735676,
+          "reliance_probability": 0.7942883068971114,
+          "ai_accuracy": 0.7693,
+          "complementary_region_accuracy": 0.7554026981987138
         },
         "behavior_aware_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.8042472985547326,
+          "reliance_probability": 0.7971271248172553,
+          "ai_accuracy": 0.76755,
+          "complementary_region_accuracy": 0.757863391325699
         },
         "aligned_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.7307143291822243,
+          "reliance_probability": 0.9787488843250568,
+          "ai_accuracy": 0.7381,
+          "complementary_region_accuracy": 0.5649487606484842
         },
         "complementary_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.8315267612205487,
+          "reliance_probability": 0.6012115779463315,
+          "ai_accuracy": 0.7644,
+          "complementary_region_accuracy": 0.9284817280331312
         },
         "submission": {
           "type": "proposed",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.8903869041430509,
+          "reliance_probability": 0.9386365398723842,
+          "ai_accuracy": 0.89335,
+          "complementary_region_accuracy": 0.8979880693257435
         }
       }
     },
     "admission_group_hidden_low_reliability": {
-      "description": "Same as admission_group_hidden with less reliable confident humans (accuracy ~0.75, lower and more variable confidence). Results: the gym's reference run (no paper number exists for this extended setting; see _paper_reported).",
+      "description": "Same as admission_group_hidden with less reliable confident humans (accuracy ~0.75, lower and more variable confidence). Results: the gym's reference run on the hidden test (20,000 rows; no paper number exists for this extended setting, the paper's own numbers are kept under _paper_reported).",
       "weight": 0.2,
       "primary_metric": "team_accuracy",
       "metrics": {
@@ -255,7 +265,7 @@
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.25,
+          "coefficient": 0.4,
           "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {
@@ -272,33 +282,43 @@
       "results": {
         "standard_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.7175003621419004,
+          "reliance_probability": 0.6962521623476382,
+          "ai_accuracy": 0.76965,
+          "complementary_region_accuracy": 0.7465602089355182
         },
         "behavior_aware_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.7299540440698706,
+          "reliance_probability": 0.6636130062099973,
+          "ai_accuracy": 0.7689,
+          "complementary_region_accuracy": 0.7925847594707681
         },
         "aligned_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.6505111600184759,
+          "reliance_probability": 0.7964939425198474,
+          "ai_accuracy": 0.7363,
+          "complementary_region_accuracy": 0.5626879921759642
         },
         "complementary_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.7461077064680088,
+          "reliance_probability": 0.569066417445247,
+          "ai_accuracy": 0.7603,
+          "complementary_region_accuracy": 0.8915737802404115
         },
         "submission": {
           "type": "proposed",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.7862591408911102,
+          "reliance_probability": 0.7631285077729126,
+          "ai_accuracy": 0.89145,
+          "complementary_region_accuracy": 0.8908633082138524
         }
       }
     },
     "admission_group_known": {
-      "description": "Admissions world, group membership given at test time (the paper's synthetic default, 'group membership is treated as known'); confident-human accuracy ~0.90. Results: the gym's reference run (no paper number exists for this extended setting; see _paper_reported).",
+      "description": "Admissions world, group membership given at test time (the paper's synthetic default, 'group membership is treated as known'); confident-human accuracy ~0.90. Results: the gym's reference run on the hidden test (20,000 rows; no paper number exists for this extended setting, the paper's own numbers are kept under _paper_reported).",
       "weight": 0.25,
       "primary_metric": "team_accuracy",
       "metrics": {
@@ -309,7 +329,7 @@
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.25,
+          "coefficient": 0.4,
           "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {
@@ -326,33 +346,43 @@
       "results": {
         "standard_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.8053652896996678,
+          "reliance_probability": 0.789102550060949,
+          "ai_accuracy": 0.76715,
+          "complementary_region_accuracy": 0.7618926465137167
         },
         "behavior_aware_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.8079029805062043,
+          "reliance_probability": 0.7858533168507559,
+          "ai_accuracy": 0.7649,
+          "complementary_region_accuracy": 0.7691912674820107
         },
         "aligned_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.7363578897945192,
+          "reliance_probability": 0.9814958074050799,
+          "ai_accuracy": 0.74385,
+          "complementary_region_accuracy": 0.5761748213403918
         },
         "complementary_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.8297513017674842,
+          "reliance_probability": 0.5887564523288278,
+          "ai_accuracy": 0.75545,
+          "complementary_region_accuracy": 0.9281575498978369
         },
         "submission": {
           "type": "proposed",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.9173947914703862,
+          "reliance_probability": 0.9814958074050799,
+          "ai_accuracy": 0.9283,
+          "complementary_region_accuracy": 0.9333364663641907
         }
       }
     },
     "admission_group_known_low_reliability": {
-      "description": "Same as admission_group_known with less reliable confident humans (accuracy ~0.75). Results: the gym's reference run (no paper number exists for this extended setting; see _paper_reported).",
+      "description": "Same as admission_group_known with less reliable confident humans (accuracy ~0.75). Results: the gym's reference run on the hidden test (20,000 rows; no paper number exists for this extended setting, the paper's own numbers are kept under _paper_reported).",
       "weight": 0.2,
       "primary_metric": "team_accuracy",
       "metrics": {
@@ -363,7 +393,7 @@
         },
         "reliance_probability": {
           "higher_is_better": true,
-          "coefficient": 0.25,
+          "coefficient": 0.4,
           "description": "Constraint (trust): expected agreement between the AI recommendation and the confident human's own judgment, i.e. the probability that unsure humans follow the AI."
         },
         "ai_accuracy": {
@@ -380,28 +410,38 @@
       "results": {
         "standard_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.7151449860376171,
+          "reliance_probability": 0.6969387451547799,
+          "ai_accuracy": 0.7665,
+          "complementary_region_accuracy": 0.7416125749030614
         },
         "behavior_aware_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.7316466049438797,
+          "reliance_probability": 0.6516963219298597,
+          "ai_accuracy": 0.7677,
+          "complementary_region_accuracy": 0.8043957963594929
         },
         "aligned_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.6497487705812,
+          "reliance_probability": 0.796966597411844,
+          "ai_accuracy": 0.7373,
+          "complementary_region_accuracy": 0.5612950336301977
         },
         "complementary_ai": {
           "type": "baseline",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.7459072144615975,
+          "reliance_probability": 0.5604990859258377,
+          "ai_accuracy": 0.7536,
+          "complementary_region_accuracy": 0.8993214328706315
         },
         "submission": {
           "type": "proposed",
-          "team_accuracy": 0.0,
-          "reliance_probability": 0.0
+          "team_accuracy": 0.8061933136531448,
+          "reliance_probability": 0.796966597411844,
+          "ai_accuracy": 0.9336,
+          "complementary_region_accuracy": 0.9228056052775828
         }
       }
     }

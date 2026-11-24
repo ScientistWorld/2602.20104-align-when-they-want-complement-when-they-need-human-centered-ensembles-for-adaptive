@@ -4,6 +4,17 @@
 
 ## Progress Log
 
+### [2026-11-24 01:40] - secondary_claims
+- Hardening (iteration 11): the scored hidden test was rebuilt as an extended College Admission world.
+  - Answers and the generator are only in `eval/test/`.
+  - Four experiments: group known or hidden, crossed with reliable or less reliable evaluators.
+  - Exact expected CGPR team accuracy.
+  - Strict per-id validation with worst values on failure.
+  - Baselines frozen in `eval/`.
+- The paper's adaptive ensemble (logistic regression, the paper's synthetic scale) beats all four paper single-model baselines in every experiment, by +0.06 to +0.11 team accuracy.
+- The paper's own College Admission alpha sweep now reproduces the released numbers exactly. It is kept as an unscored check in `scoring/paper_reproduction.json`.
+- See HARDENING.md.
+
 ### [2026-05-31 17:50] - secondary_claims
 - Final verification confirmed the claimed `secondary_claims` milestone is justified.
 - `python validate.py --compare` passes with the five College Admission alpha-sweep experiments, train/test score files, and structural separation checks.

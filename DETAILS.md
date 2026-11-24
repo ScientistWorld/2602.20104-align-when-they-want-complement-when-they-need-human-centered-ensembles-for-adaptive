@@ -1,82 +1,218 @@
 # Overview
-
 Paper: "Align When They Want, Complement When They Need! Human-Centered
 Ensembles for Adaptive Human-AI Collaboration" by Hasan Amin, Ming Yin, and
 Rajiv Khanna.
 
-This reproduction packages the core synthetic experiment: a two-region admission
-task where human confidence and ability differ by region. The method trains
-aligned and complementary specialists and adaptively routes between them under
-the CGPR human-AI team model. The benchmark scores whether adaptive
-recommendations improve team accuracy while preserving the reliance quantity
-that makes humans willing to use AI advice.
+The paper's claim is that, under a realistic model of when humans take AI
+advice, an AI that agrees with humans where they are confident and corrects
+them where they are not beats any single AI model on human-AI team accuracy.
+This holds both when the human's region is known and when the AI must infer
+it.
 
-The packaged reproduction reaches `secondary_claims`: the alpha=0.9 core
-setting matches the authors' reported synthetic result closely, and the
-human-reliability sweep at alpha values 0.5, 0.7, 0.8, 0.9, and 1.0 preserves
-the same adaptive-routing advantage.
+The gym scores this on an admissions world that extends the paper's
+synthetic College Admission data:
+- two applicant groups with different outcome rules;
+- context features that reveal the group only partly;
+- evaluators who are confident and sometimes confidently biased in one
+  group, and unsure in the other;
+- confidence thresholds drawn per decision.
 
----
+The paper's adaptive ensemble is the reference. It beats the paper's
+single-model baselines in all four scored experiments: group known or hidden,
+crossed with reliable or less reliable evaluators.
+
+The paper's own College Admission sweep is also reproduced, unscored and
+exactly matching the released numbers. Milestone: `secondary_claims` (the
+WoofNette image benchmark is not reproduced).
 
 # Problem Definition
+AI-assisted binary decision making in which a human decision maker keeps the
+final say. For every case the AI gives one recommendation (admit = 1,
+reject = 0). The human then decides with the following confidence-gated,
+probabilistic reliance behaviour:
 
-The task is AI-assisted binary decision making with a human decision maker who
-retains final control. Each instance has features, a ground-truth label, a human
-initial prediction, and a human confidence score. An AI system provides one
-recommendation per instance.
+- Each decision has its own confidence threshold tau, drawn from U[0.6, 0.8].
+- If the human's self-confidence on the case exceeds tau, the human keeps
+  their own judgement. These are the cases where the human feels sure.
+- Otherwise the human accepts the AI's recommendation with probability r,
+  and keeps their own judgement otherwise.
+- r is trust. It equals the rate at which the AI's recommendations agree
+  with the human's own judgement on the cases where the human felt sure.
 
-Success is measured after simulating the final human-AI team decision. A useful
-assistant must improve the final team accuracy on cases where humans are weak,
-while preserving enough agreement with confident human judgments that humans
-remain willing to rely on the AI when they are uncertain.
+So an assistant is rewarded in two ways:
+- for being right on cases where humans are unsure;
+- for agreeing with humans where they feel sure, because that agreement is
+  what makes them take its advice at all.
 
-The reusable benchmark in this workspace uses a synthetic College Admission
-setting. Applicants are described by GPA and standardized test score. The data
-contains two regimes: one where human predictions are usually more reliable and
-confidence is higher, and one where human predictions are weaker and advice is
-more valuable. Methods may use any recommendation strategy, as long as they
-write predictions in the format consumed by the evaluator.
+## Data
 
----
+The setting is college admission. Applicants are described by `gpa`, `score`
+(a standardised test score) and six context features: `school_resources`,
+`family_income`, `neighborhood_index`, `prep_hours`, `test_retakes` and
+`activities`. Applicants come from two groups. The group affects both what
+predicts the outcome and how sure and accurate the human evaluators are.
+
+Each experiment directory `data/<experiment>/` holds:
+
+| file | rows | columns |
+|---|---|---|
+| `train.csv` | 7,000 | `example_id`, features, [`group`], `label`, `human_pred`, `human_conf` |
+| `dev.csv` | 3,000 | same as train (a visible development split) |
+| `test_inputs.csv` | 20,000 | `example_id`, features, [`group`] (no answers) |
+| `task.json` | | feature list, whether `group` is given, the threshold distribution |
+
+- `human_pred` is the evaluator's own initial judgement.
+- `human_conf` is the evaluator's self-reported confidence.
+- Both are available for training (think of them as pilot-study data). They
+  are never available at test time.
+- `group` is given (in all three files) only in the `admission_group_known*`
+  experiments. In the `admission_group_hidden*` experiments the AI sees
+  applicant features only.
+
+`data/experiments.json` lists the scored experiments. The other
+`data/college_admission*` directories are not scored. They hold the paper's
+original two-feature generator and are used only by an unscored
+reproduction check.
+
+## What to produce
+
+For every experiment, write one binary recommendation per `example_id` of
+`dev.csv` and `test_inputs.csv` to:
+
+    checkpoints/<method_name>/<experiment>/predictions.csv   # columns: example_id,prediction
+
+- The ranked entry is `checkpoints/submission/`.
+- Any other method directory is scored too, under its own name, for
+  comparison.
+- Any recommendation strategy is allowed, but it may use only the inputs
+  available at test time.
 
 # Paper's Method
+Paper: "Align When They Want, Complement When They Need! Human-Centered
+Ensembles for Adaptive Human-AI Collaboration" (Amin, Yin, Khanna, AAAI 2026).
 
-The paper introduces Confidence-Gated Probabilistic Reliance (CGPR), a model of
-AI-assisted decision making where high-confidence humans keep their own answer
-and low-confidence humans accept AI advice with a probability determined by the
-AI's agreement with humans in the high-confidence region.
+## Team model
 
-The proposed system trains two specialists. The aligned specialist minimizes
-disagreement with human predictions in the alignment region. The complementary
-specialist minimizes prediction loss against ground truth in the complementary
-region. At inference, an adaptive ensemble selects between specialists either
-with oracle region membership or with the Rational Routing Shortcut (RRS), which
-chooses the specialist with higher model confidence.
+Confidence-Gated Probabilistic Reliance (CGPR, Eq. 2):
+- a human whose confidence C^h(x) exceeds the threshold tau keeps their own
+  judgement;
+- otherwise they follow the AI with probability r = 1 − L_h(D_a, m), the
+  AI's agreement with the human on the alignment region D_a = {C^h > tau}.
 
-The implementation in `method/college_admission_method.py` follows these steps
-with logistic-regression specialists, a behavior-aware single model, oracle
-routing, weighted oracle routing, and RRS routing. `eval/` applies the CGPR
-team-decision rule to method predictions so the scorer remains independent of
-the paper-method implementation.
+With tau drawn per decision from a distribution F_T, region membership is
+probabilistic (Proposition 5). The paper's instance weights are
+w_a = F_T(C^h) and w_c = 1 − F_T(C^h).
 
----
+## Adaptive ensemble
+
+- **Aligned specialist m_a.** Minimises disagreement with the human's own
+  predictions, with the alignment-region weights.
+- **Complementary specialist m_c.** Minimises prediction loss on the ground
+  truth, with the complementarity-region weights.
+- **Routing.**
+  - Oracle routing (Eq. 7) sends a case to m_a when it is in the alignment
+    region and to m_c otherwise.
+  - The Rational Routing Shortcut (RRS, Eq. 8) sends a case to the more
+    confident specialist instead.
+
+## Implementation in this gym (`method/adaptive_team_ai.py`)
+
+This follows the paper's synthetic recipe: logistic regression for every AI
+model, sklearn defaults, deterministic.
+
+- **Group given (`admission_group_known*`).** This is the paper's synthetic
+  default, where group membership is treated as known.
+  - m_a is fitted on the privileged group's human judgements, with weights
+    F_T(C^h).
+  - m_c is fitted on the other group's outcomes, with weights 1 − F_T(C^h).
+  - Routing uses the group.
+- **Group hidden (`admission_group_hidden*`).** The paper's
+  behaviour-grounded protocol.
+  - m_a and m_c are fitted on all training rows with Proposition 5 weights.
+  - The human's confidence is unobservable at test time. As in the paper's
+    pipeline, a confidence model fitted on the training (pilot) data
+    estimates P(C^h > tau | x), and Eq. 7 routes to m_a when that estimate
+    is at least 0.5.
+  - `--router rrs` uses the paper's RRS instead. On this world it scores
+    clearly lower; see HARDENING.md.
+- **Baselines.** The paper's single-model paradigms, also logistic
+  regression:
+  - standard AI (ERM on outcomes);
+  - behaviour-aware single AI (the weighted surrogate g_p of Theorem 4, with
+    human targets in the alignment region);
+  - aligned AI alone;
+  - complementary AI alone.
+
+`method/college_admission_method.py` and `method/aaai26-adaptive-ai/` (the
+authors' release) reproduce the paper's own two-feature College Admission
+sweep. They feed the unscored `scoring/paper_reproduction.json`, which matches
+the authors' released numbers exactly.
 
 # Evaluation
+All scores are recomputed by `eval/` from the binary recommendations alone.
+Nothing a method writes besides `example_id,prediction` is read.
 
-Evaluation reads held-out predictions written by a method run and computes:
+## Metrics (per experiment)
 
-- `team_accuracy`: accuracy of final human-AI team decisions under the provided
-  probabilistic reliance rule.
-- `reliance_probability`: one minus the AI-human disagreement rate in the
-  high-confidence human-reliable regime.
-- `routing_accuracy`: for methods that emit a route or regime choice, how often
-  that choice matches the known synthetic regime.
+Let P_i = P(conf_i > tau) = clip((conf_i - 0.6) / 0.2, 0, 1). This is the
+probability that the human feels sure on case i.
 
-`scripts/evaluate.sh` is method-agnostic: it imports only `eval/` code and reads
-`checkpoints/college_admission/predictions.csv` by default. Future methods can
-be scored by writing the same prediction columns and running the same evaluator.
+- `team_accuracy` (primary, coefficient 1.0) is the expected accuracy of the
+  final human decision. It is computed exactly over the threshold draw and the
+  reliance coin, so there is no simulation noise:
+  `mean_i( P_i [h_i = y_i] + (1 - P_i) (r [m_i = y_i] + (1 - r) [h_i = y_i]) )`
+- `reliance_probability` (constraint: trust, coefficient 0.4) is the r above:
+  `sum_i P_i [m_i = h_i] / sum_i P_i`. It is the agreement with the human's own
+  judgement where the human feels sure.
+- Two diagnostics, not ranked (coefficient 0):
+  - `ai_accuracy` is the standalone accuracy of the recommendations;
+  - `complementary_region_accuracy` is the AI accuracy weighted by 1 - P_i.
 
----
+Here m_i is the AI recommendation, h_i the human's judgement, y_i the outcome
+and conf_i the human's confidence.
+
+## Rules
+
+- Every scored `example_id` must appear exactly once with a prediction of
+  exactly 0 or 1. If a file is missing or unreadable, or has missing,
+  duplicate, NaN, fractional or out-of-range predictions, that experiment
+  scores its worst value (0) in every metric.
+- Rows for other ids are ignored.
+- The ranked slot `submission` is always scored. If it is absent it gets the
+  worst values.
+- The baselines (`standard_ai`, `behavior_aware_ai`, `aligned_ai`,
+  `complementary_ai`) are scored from predictions frozen inside `eval/`.
+  Method directories with those names are ignored.
+
+## Slices and scripts
+
+- `bash scripts/evaluate_train.sh` (and `bash scripts/evaluate.sh`, which
+  writes `scoring/scores.json`) scores the visible dev split. The answers are
+  in `data/<experiment>/dev.csv`. Output: `scoring/scores_train.json`.
+- `bash scripts/evaluate_test.sh` scores the hidden test rows
+  (`test_inputs.csv`), whose answers are not in the workspace. Output:
+  `scoring/scores_test.json`.
+  - It takes no arguments and scores every method directory under
+    `checkpoints/`.
+  - It deletes the old file before writing.
+- Train and test measure the same thing on draws from the same population.
+  Dev has 3,000 rows and test has 20,000 rows per experiment.
+
+## Ranking
+
+The rank sums, over experiments, `weight × Σ_metrics coefficient ×
+(improvement over the reference)` as set in `scoring/reference.json`:
+
+| experiment | weight |
+|---|---|
+| `admission_group_hidden` | 0.35 |
+| `admission_group_hidden_low_reliability` | 0.20 |
+| `admission_group_known` | 0.25 |
+| `admission_group_known_low_reliability` | 0.20 |
+
+# Hardening (iteration 11)
+
+The hidden test was rebuilt in iteration 11; see `HARDENING.md` for what changed, the variant and shortcut scores before and after, and what remains open. The log below records earlier iterations on the pre-hardening gym.
 
 # Reproduction Log
 
