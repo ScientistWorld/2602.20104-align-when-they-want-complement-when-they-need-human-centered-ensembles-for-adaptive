@@ -1,8 +1,8 @@
 # Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends.
-action: pending
+action: submit
 gpus: 0
 test: false
 milestone: secondary_claims
-notes: ""
+notes: "Rerun hardened-gym build + reference + red-team v2 checks + world sweep with OMP/BLAS threads pinned to 1 (previous job stalled in gradient boosting from thread oversubscription)"
