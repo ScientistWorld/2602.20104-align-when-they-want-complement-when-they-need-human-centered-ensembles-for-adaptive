@@ -22,6 +22,6 @@ bash scripts/evaluate_test.sh
 echo "[run] $(date) hardening checks"
 python redteam/v2/run_checks.py
 echo "[run] $(date) world sweep"
-python redteam/v2/design_sweep.py default,bias_wide_gate,bias_strong,bias_relu
+python redteam/v2/design_sweep.py default,under_mild,under_strong,under_narrow_gate
 echo "[run] $(date) validate"
 python validate.py --compare --post-design || echo "validate.py reported issues (reference.json results are filled in after this job)"

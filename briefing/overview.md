@@ -4,14 +4,24 @@ Paper: "Align When They Want, Complement When They Need! Human-Centered
 Ensembles for Adaptive Human-AI Collaboration" by Hasan Amin, Ming Yin, and
 Rajiv Khanna.
 
-This reproduction packages the core synthetic experiment: a two-region admission
-task where human confidence and ability differ by region. The method trains
-aligned and complementary specialists and adaptively routes between them under
-the CGPR human-AI team model. The benchmark scores whether adaptive
-recommendations improve team accuracy while preserving the reliance quantity
-that makes humans willing to use AI advice.
+The paper's claim is that, under a realistic model of when humans take AI
+advice, an AI that agrees with humans where they are confident and corrects
+them where they are not beats any single AI model on human-AI team accuracy.
+This holds both when the human's region is known and when the AI must infer
+it.
 
-The packaged reproduction reaches `secondary_claims`: the alpha=0.9 core
-setting matches the authors' reported synthetic result closely, and the
-human-reliability sweep at alpha values 0.5, 0.7, 0.8, 0.9, and 1.0 preserves
-the same adaptive-routing advantage.
+The gym scores this on an admissions world that extends the paper's
+synthetic College Admission data:
+- two applicant groups with different outcome rules;
+- context features that reveal the group only partly;
+- evaluators who are confident and sometimes confidently biased in one
+  group, and unsure in the other;
+- confidence thresholds drawn per decision.
+
+The paper's adaptive ensemble is the reference. It beats the paper's
+single-model baselines in all four scored experiments: group known or hidden,
+crossed with reliable or less reliable evaluators.
+
+The paper's own College Admission sweep is also reproduced, unscored and
+exactly matching the released numbers. Milestone: `secondary_claims` (the
+WoofNette image benchmark is not reproduced).

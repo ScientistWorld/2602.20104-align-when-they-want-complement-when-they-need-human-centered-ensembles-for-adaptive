@@ -1,0 +1,2309 @@
+{
+  "baselines_identical_in_variant_sandbox": true,
+  "paired_bootstrap": {
+    "aligned_everywhere_gbm": {
+      "mean": -0.18175314049422578,
+      "p_gt_0": 0.0,
+      "se": 0.001580280829912173
+    },
+    "gbm_behavior_aware": {
+      "mean": -0.00617167306709226,
+      "p_gt_0": 0.0,
+      "se": 0.0006649864472304236
+    },
+    "gbm_specialists": {
+      "mean": -0.002214245863497421,
+      "p_gt_0": 0.0,
+      "se": 0.0006299225406147428
+    },
+    "gbm_standard": {
+      "mean": -0.013257195436784292,
+      "p_gt_0": 0.0,
+      "se": 0.0007465023322316023
+    },
+    "gbm_team": {
+      "mean": -0.0017725641899232587,
+      "p_gt_0": 0.0033333333333333335,
+      "se": 0.00061986865375175
+    },
+    "generator_bayes_policy": {
+      "mean": 0.0176604158307936,
+      "p_gt_0": 1.0,
+      "se": 0.0005919655972718457
+    },
+    "handrule_paper": {
+      "mean": -0.03656980041933121,
+      "p_gt_0": 0.0,
+      "se": 0.0009252357233756007
+    },
+    "handrule_score_heuristic": {
+      "mean": -0.04718383499896395,
+      "p_gt_0": 0.0,
+      "se": 0.0009576031622521471
+    },
+    "lr_team": {
+      "mean": -0.005176022005677113,
+      "p_gt_0": 0.0,
+      "se": 0.0004746519144845202
+    },
+    "proxy_gbm": {
+      "mean": 0.002248374454144358,
+      "p_gt_0": 1.0,
+      "se": 0.0003752554094771255
+    },
+    "ref_10pct": {
+      "mean": -0.01631394263719971,
+      "p_gt_0": 0.0,
+      "se": 0.000623839493678192
+    },
+    "ref_boot1": {
+      "mean": -0.0009762542450237762,
+      "p_gt_0": 0.0,
+      "se": 0.00032172901073933226
+    },
+    "ref_boot2": {
+      "mean": -0.002785016277479716,
+      "p_gt_0": 0.0,
+      "se": 0.00035222152605243
+    },
+    "ref_boot3": {
+      "mean": -0.0017551076896121143,
+      "p_gt_0": 0.0,
+      "se": 0.00036522423431918535
+    },
+    "ref_boot4": {
+      "mean": -0.001311140483733292,
+      "p_gt_0": 0.0,
+      "se": 0.00035580815476886796
+    },
+    "ref_boot5": {
+      "mean": -0.002261946468270711,
+      "p_gt_0": 0.0,
+      "se": 0.0003055204534298902
+    },
+    "ref_x3data": {
+      "mean": 0.0024135762940850143,
+      "p_gt_0": 1.0,
+      "se": 0.0003325359869273199
+    },
+    "rrs": {
+      "mean": -0.061488404239851524,
+      "p_gt_0": 0.0,
+      "se": 0.0010486693645977404
+    }
+  },
+  "runs": {
+    "aligned_everywhere_gbm": {
+      "category": "simple",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0019620173932054508,
+            "team_accuracy": -0.18827340579102025
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.005442301263245408,
+            "team_accuracy": -0.15022122952837957
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.012845855842897547,
+            "team_accuracy": -0.20287890864622948
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.01175178122908438,
+            "team_accuracy": -0.17086139268465594
+          }
+        },
+        "total": -0.18177860709758914
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.72515,
+          "complementary_region_accuracy": 0.5389007548970134,
+          "reliance_probability": 0.9527839281839,
+          "team_accuracy": 0.7174513427032974
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.7201,
+          "complementary_region_accuracy": 0.5526724506440015,
+          "reliance_probability": 0.7726645669628336,
+          "team_accuracy": 0.6466538180580202
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.7329,
+          "complementary_region_accuracy": 0.5479114721291765,
+          "reliance_probability": 0.9683546595383277,
+          "team_accuracy": 0.7235747358074639
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.72525,
+          "complementary_region_accuracy": 0.5491979569201051,
+          "reliance_probability": 0.7869911170771627,
+          "team_accuracy": 0.645101721220561
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.009777154942369748,
+            "team_accuracy": -0.18155518387519953
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.008968148263376552,
+            "team_accuracy": -0.14339432517028805
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.014776982153955953,
+            "team_accuracy": -0.21176355962289894
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.007537455057052167,
+            "team_accuracy": -0.17851779799745038
+          }
+        },
+        "total": -0.18086415456244095
+      }
+    },
+    "gbm_behavior_aware": {
+      "category": "simple",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.01728921081538326,
+            "team_accuracy": -0.006724420389501162
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.012045110035743267,
+            "team_accuracy": 0.0008271165185019802
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.015162933337966922,
+            "team_accuracy": -0.0006053956277141115
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.018604892740523904,
+            "team_accuracy": 0.0005795019494749809
+          }
+        },
+        "total": -0.006216561768440869
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9123,
+          "complementary_region_accuracy": 0.9191041602504771,
+          "reliance_probability": 0.9335326999753113,
+          "team_accuracy": 0.8990003281048164
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.91315,
+          "complementary_region_accuracy": 0.9237532033044777,
+          "reliance_probability": 0.7551771556638449,
+          "team_accuracy": 0.7977021641049018
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.9444,
+          "complementary_region_accuracy": 0.9572004408425889,
+          "reliance_probability": 0.9660375820432583,
+          "team_accuracy": 0.9258482488259793
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.9531,
+          "complementary_region_accuracy": 0.9544783364452587,
+          "reliance_probability": 0.7801380055657232,
+          "team_accuracy": 0.8165426158546919
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.013019836599022172,
+            "team_accuracy": -0.0036940153043744095
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.012575346711840463,
+            "team_accuracy": 0.0034070823732884614
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.018905713716676487,
+            "team_accuracy": -0.001588024662141363
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.008325969047604298,
+            "team_accuracy": 0.00044063738624511295
+          }
+        },
+        "total": -0.004286276167838627
+      }
+    },
+    "gbm_specialists": {
+      "category": "better",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.004887830734550236,
+            "team_accuracy": 0.003335917450603132
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.005130727476081565,
+            "team_accuracy": -0.0012798358261207898
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.010292766914631324,
+            "team_accuracy": 0.00047608199447712884
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.020999087627951663,
+            "team_accuracy": -0.004777535149632306
+          }
+        },
+        "total": -0.0023023564654595053
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.92145,
+          "complementary_region_accuracy": 0.9343652829235731,
+          "reliance_probability": 0.9459340800561443,
+          "team_accuracy": 0.9090606659449207
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.9097,
+          "complementary_region_accuracy": 0.9148955543951006,
+          "reliance_probability": 0.7620915382235066,
+          "team_accuracy": 0.795595211760279
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.9422,
+          "complementary_region_accuracy": 0.957130643729985,
+          "reliance_probability": 0.9709077484665939,
+          "team_accuracy": 0.9269297264481705
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.93525,
+          "complementary_region_accuracy": 0.9431519042962847,
+          "reliance_probability": 0.7777438106782955,
+          "team_accuracy": 0.8111855787555846
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.012407876859980904,
+            "team_accuracy": 0.004094938044986285
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.004725209541989295,
+            "team_accuracy": 0.005459462565498896
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.013205756023303983,
+            "team_accuracy": -0.0015003190928046806
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.013884961473802027,
+            "team_accuracy": -0.005185025228784279
+          }
+        },
+        "total": -0.0012560005634085119
+      }
+    },
+    "gbm_standard": {
+      "category": "simple",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.04745005440992878,
+            "team_accuracy": -0.011298417931444593
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 7.44406724513258e-05,
+            "team_accuracy": 0.0011519310797892812
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.05222968650290749,
+            "team_accuracy": -0.006926265126253495
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.018197967241024182,
+            "team_accuracy": 0.0024491960436966442
+          }
+        },
+        "total": -0.013288198628600926
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.929,
+          "complementary_region_accuracy": 0.9232017666718212,
+          "reliance_probability": 0.9033718563807658,
+          "team_accuracy": 0.894426330562873
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.92985,
+          "complementary_region_accuracy": 0.918022602523149,
+          "reliance_probability": 0.7672967063720395,
+          "team_accuracy": 0.7980269786661891
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.96225,
+          "complementary_region_accuracy": 0.9617742232550202,
+          "reliance_probability": 0.9289708288783177,
+          "team_accuracy": 0.9195273793274399
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.9638,
+          "complementary_region_accuracy": 0.958660939567031,
+          "reliance_probability": 0.7805449310652229,
+          "team_accuracy": 0.8184123099489136
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.04448350120143196,
+            "team_accuracy": -0.009805188346317495
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0016355788076443112,
+            "team_accuracy": 0.00710859397568353
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.06576165128807165,
+            "team_accuracy": -0.010167263419368355
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.01742444463127968,
+            "team_accuracy": 0.0016727089390257133
+          }
+        },
+        "total": -0.013009224044922907
+      }
+    },
+    "gbm_team": {
+      "category": "better",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.01361301191052433,
+            "team_accuracy": 0.00478941111558695
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.01209896189232118,
+            "team_accuracy": 0.002539858010166318
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.011614431964489746,
+            "team_accuracy": -0.00013724598424480483
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.025975100360050685,
+            "team_accuracy": -0.0009555943131719369
+          }
+        },
+        "total": -0.001861908518776974
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.92215,
+          "complementary_region_accuracy": 0.9414300953441378,
+          "reliance_probability": 0.9372088988801702,
+          "team_accuracy": 0.9105141596099046
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.9195,
+          "complementary_region_accuracy": 0.9279797584710494,
+          "reliance_probability": 0.755123303807267,
+          "team_accuracy": 0.7994149055965661
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.9428,
+          "complementary_region_accuracy": 0.9565048588239317,
+          "reliance_probability": 0.9695860834167355,
+          "team_accuracy": 0.9263163984694486
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.94855,
+          "complementary_region_accuracy": 0.9550494580149543,
+          "reliance_probability": 0.7727677979461964,
+          "team_accuracy": 0.815007519592045
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.018476127384828844,
+            "team_accuracy": 0.007722564880578986
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.010785037848534795,
+            "team_accuracy": 0.0073468612264441235
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.01512987139531552,
+            "team_accuracy": -0.0020160030413209906
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.019273893053315505,
+            "team_accuracy": 0.0009280099475038606
+          }
+        },
+        "total": -0.00021135347081026464
+      }
+    },
+    "generator_bayes_policy": {
+      "category": "ceiling (hidden generator)",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.001782350355462703,
+            "team_accuracy": 0.01835671809839612
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.011635036307275248,
+            "team_accuracy": 0.02516654586749345
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.005655376226072262,
+            "team_accuracy": 0.012353937339100063
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.001890131416212082,
+            "team_accuracy": 0.015258287780048785
+          }
+        },
+        "total": 0.01757613097304276
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9379,
+          "complementary_region_accuracy": 0.9638240113195727,
+          "reliance_probability": 0.9490395604352319,
+          "team_accuracy": 0.9240814665927137
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.94915,
+          "complementary_region_accuracy": 0.9690418950754541,
+          "reliance_probability": 0.7788573020068634,
+          "team_accuracy": 0.8220415934538933
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.9555,
+          "complementary_region_accuracy": 0.9787964374686028,
+          "reliance_probability": 0.975545139155153,
+          "team_accuracy": 0.9388075817927934
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.9673,
+          "complementary_region_accuracy": 0.9791156335251788,
+          "reliance_probability": 0.796852766890035,
+          "team_accuracy": 0.8312214016852657
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.006708476459190593,
+            "team_accuracy": 0.020618164412693263
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.01652539325151481,
+            "team_accuracy": 0.027787732330448955
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.0024527754515966116,
+            "team_accuracy": 0.009231652909195587
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -7.48605497385979e-05,
+            "team_accuracy": 0.014793702172701706
+          }
+        },
+        "total": 0.018122794151556515
+      }
+    },
+    "handrule_paper": {
+      "category": "hand-written",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.07271496866151417,
+            "team_accuracy": -0.04071173929432381
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.021896284555342538,
+            "team_accuracy": -0.026656773403329392
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.04637088621776064,
+            "team_accuracy": -0.016203549498281067
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.015218380636265683,
+            "team_accuracy": -0.009609955672323589
+          }
+        },
+        "total": -0.03666981534878714
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.8746,
+          "complementary_region_accuracy": 0.870014003729984,
+          "reliance_probability": 0.8781069421291804,
+          "team_accuracy": 0.8650130091999938
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.873,
+          "complementary_region_accuracy": 0.8609682898167541,
+          "reliance_probability": 0.7453259811442456,
+          "team_accuracy": 0.7702182741830704
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.9376,
+          "complementary_region_accuracy": 0.9395442044324693,
+          "reliance_probability": 0.9348296291634646,
+          "team_accuracy": 0.9102500949554123
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.93755,
+          "complementary_region_accuracy": 0.928597213647598,
+          "reliance_probability": 0.7835245176699814,
+          "team_accuracy": 0.8063531582328933
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.06710815029305506,
+            "team_accuracy": -0.032126150384515384
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.012447881705558994,
+            "team_accuracy": -0.018032899503648836
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.05442393120480726,
+            "team_accuracy": -0.01889564052762549
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.0202126054298315,
+            "team_accuracy": -0.01278385594752629
+          }
+        },
+        "total": -0.03303789706443408
+      }
+    },
+    "handrule_score_heuristic": {
+      "category": "hand-written",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.09196682260172162,
+            "team_accuracy": -0.05078872531020007
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.030923460394323032,
+            "team_accuracy": -0.03290728135972465
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.06924070537693106,
+            "team_accuracy": -0.020995276876335622
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.028680001182558756,
+            "team_accuracy": -0.01158118594850166
+          }
+        },
+        "total": -0.0472773806818521
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.86495,
+          "complementary_region_accuracy": 0.8554062203492054,
+          "reliance_probability": 0.8588550881889729,
+          "team_accuracy": 0.8549360231841175
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.8656,
+          "complementary_region_accuracy": 0.8495459340609339,
+          "reliance_probability": 0.7362988053052651,
+          "team_accuracy": 0.7639677662266752
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.93605,
+          "complementary_region_accuracy": 0.9400649370135045,
+          "reliance_probability": 0.9119598100042942,
+          "team_accuracy": 0.9054583675773578
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.938,
+          "complementary_region_accuracy": 0.9311839462174997,
+          "reliance_probability": 0.7700628971236884,
+          "team_accuracy": 0.8043819279567153
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.08240812664638297,
+            "team_accuracy": -0.0386789749401073
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.01981834129596438,
+            "team_accuracy": -0.02902599117146165
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.0845332304669083,
+            "team_accuracy": -0.02503888737194604
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.023237133182388514,
+            "team_accuracy": -0.013522282144689979
+          }
+        },
+        "total": -0.04295382944491232
+      }
+    },
+    "lr_team": {
+      "category": "variant (team-aware rule on LR estimates)",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.026061152607489202,
+            "team_accuracy": -0.0007433460030727979
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.026205537316608574,
+            "team_accuracy": -0.006853613897634503
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": -0.005221521599588114
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9081,
+          "complementary_region_accuracy": 0.9356930025129419,
+          "reliance_probability": 0.9247607581832054,
+          "team_accuracy": 0.9049814024912448
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.8882,
+          "complementary_region_accuracy": 0.9124537227987927,
+          "reliance_probability": 0.7410167283829796,
+          "team_accuracy": 0.7900214336887653
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.93765,
+          "complementary_region_accuracy": 0.9514848458723313,
+          "reliance_probability": 0.9812005153812252,
+          "team_accuracy": 0.9264536444536934
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.9448,
+          "complementary_region_accuracy": 0.9428068340222023,
+          "reliance_probability": 0.7987428983062471,
+          "team_accuracy": 0.8159631139052169
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.028782477019566155,
+            "team_accuracy": 0.0021615114456899898
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.020111701701774898,
+            "team_accuracy": -0.006126706202184029
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": -0.003992864058746093
+      }
+    },
+    "proxy_gbm": {
+      "category": "better",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.005623414155017548,
+            "team_accuracy": 0.002973133078116419
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.013692715747114503,
+            "team_accuracy": -0.00021115664887372265
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": 0.0021750497734857625
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9169,
+          "complementary_region_accuracy": 0.9288571927011495,
+          "reliance_probability": 0.9564453249457121,
+          "team_accuracy": 0.908697881572434
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.91395,
+          "complementary_region_accuracy": 0.9077007299241371,
+          "reliance_probability": 0.7809149814467027,
+          "team_accuracy": 0.7966638909375261
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.93765,
+          "complementary_region_accuracy": 0.9514848458723313,
+          "reliance_probability": 0.9812005153812252,
+          "team_accuracy": 0.9264536444536934
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.9448,
+          "complementary_region_accuracy": 0.9428068340222023,
+          "reliance_probability": 0.7987428983062471,
+          "team_accuracy": 0.8159631139052169
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.0005487166689785994,
+            "team_accuracy": 0.0005050839250951844
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.020044241414471697,
+            "team_accuracy": 0.0031946939420265386
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": 0.0017699175243765797
+      }
+    },
+    "ref_10pct": {
+      "category": "weaker (10% data)",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.013074339049949146,
+            "team_accuracy": -0.01383224435846142
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.005574967215778437,
+            "team_accuracy": -0.0034798855906674753
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.016517221600379717,
+            "team_accuracy": -0.012712299827657758
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.02032345146033765,
+            "team_accuracy": -0.020950335120049846
+          }
+        },
+        "total": -0.016376656575219486
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.896,
+          "complementary_region_accuracy": 0.9024351143992695,
+          "reliance_probability": 0.9377475717407454,
+          "team_accuracy": 0.8918925041358562
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.9053,
+          "complementary_region_accuracy": 0.9097857926002064,
+          "reliance_probability": 0.7616472984838097,
+          "team_accuracy": 0.7933951619957323
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.92315,
+          "complementary_region_accuracy": 0.9333027371245994,
+          "reliance_probability": 0.9646832937808455,
+          "team_accuracy": 0.9137413446260356
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.90805,
+          "complementary_region_accuracy": 0.90449218053235,
+          "reliance_probability": 0.7784194468459095,
+          "team_accuracy": 0.7950127787851671
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.00360119462295605,
+            "team_accuracy": -0.010347337476538154
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.008356467505625798,
+            "team_accuracy": 0.0007900023777344112
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.01752076251994894,
+            "team_accuracy": -0.015138554895235745
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.01896475826724453,
+            "team_accuracy": -0.020921991634190507
+          }
+        },
+        "total": -0.014208818167537489
+      }
+    },
+    "ref_boot1": {
+      "category": "seed spread",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0013218016261719034,
+            "team_accuracy": 0.0001610496859161259
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.002171861694528654,
+            "team_accuracy": -0.002107273152543665
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.0003697860598186331,
+            "team_accuracy": 0.0007174046848554827
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.0036465963038393445,
+            "team_accuracy": -0.004110792385245032
+          }
+        },
+        "total": -0.0009890852631873825
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9129,
+          "complementary_region_accuracy": 0.9250304270291908,
+          "reliance_probability": 0.9521437124168665,
+          "team_accuracy": 0.9058857981802337
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.90515,
+          "complementary_region_accuracy": 0.9090753126468701,
+          "reliance_probability": 0.7693941273941168,
+          "team_accuracy": 0.7947677744338562
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.93785,
+          "complementary_region_accuracy": 0.953080960146005,
+          "reliance_probability": 0.9808307293214066,
+          "team_accuracy": 0.9271710491385489
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.93885,
+          "complementary_region_accuracy": 0.9352611846514126,
+          "reliance_probability": 0.7950963020024078,
+          "team_accuracy": 0.8118523215199719
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0006477161371742923,
+            "team_accuracy": 0.0009352773986781582
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0018895003375355435,
+            "team_accuracy": -0.0033221078398975035
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.0011959811329855796,
+            "team_accuracy": -3.500975538694995e-05
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.0003913382048372771,
+            "team_accuracy": -0.004813524152923021
+          }
+        },
+        "total": -0.001251697300047422
+      }
+    },
+    "ref_boot2": {
+      "category": "seed spread",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -5.034062162290187e-05,
+            "team_accuracy": -0.002656290147745044
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0009377512083718065,
+            "team_accuracy": -0.0021599160696506026
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0013169702152835416,
+            "team_accuracy": -0.0008181167937559852
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.009989866031490435,
+            "team_accuracy": -0.004224539024062057
+          }
+        },
+        "total": -0.0027858216759850075
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9094,
+          "complementary_region_accuracy": 0.9198620119789161,
+          "reliance_probability": 0.9507715701690717,
+          "team_accuracy": 0.9030684583465726
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.9063,
+          "complementary_region_accuracy": 0.9095874740467612,
+          "reliance_probability": 0.76816001690796,
+          "team_accuracy": 0.7947151315167492
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.9362,
+          "complementary_region_accuracy": 0.9492648814298709,
+          "reliance_probability": 0.9825174855965088,
+          "team_accuracy": 0.9256355276599374
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.94155,
+          "complementary_region_accuracy": 0.9384090744756973,
+          "reliance_probability": 0.7887530322747567,
+          "team_accuracy": 0.8117385748811549
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0047332659124700305,
+            "team_accuracy": -0.0001151530177940785
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0003676639683871663,
+            "team_accuracy": -0.0002057382027030874
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0007759555168134202,
+            "team_accuracy": -0.0002498849485966792
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.004231181419897867,
+            "team_accuracy": -0.0023833420014286455
+          }
+        },
+        "total": -0.00035110871963701246
+      }
+    },
+    "ref_boot3": {
+      "category": "seed spread",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.0028302302721079364,
+            "team_accuracy": -0.002037274764153163
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0022338674837337757,
+            "team_accuracy": -0.0020200879249965276
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.001623363208898665,
+            "team_accuracy": -0.001993554807245279
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.0011774637544001987,
+            "team_accuracy": 0.0006756178326926543
+          }
+        },
+        "total": -0.0017766140506246335
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9099,
+          "complementary_region_accuracy": 0.9223656574280951,
+          "reliance_probability": 0.9479916805185866,
+          "team_accuracy": 0.9036874737301644
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.9047,
+          "complementary_region_accuracy": 0.9092529337917425,
+          "reliance_probability": 0.769456133183322,
+          "team_accuracy": 0.7948549596614033
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.93575,
+          "complementary_region_accuracy": 0.9482404233900864,
+          "reliance_probability": 0.9795771521723265,
+          "team_accuracy": 0.9244600896464481
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.94625,
+          "complementary_region_accuracy": 0.9450055617740007,
+          "reliance_probability": 0.7975654345518469,
+          "team_accuracy": 0.8166387317379096
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.003254679538111316,
+            "team_accuracy": 0.00013324687217897146
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.005547915298837025,
+            "team_accuracy": -0.0002452875158898138
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.0029470207965890394,
+            "team_accuracy": -0.005179532992939606
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.0008956097353227666,
+            "team_accuracy": 0.0008888801988594652
+          }
+        },
+        "total": -0.0013558862875741732
+      }
+    },
+    "ref_boot4": {
+      "category": "seed spread",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.0013687725291592345,
+            "team_accuracy": -0.0013157449638400154
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.000554766595636802,
+            "team_accuracy": -0.0003958936361815324
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.0016098265212034502,
+            "team_accuracy": 7.313531893438086e-05
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.001962609058679843,
+            "team_accuracy": -0.002517146183346086
+          }
+        },
+        "total": -0.0013156087485447345
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9109,
+          "complementary_region_accuracy": 0.9231989134062278,
+          "reliance_probability": 0.9494531382615353,
+          "team_accuracy": 0.9044090035304776
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.9077,
+          "complementary_region_accuracy": 0.9140376898329744,
+          "reliance_probability": 0.767777032295225,
+          "team_accuracy": 0.7964791539502183
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.93915,
+          "complementary_region_accuracy": 0.9523573977224838,
+          "reliance_probability": 0.9795906888600218,
+          "team_accuracy": 0.9265267797726278
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.94135,
+          "complementary_region_accuracy": 0.9380496450842637,
+          "reliance_probability": 0.7967802892475673,
+          "team_accuracy": 0.8134459677218708
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.0005597655654633327,
+            "team_accuracy": 0.0012281402946229258
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0026230274123958397,
+            "team_accuracy": -0.00046390220547964933
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.0011410073952980992,
+            "team_accuracy": 0.0008667150694853243
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0004810313500120955,
+            "team_accuracy": -0.0018455634910936602
+          }
+        },
+        "total": 0.00021954522011091718
+      }
+    },
+    "ref_boot5": {
+      "category": "seed spread",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.0012395692077840081,
+            "team_accuracy": -0.0013762788937641268
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.0011755860290942888,
+            "team_accuracy": -0.0025233574625050936
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.0019381423955715515,
+            "team_accuracy": -0.0014176096010132255
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.004022897293375016,
+            "team_accuracy": -0.0021098739112387355
+          }
+        },
+        "total": -0.0022522666593473048
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.91015,
+          "complementary_region_accuracy": 0.9230170311374486,
+          "reliance_probability": 0.9495823415829105,
+          "team_accuracy": 0.9043484696005535
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.9063,
+          "complementary_region_accuracy": 0.9098081831807816,
+          "reliance_probability": 0.7660466796704939,
+          "team_accuracy": 0.7943516901238947
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.9357,
+          "complementary_region_accuracy": 0.9495309078040333,
+          "reliance_probability": 0.9792623729856537,
+          "team_accuracy": 0.9250360348526802
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.94265,
+          "complementary_region_accuracy": 0.9401016168522767,
+          "reliance_probability": 0.7947200010128721,
+          "team_accuracy": 0.8138532399939782
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.000793419223025893,
+            "team_accuracy": -0.0006881533673458451
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.0014991815262687114,
+            "team_accuracy": -0.0001706657957555313
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.0022612830227690672,
+            "team_accuracy": -0.0015855561835724785
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -5.584251895662806e-05,
+            "team_accuracy": 6.723597435454032e-05
+          }
+        },
+        "total": -0.0009464342619434629
+      }
+    },
+    "ref_x3data": {
+      "category": "better (more data)",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0012658960963003452,
+            "team_accuracy": 0.000733728419744728
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.004959625440863702,
+            "team_accuracy": 0.0038279935148614053
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.002497344807379287,
+            "team_accuracy": 0.0020605530882574774
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.001554295014815077,
+            "team_accuracy": 0.0013973598591044967
+          }
+        },
+        "total": 0.0024095598754396287
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9136,
+          "complementary_region_accuracy": 0.9262288473521052,
+          "reliance_probability": 0.9520878068869949,
+          "team_accuracy": 0.9064584769140623
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.9152,
+          "complementary_region_accuracy": 0.9218627397548325,
+          "reliance_probability": 0.7721818911404519,
+          "team_accuracy": 0.8007030411012612
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.939,
+          "complementary_region_accuracy": 0.9544559280872617,
+          "reliance_probability": 0.9836978601886045,
+          "team_accuracy": 0.9285141975419509
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.9459,
+          "complementary_region_accuracy": 0.9451852234925442,
+          "reliance_probability": 0.8002971933210622,
+          "team_accuracy": 0.8173604737643214
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0027172490118609893,
+            "team_accuracy": 0.003917756729324373
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.005827589154100199,
+            "team_accuracy": 0.0031986973743961533
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0014907523185373472,
+            "team_accuracy": 0.0018896410713217238
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0022331867574294506,
+            "team_accuracy": 0.0020814117776095653
+          }
+        },
+        "total": 0.0036336170575180086
+      }
+    },
+    "rrs": {
+      "category": "weaker (paper's RRS router)",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.11447064992507017,
+            "team_accuracy": -0.10044498210164654
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.10919836327562749,
+            "team_accuracy": -0.054506162042156636
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": -0.06153307617623262
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.781,
+          "complementary_region_accuracy": 0.7491227939769778,
+          "reliance_probability": 0.8363512608656244,
+          "team_accuracy": 0.8052797663926711
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.78675,
+          "complementary_region_accuracy": 0.8290364583279121,
+          "reliance_probability": 0.6580239024239607,
+          "team_accuracy": 0.7423688855442432
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.93765,
+          "complementary_region_accuracy": 0.9514848458723313,
+          "reliance_probability": 0.9812005153812252,
+          "team_accuracy": 0.9264536444536934
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.9448,
+          "complementary_region_accuracy": 0.9428068340222023,
+          "reliance_probability": 0.7987428983062471,
+          "team_accuracy": 0.8159631139052169
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.11176829826895973,
+            "team_accuracy": -0.10200246710575034
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.1188674754001362,
+            "team_accuracy": -0.05590908940013395
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": -0.0626057812355802
+      }
+    },
+    "sb_boost_baselines": {
+      "baseline_scores_unchanged": true,
+      "category": "shortcut (sandbox)",
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": 0.0
+      }
+    },
+    "sb_edit_data": {
+      "category": "shortcut (sandbox)",
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": 0.0
+      }
+    },
+    "sb_new_name_only": {
+      "category": "packaging (sandbox)",
+      "my_method": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": 0.0
+      },
+      "rc": 0,
+      "submission": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.9508219107906946,
+            "team_accuracy": -0.9057247484943176
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.7672222656995882,
+            "team_accuracy": -0.7968750475863998
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.9812005153812252,
+            "team_accuracy": -0.9264536444536934
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.7987428983062471,
+            "team_accuracy": -0.8159631139052169
+          }
+        },
+        "total": -1.0940049129905618
+      }
+    },
+    "sb_no_reference_json": {
+      "category": "shortcut (sandbox)",
+      "experiments_scored": [
+        "admission_group_hidden",
+        "admission_group_hidden_low_reliability",
+        "admission_group_known",
+        "admission_group_known_low_reliability"
+      ],
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": 0.0
+      }
+    },
+    "sb_planted_scores_no_submission": {
+      "category": "shortcut (sandbox)",
+      "planted_file_replaced": true,
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.9508219107906946,
+            "team_accuracy": -0.9057247484943176
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.7672222656995882,
+            "team_accuracy": -0.7968750475863998
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.9812005153812252,
+            "team_accuracy": -0.9264536444536934
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.7987428983062471,
+            "team_accuracy": -0.8159631139052169
+          }
+        },
+        "total": -1.0940049129905618
+      }
+    },
+    "sc_constant_zero": {
+      "category": "shortcut",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.4717683126307805,
+            "team_accuracy": -0.20703212951263117
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.28720321650285474,
+            "team_accuracy": -0.16796747752811358
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.5056954282335759,
+            "team_accuracy": -0.22390022383532426
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.3009587964438571,
+            "team_accuracy": -0.18758948854052349
+          }
+        },
+        "total": -0.30184148676910677
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.49835,
+          "complementary_region_accuracy": 0.5004748468006104,
+          "reliance_probability": 0.47905359815991405,
+          "team_accuracy": 0.6986926189816864
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.49915,
+          "complementary_region_accuracy": 0.509452824311981,
+          "reliance_probability": 0.48001904919673344,
+          "team_accuracy": 0.6289075700582862
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.4966,
+          "complementary_region_accuracy": 0.5015202246929599,
+          "reliance_probability": 0.4755050871476492,
+          "team_accuracy": 0.7025534206183691
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.5032,
+          "complementary_region_accuracy": 0.5095863162706664,
+          "reliance_probability": 0.49778410186239,
+          "team_accuracy": 0.6283736253646934
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.4719118241121421,
+            "team_accuracy": -0.2061364038057355
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.28136954684155296,
+            "team_accuracy": -0.1691617978513893
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.47916453878105214,
+            "team_accuracy": -0.22626193953246654
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.3329159524196774,
+            "team_accuracy": -0.19870766023300213
+          }
+        },
+        "total": -0.30424146107869204
+      }
+    },
+    "sc_copy_dev_labels": {
+      "category": "shortcut",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": 0.0
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9122,
+          "complementary_region_accuracy": 0.9252901376040741,
+          "reliance_probability": 0.9508219107906946,
+          "team_accuracy": 0.9057247484943176
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.90905,
+          "complementary_region_accuracy": 0.9152837210158271,
+          "reliance_probability": 0.7672222656995882,
+          "team_accuracy": 0.7968750475863998
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.93765,
+          "complementary_region_accuracy": 0.9514848458723313,
+          "reliance_probability": 0.9812005153812252,
+          "team_accuracy": 0.9264536444536934
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.9448,
+          "complementary_region_accuracy": 0.9428068340222023,
+          "reliance_probability": 0.7987428983062471,
+          "team_accuracy": 0.8159631139052169
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.03783182827140796,
+            "team_accuracy": 0.03135867326774633
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.006818135241344114,
+            "team_accuracy": 0.03796587155370279
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.07227121906802958,
+            "team_accuracy": 0.004228265572370216
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.0236412479793342,
+            "team_accuracy": 0.015104365976894574
+          }
+        },
+        "total": 0.013978257740523694
+      }
+    },
+    "sc_duplicate_rows": {
+      "category": "shortcut",
+      "failures": {
+        "admission_group_hidden": "ValueError: duplicate example_id rows",
+        "admission_group_hidden_low_reliability": "ValueError: duplicate example_id rows",
+        "admission_group_known": "ValueError: duplicate example_id rows",
+        "admission_group_known_low_reliability": "ValueError: duplicate example_id rows"
+      },
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.9508219107906946,
+            "team_accuracy": -0.9057247484943176
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.7672222656995882,
+            "team_accuracy": -0.7968750475863998
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.9812005153812252,
+            "team_accuracy": -0.9264536444536934
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.7987428983062471,
+            "team_accuracy": -0.8159631139052169
+          }
+        },
+        "total": -1.0940049129905618
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.9572871352987193,
+            "team_accuracy": -0.9088654573753951
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.767102740576873,
+            "team_accuracy": -0.7956869438822326
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.9810279791792237,
+            "team_accuracy": -0.9287985682916118
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.8003773500393395,
+            "team_accuracy": -0.8217038572337088
+          }
+        },
+        "total": -1.0972315899456297
+      }
+    },
+    "sc_impossible_value": {
+      "category": "shortcut",
+      "failures": {
+        "admission_group_hidden": "ValueError: prediction values must be exactly 0 or 1",
+        "admission_group_hidden_low_reliability": "ValueError: prediction values must be exactly 0 or 1",
+        "admission_group_known": "ValueError: prediction values must be exactly 0 or 1",
+        "admission_group_known_low_reliability": "ValueError: prediction values must be exactly 0 or 1"
+      },
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.9508219107906946,
+            "team_accuracy": -0.9057247484943176
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.7672222656995882,
+            "team_accuracy": -0.7968750475863998
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.9812005153812252,
+            "team_accuracy": -0.9264536444536934
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.7987428983062471,
+            "team_accuracy": -0.8159631139052169
+          }
+        },
+        "total": -1.0940049129905618
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.9572871352987193,
+            "team_accuracy": -0.9088654573753951
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.767102740576873,
+            "team_accuracy": -0.7956869438822326
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.9810279791792237,
+            "team_accuracy": -0.9287985682916118
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.8003773500393395,
+            "team_accuracy": -0.8217038572337088
+          }
+        },
+        "total": -1.0972315899456297
+      }
+    },
+    "sc_missing_experiment": {
+      "category": "shortcut",
+      "failures": {
+        "admission_group_hidden_low_reliability": "ValueError: predictions.csv missing"
+      },
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.7672222656995882,
+            "team_accuracy": -0.7968750475863998
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": -0.19773612280225938
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9122,
+          "complementary_region_accuracy": 0.9252901376040741,
+          "reliance_probability": 0.9508219107906946,
+          "team_accuracy": 0.9057247484943176
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.93765,
+          "complementary_region_accuracy": 0.9514848458723313,
+          "reliance_probability": 0.9812005153812252,
+          "team_accuracy": 0.9264536444536934
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.9448,
+          "complementary_region_accuracy": 0.9428068340222023,
+          "reliance_probability": 0.7987428983062471,
+          "team_accuracy": 0.8159631139052169
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.767102740576873,
+            "team_accuracy": -0.7956869438822326
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": -0.1974925258052902
+      }
+    },
+    "sc_nan_values": {
+      "category": "shortcut",
+      "failures": {
+        "admission_group_hidden": "ValueError: prediction values must be exactly 0 or 1",
+        "admission_group_hidden_low_reliability": "ValueError: prediction values must be exactly 0 or 1",
+        "admission_group_known": "ValueError: prediction values must be exactly 0 or 1",
+        "admission_group_known_low_reliability": "ValueError: prediction values must be exactly 0 or 1"
+      },
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.9508219107906946,
+            "team_accuracy": -0.9057247484943176
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.7672222656995882,
+            "team_accuracy": -0.7968750475863998
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.9812005153812252,
+            "team_accuracy": -0.9264536444536934
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.7987428983062471,
+            "team_accuracy": -0.8159631139052169
+          }
+        },
+        "total": -1.0940049129905618
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.9572871352987193,
+            "team_accuracy": -0.9088654573753951
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.767102740576873,
+            "team_accuracy": -0.7956869438822326
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.9810279791792237,
+            "team_accuracy": -0.9287985682916118
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.8003773500393395,
+            "team_accuracy": -0.8217038572337088
+          }
+        },
+        "total": -1.0972315899456297
+      }
+    },
+    "sc_probabilities": {
+      "category": "shortcut",
+      "failures": {
+        "admission_group_hidden": "ValueError: prediction values must be exactly 0 or 1",
+        "admission_group_hidden_low_reliability": "ValueError: prediction values must be exactly 0 or 1",
+        "admission_group_known": "ValueError: prediction values must be exactly 0 or 1",
+        "admission_group_known_low_reliability": "ValueError: prediction values must be exactly 0 or 1"
+      },
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.9508219107906946,
+            "team_accuracy": -0.9057247484943176
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.7672222656995882,
+            "team_accuracy": -0.7968750475863998
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.9812005153812252,
+            "team_accuracy": -0.9264536444536934
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.7987428983062471,
+            "team_accuracy": -0.8159631139052169
+          }
+        },
+        "total": -1.0940049129905618
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.9572871352987193,
+            "team_accuracy": -0.9088654573753951
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.767102740576873,
+            "team_accuracy": -0.7956869438822326
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.9810279791792237,
+            "team_accuracy": -0.9287985682916118
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.8003773500393395,
+            "team_accuracy": -0.8217038572337088
+          }
+        },
+        "total": -1.0972315899456297
+      }
+    },
+    "sc_subset_rows": {
+      "category": "shortcut",
+      "failures": {
+        "admission_group_hidden": "ValueError: 10024 scored example_ids missing",
+        "admission_group_hidden_low_reliability": "ValueError: 9869 scored example_ids missing",
+        "admission_group_known": "ValueError: 9977 scored example_ids missing",
+        "admission_group_known_low_reliability": "ValueError: 10072 scored example_ids missing"
+      },
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": -0.9508219107906946,
+            "team_accuracy": -0.9057247484943176
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": -0.7672222656995882,
+            "team_accuracy": -0.7968750475863998
+          },
+          "admission_group_known": {
+            "reliance_probability": -0.9812005153812252,
+            "team_accuracy": -0.9264536444536934
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": -0.7987428983062471,
+            "team_accuracy": -0.8159631139052169
+          }
+        },
+        "total": -1.0940049129905618
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.0,
+          "complementary_region_accuracy": 0.0,
+          "reliance_probability": 0.0,
+          "team_accuracy": 0.0
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": 0.0
+      }
+    },
+    "submission": {
+      "category": "reference",
+      "failures": {},
+      "rc": 0,
+      "test": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": 0.0
+      },
+      "test_results": {
+        "admission_group_hidden": {
+          "ai_accuracy": 0.9122,
+          "complementary_region_accuracy": 0.9252901376040741,
+          "reliance_probability": 0.9508219107906946,
+          "team_accuracy": 0.9057247484943176
+        },
+        "admission_group_hidden_low_reliability": {
+          "ai_accuracy": 0.90905,
+          "complementary_region_accuracy": 0.9152837210158271,
+          "reliance_probability": 0.7672222656995882,
+          "team_accuracy": 0.7968750475863998
+        },
+        "admission_group_known": {
+          "ai_accuracy": 0.93765,
+          "complementary_region_accuracy": 0.9514848458723313,
+          "reliance_probability": 0.9812005153812252,
+          "team_accuracy": 0.9264536444536934
+        },
+        "admission_group_known_low_reliability": {
+          "ai_accuracy": 0.9448,
+          "complementary_region_accuracy": 0.9428068340222023,
+          "reliance_probability": 0.7987428983062471,
+          "team_accuracy": 0.8159631139052169
+        }
+      },
+      "train": {
+        "missing": [],
+        "per_experiment": {
+          "admission_group_hidden": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_hidden_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          },
+          "admission_group_known_low_reliability": {
+            "reliance_probability": 0.0,
+            "team_accuracy": 0.0
+          }
+        },
+        "total": 0.0
+      }
+    }
+  }
+}

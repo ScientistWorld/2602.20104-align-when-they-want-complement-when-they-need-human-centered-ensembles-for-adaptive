@@ -121,6 +121,33 @@ def gbm_team(task, train, rows):
     return team_decision(pa, ph1, py1, acc_h_c)
 
 
+def hybrid_comp_gbm(task, train, rows):
+    """Paper's method with only the complementary specialist made non-linear."""
+    x, xe, y, h, w_a = _arrays(task, train, rows, with_group=False)
+    if task["group_column_given"]:
+        g = train["group"].to_numpy(dtype=int)
+        ge = rows["group"].to_numpy(dtype=int)
+        m_a = paper.fit_lr(x[g == 1], h[g == 1], w_a[g == 1])
+        m_c = fit_gbm(x[g == 0], y[g == 0], 1.0 - w_a[g == 0])
+        route = ge == 1
+    else:
+        m_a = paper.fit_lr(x, h, w_a)
+        m_c = fit_gbm(x, y, 1.0 - w_a)
+        route = paper.fit_soft_lr(x, w_a).predict_proba(xe)[:, 1] >= 0.5
+    return np.where(route, m_a.predict(xe), m_c.predict(xe)).astype(int)
+
+
+def hybrid_comp_gbm_router_gbm(task, train, rows):
+    """Linear aligned specialist, non-linear complementary specialist and router."""
+    if task["group_column_given"]:
+        return hybrid_comp_gbm(task, train, rows)
+    x, xe, y, h, w_a = _arrays(task, train, rows, with_group=False)
+    m_a = paper.fit_lr(x, h, w_a)
+    m_c = fit_gbm(x, y, 1.0 - w_a)
+    route = fit_soft_gbm(x, w_a).predict_proba(xe)[:, 1] >= 0.5
+    return np.where(route, m_a.predict(xe), m_c.predict(xe)).astype(int)
+
+
 def lr_team(task, train, rows):
     """Paper's logistic components + team-aware recommendation (group hidden only)."""
     if task["group_column_given"]:
@@ -186,7 +213,10 @@ def handrule_score_heuristic(task, train, rows):
     return np.where(priv, score >= 0.5, 0.75 * gpa + 0.25 * score >= 0.5).astype(int)
 
 
-BETTER = {"proxy_gbm": proxy_gbm, "lr_team": lr_team, "gbm_specialists": gbm_specialists, "gbm_team": gbm_team}
+BETTER = {
+    "proxy_gbm": proxy_gbm, "lr_team": lr_team, "gbm_specialists": gbm_specialists, "gbm_team": gbm_team,
+    "hybrid_comp_gbm": hybrid_comp_gbm, "hybrid_comp_gbm_router_gbm": hybrid_comp_gbm_router_gbm,
+}
 SIMPLE = {
     "gbm_standard": gbm_standard,
     "gbm_behavior_aware": gbm_behavior_aware,

@@ -89,7 +89,7 @@ def run_world(world: str) -> dict:
 
 
 def main() -> None:
-    worlds = sys.argv[1].split(",") if len(sys.argv) > 1 else ["default", "bias_wide_gate", "bias_strong", "bias_relu"]
+    worlds = sys.argv[1].split(",") if len(sys.argv) > 1 else ["default", "under_mild", "under_strong", "under_narrow_gate"]
     out = {w: run_world(w) for w in worlds}
     (HERE / "design_sweep.json").write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
     lines = ["# World-design sweep (team accuracy / reliance on each world's hidden test)", ""]

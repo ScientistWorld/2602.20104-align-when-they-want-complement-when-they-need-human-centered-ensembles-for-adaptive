@@ -1,38 +1,41 @@
 # Evaluation Targets
 
-## Primary: college_admission_core
+Every target below is an entry in `scoring/scores.json` (dev slice),
+`scoring/scores_train.json` (dev slice) and `scoring/scores_test.json`
+(hidden test).
 
-Tests final human-AI team performance in the synthetic two-region admission
-task at the main alpha=0.9 imperfect-human setting.
+## Primary: team accuracy
 
-- **Metric**: `team_accuracy` (higher is better)
-- **Run**: `bash scripts/reproduce.sh`, then `bash scripts/evaluate.sh`
+The expected accuracy of the final human-AI team decision under
+confidence-gated probabilistic reliance (threshold tau ~ U[0.6, 0.8]).
 
-## Constraint: reliance
+- **Metric**: `team_accuracy` (higher is better, coefficient 1.0)
+- **Experiments and weights**:
+  - `admission_group_hidden` (0.35)
+  - `admission_group_hidden_low_reliability` (0.20)
+  - `admission_group_known` (0.25)
+  - `admission_group_known_low_reliability` (0.20)
+- **Run**: `bash scripts/reproduce.sh` (writes `checkpoints/submission/` and
+  the dev scores), then `bash scripts/evaluate_test.sh` (hidden test).
 
-Checks whether an assistant preserves agreement in the human-reliable regime,
-which controls the human reliance probability under the provided evaluation
-rule.
+## Constraint: trust (reliance)
 
-- **Metric**: `reliance_probability` (higher is better)
-- **Run**: `bash scripts/evaluate.sh`
+The agreement between the AI and the human's own judgement where the human
+feels sure. It is the probability that unsure humans take the AI's advice. An
+assistant that gains accuracy by contradicting confident humans loses it here.
 
-## Constraint: routing
+- **Metric**: `reliance_probability` (higher is better, coefficient 0.25)
+- **Experiments**: all four.
 
-For methods that emit a route or regime choice, checks whether the selection
-matches the known region in the synthetic benchmark.
+## Paper claim checked in the scores
 
-- **Metric**: `routing_accuracy` (higher is better)
-- **Run**: `bash scripts/evaluate.sh`
+The paper's adaptive ensemble (the reference `submission`) should beat each
+of the paper's single-model AIs (`standard_ai`, `behavior_aware_ai`,
+`aligned_ai`, `complementary_ai`) on team accuracy in every experiment.
 
-## Expansion: human-reliability sweep
+## Unscored reproduction
 
-Tests the same team-decision objective across multiple human-reliable-regime
-accuracy levels from the synthetic alpha sweep. This checks the secondary claim
-that behavior-aware gains increase as the reliable human signal becomes
-stronger.
-
-- **Metric**: `team_accuracy` (higher is better)
-- **Constraint metrics**: `reliance_probability`, `routing_accuracy`
-- **Experiments**: `college_admission_alpha_0_5`, `college_admission_alpha_0_7`, `college_admission_alpha_0_8`, `college_admission_alpha_1_0`
-- **Run**: `bash scripts/reproduce.sh`
+The paper's own College Admission imperfect-human sweep (alpha = 0.5, 0.7,
+0.8, 0.9, 1.0) is written to `scoring/paper_reproduction.json` by
+`scripts/reproduce.sh`. It is compared with the released numbers kept in
+`scoring/reference.json["_paper_reported"]`.

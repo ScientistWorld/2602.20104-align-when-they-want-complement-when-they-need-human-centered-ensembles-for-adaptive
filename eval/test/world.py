@@ -82,11 +82,15 @@ _BASE = dict(
 )
 
 WORLDS = {
-    "default": dict(_BASE),
-    "bias_wide_gate": dict(_BASE, gate_inter=0.5, gate_sq=0.3),
-    "bias_strong": dict(_BASE, human_bias=0.05),
-    "bias_relu": dict(_BASE, retake_relu=0.05),
-    # first-round design (kept for the record): score-heavy heuristic + red flag
+    # Round 3 default: wider (more non-linear) group gate, and an outcome for
+    # the underprivileged group (where humans defer) with stronger context,
+    # non-linear and interaction terms; the confident humans' rule is unchanged.
+    "default": dict(_BASE, gate_inter=0.5, gate_sq=0.3, under_ctx=0.06, under_wiggle=0.06, under_inter=0.05),
+    "under_mild": dict(_BASE, gate_inter=0.5, gate_sq=0.3, under_ctx=0.045, under_wiggle=0.045, under_inter=0.03),
+    "under_strong": dict(_BASE, gate_inter=0.5, gate_sq=0.3, under_ctx=0.08, under_wiggle=0.08, under_inter=0.07),
+    "under_narrow_gate": dict(_BASE, under_ctx=0.06, under_wiggle=0.06, under_inter=0.05),
+    # earlier rounds, kept for the record (see HARDENING.md)
+    "bias_v2": dict(_BASE),
     "redflag_v1": dict(_BASE, human_w=(0.70, 0.10), human_bias=0.0, red_flag=1.4, conf_margin=0.15),
 }
 
@@ -122,7 +126,10 @@ def _latent(gpa, score, ctx, w):
     a_s, a_g = w["priv_w"]
     b_g, b_s = w["under_w"]
     s_priv = a_s * score + a_g * gpa + ctx_term + w["wiggle"] * np.sin(6.0 * gpa) - 0.5 * (a_s + a_g)
-    s_under = b_g * gpa + b_s * score + ctx_term + w["wiggle"] * np.sin(6.0 * score) - 0.5 * (b_g + b_s)
+    u_ctx = w.get("under_ctx", w["ctx_effect"]) * np.tanh(1.5 * ctx[:, 5])
+    u_wig = w.get("under_wiggle", w["wiggle"]) * np.sin(6.0 * score)
+    u_int = w.get("under_inter", 0.0) * np.tanh(ctx[:, 3]) * (gpa - 0.5) * 2.0
+    s_under = b_g * gpa + b_s * score + u_ctx + u_wig + u_int - 0.5 * (b_g + b_s)
     h_s, h_g = w["human_w"]
     s_human = h_s * score + h_g * gpa - 0.5 * (h_s + h_g)
     s_human = s_human + w["human_bias"] * (ctx[:, 1] - ctx[:, 4])
