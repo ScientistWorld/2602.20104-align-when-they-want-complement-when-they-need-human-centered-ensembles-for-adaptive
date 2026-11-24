@@ -38,9 +38,13 @@ def reliance_from_alignment(human_pred, ai_pred, region) -> float:
 
 
 def cgpr_team_decision(human_pred, human_conf, ai_pred, reliance, tau: float, seed: int):
+    # Authors' released loop: one reliance coin per low-confidence instance,
+    # drawn in order from np.random.default_rng(seed).
     high_conf = human_conf > tau
-    rng = np.random.Generator(np.random.PCG64(seed))
-    accepts_ai = rng.random(len(human_pred)) < reliance
+    rng = np.random.default_rng(seed)
+    accepts_ai = np.zeros(len(human_pred), dtype=bool)
+    low = np.flatnonzero(~high_conf)
+    accepts_ai[low] = rng.random(len(low)) < reliance
     return np.where(high_conf, human_pred, np.where(accepts_ai, ai_pred, human_pred)).astype(int)
 
 

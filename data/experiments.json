@@ -1,0 +1,8 @@
+{
+  "experiments": [
+    "admission_group_hidden",
+    "admission_group_hidden_low_reliability",
+    "admission_group_known",
+    "admission_group_known_low_reliability"
+  ]
+}

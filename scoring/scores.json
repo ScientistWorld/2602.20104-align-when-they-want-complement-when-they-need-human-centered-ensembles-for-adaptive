@@ -1,132 +1,154 @@
 {
+  "_metadata": {
+    "methods_scored": [
+      "submission"
+    ],
+    "reserved_names_ignored": [],
+    "slice": "train",
+    "team_model": "exact expectation of CGPR, tau ~ U[0.6, 0.8]"
+  },
   "experiments": {
-    "college_admission_alpha_0_5": {
+    "admission_group_hidden": {
+      "_failures": {},
+      "_n_scored": 3000,
       "results": {
-        "adaptive_oracle": {
-          "reliance_probability": 0.49870466321243523,
-          "routing_accuracy": 1.0,
-          "team_accuracy": 0.609
-        },
-        "adaptive_weighted_oracle": {
-          "reliance_probability": 0.4961139896373057,
-          "routing_accuracy": 1.0,
-          "team_accuracy": 0.5626666666666666
-        },
         "aligned_ai": {
-          "reliance_probability": 0.49870466321243523,
-          "team_accuracy": 0.558
+          "ai_accuracy": 0.7333333333333333,
+          "complementary_region_accuracy": 0.5561174432209459,
+          "reliance_probability": 0.9199748019141815,
+          "team_accuracy": 0.7290246508252494
         },
         "behavior_aware_ai": {
-          "reliance_probability": 0.5025906735751295,
-          "team_accuracy": 0.5786666666666667
+          "ai_accuracy": 0.7743333333333333,
+          "complementary_region_accuracy": 0.7540114830559976,
+          "reliance_probability": 0.7851435592677377,
+          "team_accuracy": 0.8072198429868336
         },
         "complementary_ai": {
-          "reliance_probability": 0.5038860103626943,
-          "team_accuracy": 0.5826666666666667
+          "ai_accuracy": 0.771,
+          "complementary_region_accuracy": 0.9287690548676464,
+          "reliance_probability": 0.6047215571668579,
+          "team_accuracy": 0.8402643255135102
+        },
+        "standard_ai": {
+          "ai_accuracy": 0.7723333333333333,
+          "complementary_region_accuracy": 0.7524691588956111,
+          "reliance_probability": 0.7755534907509131,
+          "team_accuracy": 0.8054400422272875
+        },
+        "submission": {
+          "ai_accuracy": 0.9046666666666666,
+          "complementary_region_accuracy": 0.9172815031406681,
+          "reliance_probability": 0.8868351263118157,
+          "team_accuracy": 0.8946589937403708
         }
       }
     },
-    "college_admission_alpha_0_7": {
+    "admission_group_hidden_low_reliability": {
+      "_failures": {},
+      "_n_scored": 3000,
       "results": {
-        "adaptive_oracle": {
-          "reliance_probability": 0.6897668393782384,
-          "routing_accuracy": 1.0,
-          "team_accuracy": 0.6903333333333334
-        },
-        "adaptive_weighted_oracle": {
-          "reliance_probability": 0.6904145077720207,
-          "routing_accuracy": 1.0,
-          "team_accuracy": 0.6703333333333333
-        },
         "aligned_ai": {
-          "reliance_probability": 0.6897668393782384,
-          "team_accuracy": 0.6333333333333333
+          "ai_accuracy": 0.743,
+          "complementary_region_accuracy": 0.5897474857140909,
+          "reliance_probability": 0.7959965108564123,
+          "team_accuracy": 0.6642215793166842
         },
         "behavior_aware_ai": {
-          "reliance_probability": 0.5958549222797928,
-          "team_accuracy": 0.6673333333333333
+          "ai_accuracy": 0.778,
+          "complementary_region_accuracy": 0.7959483473406662,
+          "reliance_probability": 0.6580112702094271,
+          "team_accuracy": 0.7380082578688355
         },
         "complementary_ai": {
-          "reliance_probability": 0.560880829015544,
-          "team_accuracy": 0.677
+          "ai_accuracy": 0.775,
+          "complementary_region_accuracy": 0.8803536319370457,
+          "reliance_probability": 0.5693918587154163,
+          "team_accuracy": 0.7520409241148407
+        },
+        "standard_ai": {
+          "ai_accuracy": 0.783,
+          "complementary_region_accuracy": 0.7544150760549619,
+          "reliance_probability": 0.6957701084723104,
+          "team_accuracy": 0.7271321136757624
+        },
+        "submission": {
+          "ai_accuracy": 0.8953333333333333,
+          "complementary_region_accuracy": 0.8994323177855755,
+          "reliance_probability": 0.7509298135879748,
+          "team_accuracy": 0.7977952301243696
         }
       }
     },
-    "college_admission_alpha_0_8": {
+    "admission_group_known": {
+      "_failures": {},
+      "_n_scored": 3000,
       "results": {
-        "adaptive_oracle": {
-          "reliance_probability": 0.7972797927461139,
-          "routing_accuracy": 1.0,
-          "team_accuracy": 0.753
-        },
-        "adaptive_weighted_oracle": {
-          "reliance_probability": 0.7927461139896373,
-          "routing_accuracy": 1.0,
-          "team_accuracy": 0.739
-        },
         "aligned_ai": {
-          "reliance_probability": 0.7972797927461139,
-          "team_accuracy": 0.693
+          "ai_accuracy": 0.744,
+          "complementary_region_accuracy": 0.5932328468191119,
+          "reliance_probability": 0.9143498846184451,
+          "team_accuracy": 0.7363781384193324
         },
         "behavior_aware_ai": {
-          "reliance_probability": 0.6651554404145077,
-          "team_accuracy": 0.7223333333333334
+          "ai_accuracy": 0.7733333333333333,
+          "complementary_region_accuracy": 0.7857779282036064,
+          "reliance_probability": 0.7640901133560479,
+          "team_accuracy": 0.8100581459590563
         },
         "complementary_ai": {
-          "reliance_probability": 0.5971502590673575,
-          "team_accuracy": 0.73
+          "ai_accuracy": 0.7826666666666666,
+          "complementary_region_accuracy": 0.9351810673639831,
+          "reliance_probability": 0.6109863856999211,
+          "team_accuracy": 0.8376269717429035
+        },
+        "standard_ai": {
+          "ai_accuracy": 0.7836666666666666,
+          "complementary_region_accuracy": 0.7810195471152241,
+          "reliance_probability": 0.7722534126174614,
+          "team_accuracy": 0.8092311832545466
+        },
+        "submission": {
+          "ai_accuracy": 0.9303333333333333,
+          "complementary_region_accuracy": 0.9388001273467974,
+          "reliance_probability": 0.9143498846184451,
+          "team_accuracy": 0.906752000253236
         }
       }
     },
-    "college_admission_alpha_1_0": {
+    "admission_group_known_low_reliability": {
+      "_failures": {},
+      "_n_scored": 3000,
       "results": {
-        "adaptive_oracle": {
-          "reliance_probability": 0.9973421926910299,
-          "routing_accuracy": 1.0,
-          "team_accuracy": 0.8746666666666667
-        },
-        "adaptive_weighted_oracle": {
-          "reliance_probability": 0.988704318936877,
-          "routing_accuracy": 1.0,
-          "team_accuracy": 0.8703333333333333
-        },
         "aligned_ai": {
-          "reliance_probability": 0.9973421926910299,
-          "team_accuracy": 0.8006666666666666
+          "ai_accuracy": 0.7303333333333333,
+          "complementary_region_accuracy": 0.5794166722716022,
+          "reliance_probability": 0.7812114472599327,
+          "team_accuracy": 0.645923140174166
         },
         "behavior_aware_ai": {
-          "reliance_probability": 0.8053156146179402,
-          "team_accuracy": 0.8176666666666667
+          "ai_accuracy": 0.7793333333333333,
+          "complementary_region_accuracy": 0.8039033734012629,
+          "reliance_probability": 0.6623749411931398,
+          "team_accuracy": 0.7282584116362714
         },
         "complementary_ai": {
-          "reliance_probability": 0.6325581395348837,
-          "team_accuracy": 0.8303333333333334
-        }
-      }
-    },
-    "college_admission_core": {
-      "results": {
-        "adaptive_oracle": {
-          "reliance_probability": 0.8795336787564767,
-          "routing_accuracy": 1.0,
-          "team_accuracy": 0.8096666666666666
+          "ai_accuracy": 0.776,
+          "complementary_region_accuracy": 0.9036123187199641,
+          "reliance_probability": 0.5715583842290295,
+          "team_accuracy": 0.7458263275930752
         },
-        "adaptive_weighted_oracle": {
-          "reliance_probability": 0.8737046632124352,
-          "routing_accuracy": 1.0,
-          "team_accuracy": 0.7993333333333333
+        "standard_ai": {
+          "ai_accuracy": 0.7823333333333333,
+          "complementary_region_accuracy": 0.7471100329253166,
+          "reliance_probability": 0.70254582233795,
+          "team_accuracy": 0.7118375703075259
         },
-        "aligned_ai": {
-          "reliance_probability": 0.8795336787564767,
-          "team_accuracy": 0.737
-        },
-        "behavior_aware_ai": {
-          "reliance_probability": 0.7467616580310881,
-          "team_accuracy": 0.7636666666666667
-        },
-        "complementary_ai": {
-          "reliance_probability": 0.6282383419689119,
-          "team_accuracy": 0.7766666666666666
+        "submission": {
+          "ai_accuracy": 0.93,
+          "complementary_region_accuracy": 0.9185435840924907,
+          "reliance_probability": 0.7812114472599327,
+          "team_accuracy": 0.8019050258103992
         }
       }
     }

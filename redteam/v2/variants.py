@@ -10,10 +10,14 @@ single models and short hand-written admission rules.
 
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
-import numpy as np
+# One CPU per job: keep OpenMP (gradient boosting) from spawning a thread per node core.
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+
+import numpy as np  # noqa: E402
 import pandas as pd
 from sklearn.ensemble import HistGradientBoostingClassifier
 

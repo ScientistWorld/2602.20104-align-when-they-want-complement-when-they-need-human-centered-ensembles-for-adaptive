@@ -1,0 +1,24 @@
+{
+  "experiment": "admission_group_known",
+  "features": [
+    "gpa",
+    "score",
+    "school_resources",
+    "family_income",
+    "neighborhood_index",
+    "prep_hours",
+    "test_retakes",
+    "activities"
+  ],
+  "group_column_given": true,
+  "files": {
+    "train": "train.csv",
+    "dev": "dev.csv",
+    "test_inputs": "test_inputs.csv"
+  },
+  "team_model": {
+    "confidence_threshold_distribution": "uniform",
+    "tau_low": 0.6,
+    "tau_high": 0.8
+  }
+}
