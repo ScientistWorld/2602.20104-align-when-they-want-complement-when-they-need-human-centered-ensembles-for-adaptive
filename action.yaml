@@ -1,8 +1,8 @@
 # Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends.
-action: done
+action: pending
 gpus: 0
 test: false
 milestone: secondary_claims
-notes: "Red-team done: better variants cannot beat seed spread (reference at ceiling, honest headroom +0.012); test answers and evaluator settings live in agent-controlled data/; row-subset, planted-score, threshold/seed-edit, human-echo and label-read shortcuts score +0.10 to +0.32. See REDTEAM.md"
+notes: ""
