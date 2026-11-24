@@ -11,11 +11,13 @@ time.  It extends the paper's synthetic College Admission generator:
 * group membership is not drawn independently of the features: it follows a
   partly non-linear function of six context features, so a router can
   infer it only approximately;
-* human decision makers apply one heuristic to everybody: a score-heavy
-  weighting plus a red flag (applicants with many test retakes are rejected
-  outright) -- systematic, confidently-held errors -- plus random slips;
+* human decision makers apply one judgement rule to everybody: the
+  privileged-group outcome weighting of GPA and score, blind to the outcome's
+  context and non-linear terms, plus a confidently held bias (they favour
+  high family income and penalise test retakes, neither of which affects the
+  outcome) -- systematic, confident errors -- plus random slips;
   privileged-group humans are confident except on cases that are borderline
-  by their own heuristic; underprivileged-group humans are unsure
+  by their own judgement; underprivileged-group humans are unsure
   (confidence U[0.4, 0.6]) and at chance (as in the paper's simulation);
 * the decision maker's self-confidence threshold is tau ~ U[0.6, 0.8] per
   decision, as in the paper's behaviour-grounded protocol.
@@ -68,18 +70,24 @@ _BASE = dict(
     ctx_effect=0.03,
     wiggle=0.025,
     label_noise=0.02,
-    # human heuristic: score-heavy, and a red flag (many test retakes -> reject)
-    human_w=(0.70, 0.10),
-    red_flag=1.4,
+    # human judgement: the privileged-group outcome weighting, ignoring the
+    # outcome's context/non-linear terms, plus a confidently held bias
+    # (favours family income, penalises test retakes; neither affects the outcome)
+    human_w=(0.64, 0.16),
+    human_bias=0.035,
+    retake_relu=0.0,
+    red_flag=None,
     under_flip=0.5,
-    conf_margin=0.15,
+    conf_margin=0.06,
 )
 
 WORLDS = {
     "default": dict(_BASE),
-    "wider_gate": dict(_BASE, gate_inter=0.5, gate_sq=0.3),
-    "sharp_gate": dict(_BASE, gate_inter=0.15, gate_sq=0.08, gate_scale=8.0),
-    "no_red_flag": dict(_BASE, red_flag=None),
+    "bias_wide_gate": dict(_BASE, gate_inter=0.5, gate_sq=0.3),
+    "bias_strong": dict(_BASE, human_bias=0.05),
+    "bias_relu": dict(_BASE, retake_relu=0.05),
+    # first-round design (kept for the record): score-heavy heuristic + red flag
+    "redflag_v1": dict(_BASE, human_w=(0.70, 0.10), human_bias=0.0, red_flag=1.4, conf_margin=0.15),
 }
 
 # Human-reliability profiles: target accuracy of confident (privileged-group)
@@ -117,6 +125,8 @@ def _latent(gpa, score, ctx, w):
     s_under = b_g * gpa + b_s * score + ctx_term + w["wiggle"] * np.sin(6.0 * score) - 0.5 * (b_g + b_s)
     h_s, h_g = w["human_w"]
     s_human = h_s * score + h_g * gpa - 0.5 * (h_s + h_g)
+    s_human = s_human + w["human_bias"] * (ctx[:, 1] - ctx[:, 4])
+    s_human = s_human - w["retake_relu"] * np.maximum(ctx[:, 4] - 1.0, 0.0)
     if w["red_flag"] is None:
         red = np.zeros(len(gpa), dtype=bool)
     else:

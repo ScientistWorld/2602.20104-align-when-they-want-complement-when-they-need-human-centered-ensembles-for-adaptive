@@ -33,7 +33,7 @@ import shortcuts  # noqa: E402
 import variants  # noqa: E402
 
 CATEGORY = {
-    "proxy_gbm": "better", "lr_team": "better", "gbm_specialists": "better", "gbm_team": "better",
+    "proxy_gbm": "better", "lr_team": "variant (team-aware rule on LR estimates)", "gbm_specialists": "better", "gbm_team": "better",
     "ref_x3data": "better (more data)",
     "rrs": "weaker (paper's RRS router)", "ref_10pct": "weaker (10% data)",
     "gbm_standard": "simple", "gbm_behavior_aware": "simple", "aligned_everywhere_gbm": "simple",
