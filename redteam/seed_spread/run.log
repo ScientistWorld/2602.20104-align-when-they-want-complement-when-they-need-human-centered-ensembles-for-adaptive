@@ -1,0 +1,6 @@
+[rank] method_seed_42: rc=0 score(adaptive_oracle)=+0.0000 score(mean 5 methods)=+0.0000 missing=0
+[rank] method_seed_43: rc=0 score(adaptive_oracle)=+0.0000 score(mean 5 methods)=+0.0000 missing=0
+[rank] method_seed_44: rc=0 score(adaptive_oracle)=+0.0000 score(mean 5 methods)=+0.0000 missing=0
+[rank] bootstrap_seed_1: rc=0 score(adaptive_oracle)=+0.0005 score(mean 5 methods)=+0.0013 missing=0
+[rank] bootstrap_seed_2: rc=0 score(adaptive_oracle)=-0.0086 score(mean 5 methods)=-0.0029 missing=0
+[rank] bootstrap_seed_3: rc=0 score(adaptive_oracle)=+0.0018 score(mean 5 methods)=+0.0014 missing=0

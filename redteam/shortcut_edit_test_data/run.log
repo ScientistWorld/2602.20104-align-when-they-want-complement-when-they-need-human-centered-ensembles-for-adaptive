@@ -1,0 +1,2 @@
+[rank] threshold: rc=0 score(adaptive_oracle)=+0.1491 score(mean 5 methods)=+0.0842 missing=0
+[rank] labels_and_humans: rc=0 score(adaptive_oracle)=+0.2005 score(mean 5 methods)=+0.1517 missing=0

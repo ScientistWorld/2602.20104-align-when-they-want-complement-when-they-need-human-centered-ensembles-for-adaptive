@@ -1,0 +1,3 @@
+[rank] no_reference_json: rc=1 no scores file
+[rank] new_method_name_only: rc=1 no scores file
+[rank] extra_better_column: rc=0 score(adaptive_oracle)=+0.0000 score(mean 5 methods)=+0.0000 missing=0

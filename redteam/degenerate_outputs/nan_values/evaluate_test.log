@@ -1,0 +1,2 @@
+/usr/local/lib/python3.11/site-packages/pandas/core/base.py:689: RuntimeWarning: invalid value encountered in cast
+  result = np.asarray(values, dtype=dtype)

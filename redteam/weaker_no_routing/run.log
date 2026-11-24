@@ -1,0 +1,2 @@
+[rank] no_route_column: rc=0 score(adaptive_oracle)=-0.2826 score(mean 5 methods)=-0.1091 missing=0
+[rank] route_copied_from_region: rc=0 score(adaptive_oracle)=-0.0826 score(mean 5 methods)=-0.0291 missing=0

@@ -1,0 +1,4 @@
+[rank] constant_zero: rc=0 score(adaptive_oracle)=-0.4169 score(mean 5 methods)=-0.1628 missing=0
+[rank] copy_human_input: rc=0 score(adaptive_oracle)=-0.0137 score(mean 5 methods)=-0.0015 missing=0
+[rank] impossible_values: rc=0 score(adaptive_oracle)=-0.6137 score(mean 5 methods)=-0.2415 missing=0
+[rank] nan_values: rc=0 score(adaptive_oracle)=-0.4137 score(mean 5 methods)=-0.1615 missing=0

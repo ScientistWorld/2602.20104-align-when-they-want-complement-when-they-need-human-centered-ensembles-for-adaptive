@@ -1,0 +1,264 @@
+{
+  "_metadata": {
+    "method_source": "scoring/scores_train.json",
+    "slice": "test",
+    "split_rule": "sha256(college-admission-eval-split-v1:experiment_name:example_id) % 2 == 1"
+  },
+  "experiments": {
+    "college_admission_alpha_0_5": {
+      "_metadata": {
+        "data_dir": "data/college_admission_alpha_0_5",
+        "n_examples": 1473,
+        "predictions": "checkpoints/college_admission_alpha_0_5/predictions.csv",
+        "slice": "test",
+        "split_rule": "sha256(college-admission-eval-split-v1:experiment_name:example_id) % 2 == 1"
+      },
+      "results": {
+        "adaptive_oracle": {
+          "ai_accuracy": 0.5994568906992532,
+          "aligned_region_accuracy": 0.2436750998668442,
+          "complementary_region_accuracy": 0.9695290858725761,
+          "reliance_probability": 0.4980026631158455,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.5302104548540394
+        },
+        "adaptive_weighted_oracle": {
+          "ai_accuracy": 0.5892735913102511,
+          "aligned_region_accuracy": 0.3235685752330226,
+          "complementary_region_accuracy": 0.8656509695290858,
+          "reliance_probability": 0.492676431424767,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.5234215885947047
+        },
+        "aligned_ai": {
+          "ai_accuracy": 0.4147997284453496,
+          "aligned_region_accuracy": 0.2436750998668442,
+          "complementary_region_accuracy": 0.592797783933518,
+          "reliance_probability": 0.4980026631158455,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.48879837067209775
+        },
+        "behavior_aware_ai": {
+          "ai_accuracy": 0.7549219280380176,
+          "aligned_region_accuracy": 0.5858854860186418,
+          "complementary_region_accuracy": 0.9307479224376731,
+          "reliance_probability": 0.5073235685752331,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.5689069925322471
+        },
+        "complementary_ai": {
+          "ai_accuracy": 0.7983706720977597,
+          "aligned_region_accuracy": 0.6338215712383488,
+          "complementary_region_accuracy": 0.9695290858725761,
+          "reliance_probability": 0.5073235685752331,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.5763747454175153
+        }
+      }
+    },
+    "college_admission_alpha_0_7": {
+      "_metadata": {
+        "data_dir": "data/college_admission_alpha_0_7",
+        "n_examples": 1475,
+        "predictions": "checkpoints/college_admission_alpha_0_7/predictions.csv",
+        "slice": "test",
+        "split_rule": "sha256(college-admission-eval-split-v1:experiment_name:example_id) % 2 == 1"
+      },
+      "results": {
+        "adaptive_oracle": {
+          "ai_accuracy": 0.9328813559322033,
+          "aligned_region_accuracy": 0.8964613368283093,
+          "complementary_region_accuracy": 0.9719101123595506,
+          "reliance_probability": 0.6264744429882045,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.6827118644067797
+        },
+        "adaptive_weighted_oracle": {
+          "ai_accuracy": 0.9484745762711865,
+          "aligned_region_accuracy": 0.9659239842726082,
+          "complementary_region_accuracy": 0.9297752808988764,
+          "reliance_probability": 0.672346002621232,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.68
+        },
+        "aligned_ai": {
+          "ai_accuracy": 0.7471186440677966,
+          "aligned_region_accuracy": 0.8964613368283093,
+          "complementary_region_accuracy": 0.5870786516853933,
+          "reliance_probability": 0.6264744429882045,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.6284745762711864
+        },
+        "behavior_aware_ai": {
+          "ai_accuracy": 0.8311864406779661,
+          "aligned_region_accuracy": 0.7155963302752294,
+          "complementary_region_accuracy": 0.9550561797752809,
+          "reliance_probability": 0.6159895150720839,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.6820338983050848
+        },
+        "complementary_ai": {
+          "ai_accuracy": 0.8094915254237288,
+          "aligned_region_accuracy": 0.6579292267365662,
+          "complementary_region_accuracy": 0.9719101123595506,
+          "reliance_probability": 0.6028833551769331,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.680677966101695
+        }
+      }
+    },
+    "college_admission_alpha_0_8": {
+      "_metadata": {
+        "data_dir": "data/college_admission_alpha_0_8",
+        "n_examples": 1508,
+        "predictions": "checkpoints/college_admission_alpha_0_8/predictions.csv",
+        "slice": "test",
+        "split_rule": "sha256(college-admission-eval-split-v1:experiment_name:example_id) % 2 == 1"
+      },
+      "results": {
+        "adaptive_oracle": {
+          "ai_accuracy": 0.9661803713527851,
+          "aligned_region_accuracy": 0.9537275064267352,
+          "complementary_region_accuracy": 0.9794520547945206,
+          "reliance_probability": 0.775064267352185,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.7473474801061007
+        },
+        "adaptive_weighted_oracle": {
+          "ai_accuracy": 0.9515915119363395,
+          "aligned_region_accuracy": 0.9447300771208226,
+          "complementary_region_accuracy": 0.958904109589041,
+          "reliance_probability": 0.7712082262210797,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.7393899204244032
+        },
+        "aligned_ai": {
+          "ai_accuracy": 0.7798408488063661,
+          "aligned_region_accuracy": 0.9537275064267352,
+          "complementary_region_accuracy": 0.5945205479452055,
+          "reliance_probability": 0.775064267352185,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.6730769230769231
+        },
+        "behavior_aware_ai": {
+          "ai_accuracy": 0.8149867374005305,
+          "aligned_region_accuracy": 0.7480719794344473,
+          "complementary_region_accuracy": 0.8863013698630137,
+          "reliance_probability": 0.6465295629820051,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.7141909814323607
+        },
+        "complementary_ai": {
+          "ai_accuracy": 0.7970822281167109,
+          "aligned_region_accuracy": 0.6259640102827764,
+          "complementary_region_accuracy": 0.9794520547945206,
+          "reliance_probability": 0.5809768637532133,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.7201591511936339
+        }
+      }
+    },
+    "college_admission_alpha_1_0": {
+      "_metadata": {
+        "data_dir": "data/college_admission_alpha_1_0",
+        "n_examples": 1502,
+        "predictions": "checkpoints/college_admission_alpha_1_0/predictions.csv",
+        "slice": "test",
+        "split_rule": "sha256(college-admission-eval-split-v1:experiment_name:example_id) % 2 == 1"
+      },
+      "results": {
+        "adaptive_oracle": {
+          "ai_accuracy": 0.9880159786950732,
+          "aligned_region_accuracy": 0.9866666666666667,
+          "complementary_region_accuracy": 0.9893617021276596,
+          "reliance_probability": 0.9866666666666667,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.8735019973368842
+        },
+        "adaptive_weighted_oracle": {
+          "ai_accuracy": 0.9940079893475366,
+          "aligned_region_accuracy": 0.9946666666666667,
+          "complementary_region_accuracy": 0.9933510638297872,
+          "reliance_probability": 0.9946666666666667,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.8781624500665779
+        },
+        "aligned_ai": {
+          "ai_accuracy": 0.8322237017310253,
+          "aligned_region_accuracy": 0.9866666666666667,
+          "complementary_region_accuracy": 0.6781914893617021,
+          "reliance_probability": 0.9866666666666667,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.800266311584554
+        },
+        "behavior_aware_ai": {
+          "ai_accuracy": 0.8162450066577897,
+          "aligned_region_accuracy": 0.808,
+          "complementary_region_accuracy": 0.824468085106383,
+          "reliance_probability": 0.808,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.8162450066577897
+        },
+        "complementary_ai": {
+          "ai_accuracy": 0.8115845539280959,
+          "aligned_region_accuracy": 0.6333333333333333,
+          "complementary_region_accuracy": 0.9893617021276596,
+          "reliance_probability": 0.6333333333333333,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.8328894806924101
+        }
+      }
+    },
+    "college_admission_core": {
+      "_metadata": {
+        "data_dir": "data/college_admission",
+        "n_examples": 1500,
+        "predictions": "checkpoints/college_admission/predictions.csv",
+        "slice": "test",
+        "split_rule": "sha256(college-admission-eval-split-v1:experiment_name:example_id) % 2 == 1"
+      },
+      "results": {
+        "adaptive_oracle": {
+          "ai_accuracy": 0.98,
+          "aligned_region_accuracy": 0.9886075949367089,
+          "complementary_region_accuracy": 0.9704225352112676,
+          "reliance_probability": 0.879746835443038,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.7933333333333333
+        },
+        "adaptive_weighted_oracle": {
+          "ai_accuracy": 0.9913333333333333,
+          "aligned_region_accuracy": 0.9962025316455696,
+          "complementary_region_accuracy": 0.9859154929577465,
+          "reliance_probability": 0.8873417721518987,
+          "routing_accuracy": 1.0,
+          "team_accuracy": 0.794
+        },
+        "aligned_ai": {
+          "ai_accuracy": 0.8233333333333334,
+          "aligned_region_accuracy": 0.9886075949367089,
+          "complementary_region_accuracy": 0.6394366197183099,
+          "reliance_probability": 0.879746835443038,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.7206666666666667
+        },
+        "behavior_aware_ai": {
+          "ai_accuracy": 0.8266666666666667,
+          "aligned_region_accuracy": 0.7632911392405063,
+          "complementary_region_accuracy": 0.8971830985915493,
+          "reliance_probability": 0.7126582278481013,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.758
+        },
+        "complementary_ai": {
+          "ai_accuracy": 0.792,
+          "aligned_region_accuracy": 0.6316455696202532,
+          "complementary_region_accuracy": 0.9704225352112676,
+          "reliance_probability": 0.6113924050632911,
+          "routing_accuracy": 0.0,
+          "team_accuracy": 0.758
+        }
+      }
+    }
+  }
+}

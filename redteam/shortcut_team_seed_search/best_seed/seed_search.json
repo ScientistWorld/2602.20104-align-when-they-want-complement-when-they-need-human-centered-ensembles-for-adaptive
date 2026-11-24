@@ -1,0 +1,47 @@
+{
+  "college_admission_core": {
+    "seed0_team_accuracy": 0.794,
+    "best_seed": 111,
+    "best_team_accuracy": 0.8086666666666666,
+    "mean": 0.8008706666666667,
+    "std": 0.0027413187418548124,
+    "min": 0.7926666666666666,
+    "max": 0.8086666666666666
+  },
+  "college_admission_alpha_0_5": {
+    "seed0_team_accuracy": 0.6123557365919892,
+    "best_seed": 135,
+    "best_team_accuracy": 0.6286490156143923,
+    "mean": 0.6108445349626613,
+    "std": 0.006286905245687934,
+    "min": 0.5899524779361847,
+    "max": 0.6286490156143923
+  },
+  "college_admission_alpha_0_7": {
+    "seed0_team_accuracy": 0.688135593220339,
+    "best_seed": 464,
+    "best_team_accuracy": 0.703728813559322,
+    "mean": 0.6871077966101694,
+    "std": 0.0038536719171518093,
+    "min": 0.6766101694915254,
+    "max": 0.703728813559322
+  },
+  "college_admission_alpha_0_8": {
+    "seed0_team_accuracy": 0.7513262599469496,
+    "best_seed": 112,
+    "best_team_accuracy": 0.7679045092838196,
+    "mean": 0.7559416445623343,
+    "std": 0.00376867913165867,
+    "min": 0.743368700265252,
+    "max": 0.7679045092838196
+  },
+  "college_admission_alpha_1_0": {
+    "seed0_team_accuracy": 0.8788282290279628,
+    "best_seed": 309,
+    "best_team_accuracy": 0.8794940079893475,
+    "mean": 0.8784314247669774,
+    "std": 0.0005296119941820351,
+    "min": 0.8754993342210386,
+    "max": 0.8794940079893475
+  }
+}

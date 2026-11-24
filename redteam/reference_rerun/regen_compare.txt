@@ -1,0 +1,18 @@
+college_admission/train.csv identical
+college_admission/test.csv identical
+college_admission/metadata.csv identical
+college_admission_alpha_0_5/train.csv identical
+college_admission_alpha_0_5/test.csv identical
+college_admission_alpha_0_5/metadata.csv identical
+college_admission_alpha_0_7/train.csv identical
+college_admission_alpha_0_7/test.csv identical
+college_admission_alpha_0_7/metadata.csv identical
+college_admission_alpha_0_8/train.csv identical
+college_admission_alpha_0_8/test.csv identical
+college_admission_alpha_0_8/metadata.csv identical
+college_admission_alpha_1/train.csv identical
+college_admission_alpha_1/test.csv identical
+college_admission_alpha_1/metadata.csv identical
+regen alpha_1 vs scored data/college_admission_alpha_1_0/train.csv DIFFERS
+regen alpha_1 vs scored data/college_admission_alpha_1_0/test.csv DIFFERS
+regen alpha_1 vs scored data/college_admission_alpha_1_0/metadata.csv DIFFERS

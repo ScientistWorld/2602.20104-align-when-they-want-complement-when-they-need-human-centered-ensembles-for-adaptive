@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/user/eval/test/evaluate.py", line 193, in <module>
+    main()
+  File "/home/user/eval/test/evaluate.py", line 186, in main
+    scores = evaluate_suite(method_source=method_source, reference=reference)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/eval/test/evaluate.py", line 148, in evaluate_suite
+    scores["experiments"][experiment_name] = evaluate_predictions(
+                                             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/eval/test/evaluate.py", line 95, in evaluate_predictions
+    raise ValueError(f"{experiment_name}: missing prediction columns for methods: {missing}")
+ValueError: college_admission_core: missing prediction columns for methods: ['adaptive_oracle', 'adaptive_weighted_oracle', 'aligned_ai', 'behavior_aware_ai', 'complementary_ai']

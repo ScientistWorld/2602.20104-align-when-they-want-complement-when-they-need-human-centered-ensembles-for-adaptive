@@ -1,0 +1,2 @@
+[rank] planted: rc=1 score(adaptive_oracle)=+0.3238 score(mean 5 methods)=+0.4994 missing=0
+planted file survived the hidden test run unchanged (rc=1)

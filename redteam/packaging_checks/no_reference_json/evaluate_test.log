@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/home/user/eval/test/evaluate.py", line 193, in <module>
+    main()
+  File "/home/user/eval/test/evaluate.py", line 186, in main
+    scores = evaluate_suite(method_source=method_source, reference=reference)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/eval/test/evaluate.py", line 145, in evaluate_suite
+    reference_methods = load_reference_methods(reference)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/eval/test/evaluate.py", line 60, in load_reference_methods
+    payload = json.loads(path.read_text())
+                         ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'scoring/reference.json'

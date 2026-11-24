@@ -1,0 +1,6 @@
+{
+  "run": "/home/user/redteam/packaging_checks/no_reference_json",
+  "evaluate_test_rc": 1,
+  "scores_file_present": false,
+  "status": "FAILED: evaluate_test.sh wrote no scoring/scores_test.json"
+}

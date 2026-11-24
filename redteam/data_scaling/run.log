@@ -1,0 +1,7 @@
+[rank] x0.01: rc=0 score(adaptive_oracle)=-0.0509 score(mean 5 methods)=-0.0378 missing=0
+[rank] x0.05: rc=0 score(adaptive_oracle)=-0.0199 score(mean 5 methods)=-0.0092 missing=0
+[rank] x0.2: rc=0 score(adaptive_oracle)=-0.0135 score(mean 5 methods)=-0.0072 missing=0
+[rank] x1: rc=0 score(adaptive_oracle)=+0.0000 score(mean 5 methods)=+0.0000 missing=0
+[rank] x3: rc=0 score(adaptive_oracle)=+0.0034 score(mean 5 methods)=+0.0031 missing=0
+[rank] x10: rc=0 score(adaptive_oracle)=+0.0007 score(mean 5 methods)=-0.0006 missing=0
+[rank] x10_C1000: rc=0 score(adaptive_oracle)=+0.0014 score(mean 5 methods)=-0.0003 missing=0

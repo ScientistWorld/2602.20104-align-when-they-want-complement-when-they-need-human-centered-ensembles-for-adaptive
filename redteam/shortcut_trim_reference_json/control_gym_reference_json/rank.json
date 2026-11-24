@@ -1,0 +1,6 @@
+{
+  "run": "/home/user/redteam/shortcut_trim_reference_json/control_gym_reference_json",
+  "evaluate_test_rc": 1,
+  "scores_file_present": false,
+  "status": "FAILED: evaluate_test.sh wrote no scoring/scores_test.json"
+}

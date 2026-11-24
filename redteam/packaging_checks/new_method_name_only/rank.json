@@ -1,0 +1,6 @@
+{
+  "run": "/home/user/redteam/packaging_checks/new_method_name_only",
+  "evaluate_test_rc": 1,
+  "scores_file_present": false,
+  "status": "FAILED: evaluate_test.sh wrote no scoring/scores_test.json"
+}

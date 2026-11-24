@@ -1,0 +1,33 @@
+{
+  "args": {
+    "train_factor": 1.0,
+    "sample_seed": 0,
+    "bootstrap_seed": 3,
+    "C": 1.0,
+    "model_seed": 42,
+    "proposed": "paper",
+    "info": "/home/user/redteam/seed_spread/bootstrap_seed_3/variant.json"
+  },
+  "experiments": {
+    "college_admission_core": {
+      "n_train": 7000,
+      "n_train_region1": 3445
+    },
+    "college_admission_alpha_0_5": {
+      "n_train": 7000,
+      "n_train_region1": 3445
+    },
+    "college_admission_alpha_0_7": {
+      "n_train": 7000,
+      "n_train_region1": 3445
+    },
+    "college_admission_alpha_0_8": {
+      "n_train": 7000,
+      "n_train_region1": 3445
+    },
+    "college_admission_alpha_1_0": {
+      "n_train": 7000,
+      "n_train_region1": 3489
+    }
+  }
+}

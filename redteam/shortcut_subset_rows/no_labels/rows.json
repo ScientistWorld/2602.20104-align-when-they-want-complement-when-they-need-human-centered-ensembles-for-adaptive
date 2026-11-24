@@ -1,0 +1,22 @@
+{
+  "college_admission_core": {
+    "rows_written": 2074,
+    "rows_in_test_csv": 3000
+  },
+  "college_admission_alpha_0_5": {
+    "rows_written": 1470,
+    "rows_in_test_csv": 3000
+  },
+  "college_admission_alpha_0_7": {
+    "rows_written": 1802,
+    "rows_in_test_csv": 3000
+  },
+  "college_admission_alpha_0_8": {
+    "rows_written": 1962,
+    "rows_in_test_csv": 3000
+  },
+  "college_admission_alpha_1_0": {
+    "rows_written": 2250,
+    "rows_in_test_csv": 3000
+  }
+}
